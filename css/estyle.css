@@ -1,0 +1,190 @@
+/* Laboratorio 4 - Estilo general de la pagina */
+/* Desarrollado por Maycol Cuervo 20-14-3690*/
+/********** General ***********/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 70px;
+    padding-bottom: 1600px;
+}
+.titulo-pagina {
+    text-align: center;
+}
+select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #4c4c4c;
+  }
+input[type=radio] {
+    visibility: hidden;
+  }
+  .accounttype{
+    margin-left: 35%;
+    margin-top: 20px;
+  }
+  label.radio {
+  cursor: pointer;
+  text-indent: 35px;
+  overflow: visible;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+label.radio:before {
+  background: #F28A2E;
+  content:'';
+  position: absolute;
+  top:2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+label.radio:after {
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 0.80em;
+	height: 0.60em;
+	background: transparent;
+	top: 6.50px;
+	left: 4.5px;
+	border: 3px solid #ffffff;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+input[type=radio]:checked + label:after {
+	opacity: 1;
+}
+  
+.errores{
+    padding: 30px 30px;
+
+}
+.error{
+    color: #F00;
+}
+/********** Footer ***********/
+footer {
+    color: #AAA;
+    padding: 45px 30px;
+    text-align: center;
+}
+footer .enlaces-internos{
+    bottom: -10px;
+}
+footer a{
+    color: #DDD;
+    font-size: 16px;
+    font-weight: bold;
+}
+footer a:focus,
+footer a:hover{
+    color:#DDD; 
+    text-decoration: none;
+}
+footer div.row >div {
+    margin-bottom: 15px;
+}
+footer .iconos-redes-sociales > a {
+    background: #333;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 35px;
+    color: #FFF;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.text-left {
+    text-align: left;
+}
+.col-sm-6 .img-derecha{
+    width: 650px;
+    height: 550px;
+
+}
+.row img {
+    float: right;
+}
+/********** Formularios ***********/
+.campo-contenedor {
+    position: relative;
+}
+.campo-contenedor .glyphicon{
+    position: absolute;
+    padding: 15px;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 3;
+}
+.campo-contenedor .icono-izquierdo {
+   left: 0; 
+}
+.campo-contenedor .icono-derecho {
+    right: 0; 
+ }
+ .campo-contenedor .icono-izquierdo {
+    left: 0; 
+ }
+.campo-contenedor input {
+    padding: 0 40px; 
+ }
+
+ .icono-rojo {
+     color: #F00;
+ }
+ .icono-verde {
+    color: #0F0;
+ }
+ 
+ .invalido {
+    background: #FCC;
+}
+
+.valido{
+   background: #CFC;
+}
+/********** Responsive ***********/
+@media only screen and (min-width: 768px){
+    body {
+        padding-bottom: 800px;
+    }
+    footer {
+        text-align: left;
+    }
+
+    footer .pie-derecho {
+        text-align: right;
+    }
+
+    footer .enlaces-internos{
+        position: relative;
+        bottom: -20px;
+    }
+    footer .iconos-redes-sociales > a {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 25px;
+    }
+    footer div.row >div {
+        margin-bottom: 5px;
+    }
+}
+
