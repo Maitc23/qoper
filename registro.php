@@ -1,6 +1,36 @@
 <?php
+  session_start();
+  require_once('funciones/funciones.php'); 
+  
+  if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['ficha']) && validarFicha ($_POST['ficha'])){
+  
+    //Validar si la informacion es enviada por un robot
+    if(!empty($_POST['robot'])) {
+      return header('Location: error.php');
+    }
+
+    $campos = [
+      'nombre' => 'Nombre',
+      'apellido' => 'Apellido',
+      'cedula' => 'Cedula del usuario',
+      'telefono' => 'Telefono del usuario.',
+      'email' => 'Correo electrocnico',
+      'direccion' => 'Direccion del usuario',
+      'clave' => 'Contraseña',
+      'reclave'=> 'Confirmar contraseña',
+      'terminos' => 'Terminos de uso y condiciones'
+    ];
+    
+    $errores = validarCampos($campos);
+
+    $errores = array_merge($errores, compararClaves($_POST['clave'], $_POST['reclave']));
+    if(empty($errores)) {
+      $errores = registro();
+    }
+  }
   $titulo="Registro";
-  require_once('partials/arriba.php'); 
+  require_once('partials/arriba.php');
+  require_once('BD/conexion.php');
 ?>
 
     <!-- Contenedor principal de la pagina --> 
@@ -9,8 +39,11 @@
         <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
           <h1 class="titulo-pagina">Registro</h1>
           <hr>
+          <?php	if(!empty($errores)){echo mostrarErrores($errores);}?>
             <!-- Formulario de registro --> 
-            <form id="" action ="" method="">
+            <form id="formularioRegistro" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST">
+            <input type="hidden" name="ficha" value="<?php echo ficha_csrf()?>">
+             <input type="hidden" name="robot" value="">  
               <div class="accounttype">
                 <input type="radio" value="None" id="radioOne" name="account" checked/>
                 <label for="radioOne" class="radio" chec>Personal</label>
@@ -146,7 +179,7 @@
                   <div class="form-group">
                   <div class="input-group">
                   <div class="campo-contenedor">
-                  <input type="file" id="fileToUpload" name="foto"  class="form-control input-lg" tabindex="9" >
+                  <input type="file" id="fileToUpload" name="fotoPerfil"  class="form-control input-lg" tabindex="9" >
                         <span class="glyphicon icono-derecho"></span>
                         <span class="glyphicon glyphicon-camera icono-izquierdo"></span>
                       </div>    
@@ -175,7 +208,7 @@
               <div class="row">
                 <div class="col-sm-3">
                   <label class="btn btn-primary btn-lg btn-block">
-                    <input type="checkbox" name="terminos" tabindex="12"   <?php if(isset($_POST['terminos'])){echo "checked ='checked'";}?>>
+                    <input type="checkbox" name="terminos" tabindex="12" <?php if(isset($_POST['terminos'])){echo "checked ='checked'";}?>>
                     Acepto
                   </label>
                 </div>

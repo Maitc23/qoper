@@ -6,7 +6,10 @@
     <!-- Contenedor principal de la pagina --> 
     <div class="container" id="pagina-landing">
         <h1 class="titulo-pagina">Landing page aqui</h1>
-        <a href="registro.php"> Registro </a>
+        <ul>
+          <li><a href="registro.php"> Registro </a></li>
+          <li><a href="login.php"> Login </a></li>
+        </ul>
     </div>
     <!-- /Contenedor principal de la pagina --> 
 <?php
