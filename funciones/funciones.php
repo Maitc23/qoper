@@ -56,10 +56,10 @@ function registroCustumer(){
     $email =limpiar($_POST['email']);
     $clave =limpiar($_POST['clave']);
     $telefono = limpiar($_POST['telefono']);
- 
+    $tipoUser = 2;
     //Insercion de los datos a la BD
-    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,) VALUES (?,?,?,?,?,?,)");
-    $dec -> bind_param("ssssss", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono);
+    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,tipo) VALUES (?,?,?,?,?,?,?)");
+    $dec -> bind_param("ssssssi", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono,$tipoUser);
     $dec -> execute();
     $resultado = $dec -> affected_rows;
     $dec -> free_result();
@@ -94,6 +94,7 @@ function registroProvider(){
     $clave =limpiar($_POST['clave']);
     $telefono = limpiar($_POST['telefono']);
     $direccion = limpiar($_POST['direccion']);
+    $tipoUser = 1;
 
 	//Inicio del fileUpload para fotos de perfil
 	$target_dir = "img/fotosPerfil/";
@@ -130,8 +131,8 @@ function registroProvider(){
 	//fin del fileUpload
  
     //Insercion de los datos a la BD
-    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,direccion,fotoCedula) VALUES (?,?,?,?,?,?,?,?)");
-    $dec -> bind_param("ssssssss", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono,$direccion,$fotoCedula);
+    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,direccion,tipo,fotoCedula) VALUES (?,?,?,?,?,?,?,?,?)");
+    $dec -> bind_param("sssssssis", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono,$direccion,$tipoUser,$fotoCedula);
     $dec -> execute();
     $resultado = $dec -> affected_rows;
     $dec -> free_result();
@@ -289,7 +290,6 @@ function registroProvider(){
         return $errores;
     }
 
-   
 
     /**
      *Funcion hacer login en el sistema
@@ -317,78 +317,24 @@ function registroProvider(){
 
         if($cantidad == 1) {
 
-            //$errores = fuerzaBruta($con, $linea['intento'], $linea['idUser'], $linea['tiempo']);
             if(!empty($errores)){
                 return $errores;
             }
             if(password_verify($clave, $linea['contra'])){
-               /* $intento = 0;
-                $tiempo = NULL;
-                $id = $linea['idUser'];
-                $dec = $con -> prepare("UPDATE usuario SET intento like ? AND tiempo like ? WHERE idUser like ?");
-                $dec -> bind_param("isi", $intento, $tiempo, $id);
-                $dec -> execute();
-                $dec -> close();
-                $con -> close();
-             */
                 $_SESSION['nombre'] = $linea['nombre'];
                 $_SESSION['apellido'] = $linea['apellido'];
-                header('Location: profile_provider.php');
+                if($linea['tipo'] == 1){
+                    header('Location: profile_provider.php');
+                }
+                else {
+                    header('Location: profile_user.php');
+                }
+            
             }
         } else {
             $errores[] = 'El Correo electronico o la contraseña no son validos.';       
         }
 
          return $errores;
-    }
-
-    /**
-     *Funcion protegernos de insercion por fuerza bruta
-     *@param intento
-     *@param con 
-     *@param idUser
-     *@param tiempo
-     *@return any
-     */
-    function fuerzaBruta($con, $intento, $id, $tiempo){
-
-        $errores = []; 
-        $intento = $intento + 1;
-        
-        $dec = $con -> prepare("UPDATE usuario SET intento = ? WHERE idUser = ? ");
-        $dec -> bind_param("ii", $intento, $id);
-        $dec -> execute();
-        $dec -> close();
- 
-
-        if($intento == 5) {
-
-            $ahora = date('Y-m-d H:i:s');
-            $dec = $con -> prepare("UPDATE usuario SET tiempo like ? WHERE idUser like ? ");
-            $dec -> bind_param("si", $ahora, $idUser);
-            $dec -> execute();
-            $dec -> close();
-            $con -> close();
-
-            $errores[] = 'Esta cuenta ha sido bloqueada por los proximos 15 min';
-        
-        } else if ($intento > 5) {
-
-            $espera = strtotime(date('Y-m-d H:i:s')) - strtotime($tiempo);
-            $min = ceil((900 - $espera)/60);
-            
-            if($espera < 900) {
-                $errores[] = 'Esta cuenta ha sido bloqueada por los proximos'.$min.' minutos';
-            } else {
-                $intento = 1;
-                $tiempo = NULL;
-                $dec = $con -> prepare("UPDATE usuario SET intento like ? , tiempo like ? WHERE idUser like ? ");
-                $dec -> bind_param("isi", $intento, $tiempo, $id);
-                $dec -> execute();
-                $dec -> close();
-                $con -> close();
-            }
-        }
-        return $errores;
     }
 ?>
