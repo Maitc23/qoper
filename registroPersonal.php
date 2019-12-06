@@ -12,10 +12,8 @@
     $campos = [
       'nombre' => 'Nombre',
       'apellido' => 'Apellido',
-      'cedula' => 'Cedula del usuario',
       'telefono' => 'Telefono del usuario.',
       'email' => 'Correo electrocnico',
-      'direccion' => 'Direccion del usuario',
       'clave' => 'Contraseña',
       'reclave'=> 'Confirmar contraseña',
       'terminos' => 'Terminos de uso y condiciones'
@@ -25,7 +23,7 @@
 
     $errores = array_merge($errores, compararClaves($_POST['clave'], $_POST['reclave']));
     if(empty($errores)) {
-      $errores = registro();
+      $errores = registroCustumer();
     }
   }
   $titulo="Registro";
@@ -44,13 +42,6 @@
             <form id="formularioRegistro" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST">
             <input type="hidden" name="ficha" value="<?php echo ficha_csrf()?>">
              <input type="hidden" name="robot" value="">  
-              <div class="accounttype">
-                <input type="radio" value="None" id="radioOne" name="account" checked/>
-                <label for="radioOne" class="radio" chec>Personal</label>
-                <input type="radio" value="None" id="radioTwo" name="account" />
-                <label for="radioTwo" class="radio">Proveedor</label>
-              </div>
-            <hr>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
@@ -82,21 +73,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                  <div class="input-group">
-                      <div class="campo-contenedor">
-                        <input type="text" class="form-control input-lg" name="cedula" value="<?php echo $_POST['cedula'] ?? '' ?>" placeholder="Cedula" tabindex="3">
-                        <span class="glyphicon icono-derecho"></span>
-                        <span class="glyphicon glyphicon-user icono-izquierdo"></span>
-                      </div>
-                      <div class="input-group-addon" data-toggle="tooltip" data-plcaement="bottom" title="Cedula de la persona registrandose">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                   <div class="form-group">
                       <div class="input-group">
                       <div class="campo-contenedor">
@@ -111,22 +88,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="campo-contenedor">
-                      <input type="text" class="form-control input-lg" name="direccion" value="<?php echo $_POST['direccion'] ?? '' ?>" placeholder="Direccion" tabindex="5" >
-                        <span class="glyphicon icono-derecho"></span>
-                        <span class="glyphicon glyphicon-map-marker icono-izquierdo"></span>
-                      </div>
-                      <div class="input-group-addon" data-toggle="tooltip" data-plcaement="bottom" title="Direccion de la persona registrandose">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                      </div>
-                    </div>
-                      
-                  </div>
-                </div>
+              <div class="row">                    
                 <div class="col-sm-12">
                   <div class="form-group">
                       <div class="input-group">
@@ -173,38 +135,6 @@
                   </div>
                 </div>
               </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                  <div class="input-group">
-                  <div class="campo-contenedor">
-                  <input type="file" id="fileToUpload" name="fotoPerfil"  class="form-control input-lg" tabindex="9" >
-                        <span class="glyphicon icono-derecho"></span>
-                        <span class="glyphicon glyphicon-camera icono-izquierdo"></span>
-                      </div>    
-                      <div class="input-group-addon" data-toggle="tooltip" data-plcaement="bottom" title="Foto de perfil del usuario" placeholder="Foto de perfil" tabindex="10">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                      </div>
-                    </div>
-     
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                      <div class="input-group">
-                      <div class="campo-contenedor">
-                      <input type="file" class="form-control input-lg" name="fotoCedula" value="<?php echo $_POST['fotoCedula'] ?? '' ?>"placeholder="Foto de la cedula" tabindex="11" >
-                        <span class="glyphicon icono-derecho"></span>
-                        <span class="glyphicon glyphicon-picture icono-izquierdo"></span>
-                      </div>
-                      <div class="input-group-addon" data-toggle="tooltip" data-plcaement="bottom" title="Foto de la cedula">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="row">
                 <div class="col-sm-3">
                   <label class="btn btn-primary btn-lg btn-block">
@@ -224,8 +154,7 @@
                 </div>
                 <div class="col-sm-6">
                   <button type="submit" class="btn btn-success btn-lg btn-block" name="registroBtn" tabindex="13">Registrar</button>
-                </div>
-                
+                </div>   
               </div>
             </form><!-- /Formulario de registro --> 
         </div>

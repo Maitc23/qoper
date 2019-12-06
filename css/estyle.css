@@ -18,56 +18,6 @@ select {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: #4c4c4c;
-  }
-input[type=radio] {
-    visibility: hidden;
-  }
-  .accounttype{
-    margin-left: 35%;
-    margin-top: 20px;
-  }
-  label.radio {
-  cursor: pointer;
-  text-indent: 35px;
-  overflow: visible;
-  display: inline-block;
-  position: relative;
-  margin-bottom: 15px;
-}
-
-label.radio:before {
-  background: #F28A2E;
-  content:'';
-  position: absolute;
-  top:2px;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-}
-
-label.radio:after {
-	opacity: 0;
-	content: '';
-	position: absolute;
-	width: 0.80em;
-	height: 0.60em;
-	background: transparent;
-	top: 6.50px;
-	left: 4.5px;
-	border: 3px solid #ffffff;
-	border-top: none;
-	border-right: none;
-
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-input[type=radio]:checked + label:after {
-	opacity: 1;
 }
   
 .errores{

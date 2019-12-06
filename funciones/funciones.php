@@ -37,12 +37,50 @@ function phpMailer($email, $nombre) {
         echo 'El mensaje no pudo ser enviado: '.$err -> ErrorInfo;
     }
 }
+
 /**
  * Funcion para registrar usuarios 
  * @param  userInfo
  * @return any
  */
-function registro(){
+function registroCustumer(){
+    require_once('BD/conexion.php');
+    //Declaracion de variables
+    $errores= duplicacionCorrreo($con); 
+    if(!empty($errores)){ 
+        return $errores;
+    }
+    $nombre =limpiar($_POST['nombre']);
+    $apellido =limpiar($_POST['apellido']);
+    $cedula =limpiar($_POST['cedula']);
+    $email =limpiar($_POST['email']);
+    $clave =limpiar($_POST['clave']);
+    $telefono = limpiar($_POST['telefono']);
+ 
+    //Insercion de los datos a la BD
+    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,) VALUES (?,?,?,?,?,?,)");
+    $dec -> bind_param("ssssss", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono);
+    $dec -> execute();
+    $resultado = $dec -> affected_rows;
+    $dec -> free_result();
+    $dec -> close();
+    $con -> close(); 
+
+    if($resultado == 1) {
+        header('Location: profile_user.php');
+        //phpMailer($email, $nombre);
+    } else {
+        $errores[] = 'Oops!, hubo algun error en el registro, intente de nuevo';
+    }
+    return $errores;
+}
+
+/**
+ * Funcion para registrar usuarios 
+ * @param  userInfo
+ * @return any
+ */
+function registroProvider(){
     require_once('BD/conexion.php');
     //Declaracion de variables
     $errores= duplicacionCorrreo($con); 
@@ -62,30 +100,6 @@ function registro(){
 	$fotoPerfil = $target_dir . $nombre .basename($_FILES["fotoPerfil"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($fotoPerfil,PATHINFO_EXTENSION));
-	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
-	    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-	        if($check !== false) {
-		        echo "File is an image - " . $check["mime"] . ".";
-		        $uploadOk = 1;
-		    } else {
-		        echo "File is not an image.";
-		        $uploadOk = 0;
-		    }
-		}
-		// Check file size
-		if ($_FILES["fotoPerfil"]["size"] > 500000) {
-		    echo "Sorry, your file is too large.";
-		    $uploadOk = 0;
-		}
-		// Allow certain file formats
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) {
-		    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-		    $uploadOk = 0;
-		}
-    //fin del fileUpload
-    
     //Inicio del fileUpload para fotos de perfil
 	$target_dir1 = "img/fotosCedula/";
 	$fotoCedula = $target_dir1 . $nombre .basename($_FILES["fotoCedula"]["name"]);
@@ -116,8 +130,8 @@ function registro(){
 	//fin del fileUpload
  
     //Insercion de los datos a la BD
-    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,direccion,fotoCedula,fotoPerfil) VALUES (?,?,?,?,?,?,?,?,?)");
-    $dec -> bind_param("sssssssss", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono,$direccion,$fotoCedula,$fotoPerfil);
+    $dec = $con -> prepare("INSERT INTO usuario (nombre,apellido,cedula,contra,email,telefono,direccion,fotoCedula) VALUES (?,?,?,?,?,?,?,?)");
+    $dec -> bind_param("ssssssss", $nombre, $apellido,$cedula,password_hash($clave, PASSWORD_DEFAULT),$email,$telefono,$direccion,$fotoCedula);
     $dec -> execute();
     $resultado = $dec -> affected_rows;
     $dec -> free_result();

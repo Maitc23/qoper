@@ -7,7 +7,7 @@
     <div class="container" id="pagina-landing">
         <h1 class="titulo-pagina">Landing page aqui</h1>
         <ul>
-          <li><a href="registro.php"> Registro </a></li>
+          <li><a href="selecRol.php"> Registro </a></li>
           <li><a href="login.php"> Login </a></li>
         </ul>
     </div>
