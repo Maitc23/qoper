@@ -1,2 +1,0 @@
-# qoper
-Repositorio para Qoper
