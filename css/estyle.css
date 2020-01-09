@@ -1,0 +1,140 @@
+/* Laboratorio 4 - Estilo general de la pagina */
+/* Desarrollado por Maycol Cuervo 20-14-3690*/
+/********** General ***********/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 70px;
+    padding-bottom: 1600px;
+}
+.titulo-pagina {
+    text-align: center;
+}
+select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #4c4c4c;
+}
+  
+.errores{
+    padding: 30px 30px;
+
+}
+.error{
+    color: #F00;
+}
+/********** Footer ***********/
+footer {
+    color: #AAA;
+    padding: 45px 30px;
+    text-align: center;
+}
+footer .enlaces-internos{
+    bottom: -10px;
+}
+footer a{
+    color: #DDD;
+    font-size: 16px;
+    font-weight: bold;
+}
+footer a:focus,
+footer a:hover{
+    color:#DDD; 
+    text-decoration: none;
+}
+footer div.row >div {
+    margin-bottom: 15px;
+}
+footer .iconos-redes-sociales > a {
+    background: #333;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 35px;
+    color: #FFF;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.text-left {
+    text-align: left;
+}
+.col-sm-6 .img-derecha{
+    width: 650px;
+    height: 550px;
+
+}
+.row img {
+    float: right;
+}
+/********** Formularios ***********/
+.campo-contenedor {
+    position: relative;
+}
+.campo-contenedor .glyphicon{
+    position: absolute;
+    padding: 15px;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 3;
+}
+.campo-contenedor .icono-izquierdo {
+   left: 0; 
+}
+.campo-contenedor .icono-derecho {
+    right: 0; 
+ }
+ .campo-contenedor .icono-izquierdo {
+    left: 0; 
+ }
+.campo-contenedor input {
+    padding: 0 40px; 
+ }
+
+ .icono-rojo {
+     color: #F00;
+ }
+ .icono-verde {
+    color: #0F0;
+ }
+ 
+ .invalido {
+    background: #FCC;
+}
+
+.valido{
+   background: #CFC;
+}
+/********** Responsive ***********/
+@media only screen and (min-width: 768px){
+    body {
+        padding-bottom: 800px;
+    }
+    footer {
+        text-align: left;
+    }
+
+    footer .pie-derecho {
+        text-align: right;
+    }
+
+    footer .enlaces-internos{
+        position: relative;
+        bottom: -20px;
+    }
+    footer .iconos-redes-sociales > a {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 25px;
+    }
+    footer div.row >div {
+        margin-bottom: 5px;
+    }
+}
+
