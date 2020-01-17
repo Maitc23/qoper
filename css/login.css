@@ -1,5 +1,5 @@
 body{
-  background: linear-gradient(rgba(1,40,64,0.9), rgba(233, 118, 11, 0.5)), url(../img/fondo_login.jpeg);
+  background: radial-gradient(rgba(1,40,64,1), rgba(233, 118, 11, 1)), url(../img/fondo_login.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
