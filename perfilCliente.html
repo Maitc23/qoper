@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Plantilla</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- CSS Page -->
+    <link rel="stylesheet" href="css/perfil.css">
+
+</head>
+<body>
+     <!-- Navigation -->
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background: #171932;">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/LOGO-TEXTO.png" alt="Logo" style="width:130px;"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item dropdown multi-level-dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-uppercase" id="menu" data-toggle="dropdown">
+                            Perfil
+                        </a>
+                        <ul class="dropdown-menu mt-2 rounded-0 darken-4 border-0 z-depth-1" style="background: #171932;"> 
+                            <li class="dropdown-item p-0">
+                                <a href="#"  class="text-white w-100">Mi Perfil </a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#trabajo">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contacto">Contactos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contacto">Sing Out
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>   
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        </nav>
+
+        <!-- Profile -->
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Cambiar Foto
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        Kshiti Ghelani
+                                    </h5>
+                                    <h6>
+                                        Gerente, Riba Smith
+                                    </h6>
+                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    
+                        <div class="text-center">
+                         
+                            <a href="" class="btn btn-primary btn-rounded btn-sm mb-4" data-toggle="modal" data-target="#modalLoginForm">
+                              Editar Perfil </a>
+                          </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Editar perfil</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="email" id="defaultForm-email" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Contraseña</label>
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass"> Nombre </label>
+                            </div>
+                            
+                            <div class="md-form mb-4">
+                                <i class="fas fa-phone prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass"> Telefono </label>
+                            </div>
+                            
+                            <div class="md-form mb-4">
+                                         <i class="fas fa-map-marker-alt prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass"> Direccion </label>
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-building prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass"> Empresa </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-primary">Guardar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Modal -->
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Mis solicitudes de trabajo</p>
+                         
+                            <a href="">Arraijan problema de baño</a><br/>
+                            <a href="">Chorrera problema de techo</a><br/>
+           
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Kshiti123</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nombre</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Kshiti Ghelani</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>kshitighelani@gmail.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Telefono</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>123 456 7890</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Direccion</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Arraijan, vista alegre</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Empresa </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Riba Smith</p>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Herramientas de Bootstrap (Popper) -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+</body>
+</html>
