@@ -49,56 +49,153 @@
 
     
 
-    <!-- Formato recomendado de filas (reciclado del codigo de Rafael) -->
-    <section class="page-section" id="beneficios">
-    <div class="container">
-        <div class="w3-container">
-        <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase"></h2>
-            <h3 class="section-subheading text-muted"></h3>
-        </div>
-        </div>
-        <div class="w3-container">
+   <!--Carousel Wrapper-->
+<!--<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">-->
+
+    <!--Controls-->
+    <!--<div class="controls-top">
+      <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+      <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+          class="fas fa-chevron-right"></i></a>
+    </div>-->
+    <!--/.Controls-->
+  
+    <!--Indicators-->
+    <!--<ol class="carousel-indicators">
+      <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+      <li data-target="#multi-item-example" data-slide-to="1"></li>
+      <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>-->
+    <!--/.Indicators-->
+  
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+      <!--First slide-->
+      <div class="flex-center">
+  
         <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x orange-text"></i>
-            <i class="fas fa-wallet fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Nombre del cliente</h4>
-            <p class="text-muted">Descripcion bien perrona uwu pero no detallada, para eso el boton xd.</p>
-            <a href="trabajoAceptar.html" class="btn btn-info" role="button">Detalles del trabajo</a>
+          <div class="card mb-2">
+            <img class="card-img-top"
+              src="http://media-cdn.tripadvisor.com/media/photo-s/02/5a/dd/99/broken-fridge.jpg"
+              alt="Card image cap"
+              height="250"
+              width="100">
+            <div class="card-body">
+              <h4 class="card-title">Refri con problemas</h4>
+              <p class="card-text">Porfavor ayuda esta vaina le paso algo.
+                </p>
+              <a class="btn btn-primary" data-toggle="modal" data-target="#modalInfoTrabajo">Detalles</a>
+            </div>
+          </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <div class="w3-container">
-        <div class="col-md-4">   
-            <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x orange-text"></i>
-            <i class="fas fa-wallet fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Nombre del cliente</h4>
-            <p class="text-muted">Descripcion bien perrona uwu pero no detallada, para eso el boton xd.</p>
-            <a href="trabajoAceptar.html" class="btn btn-info" role="button">Detalles del trabajo</a>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="w3-container">
+  
         <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x orange-text"></i>
-            <i class="fas fa-wallet fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Nombre del cliente</h4>
-            <p class="text-muted">Descripcion bien perrona uwu pero no detallada, para eso el boton xd.</p>
-            <a href="trabajoAceptar.html" class="btn btn-info" role="button">Detalles del trabajo</a>
+          <div class="card mb-2">
+            <img class="card-img-top"
+              src="https://media.istockphoto.com/photos/burnt-and-charred-air-conditioner-unit-after-a-fire-picture-id694244302?k=6&m=694244302&s=612x612&w=0&h=kvhEiQrphhOGTSBMNrWsENOZTocQEb-eI1eKJhPvaRI="
+              alt="Card image cap"
+              height="250"
+              width="100">
+            <div class="card-body">
+              <h4 class="card-title">Aire Acondicionado no enfria</h4>
+              <p class="card-text">No esta enfriando mi aire.
+                </p>
+              <a class="btn btn-primary" data-toggle="modal" data-target="#modalInfoTrabajo">Detalles</a>
+            </div>
+          </div>
         </div>
+  
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <img class="card-img-top"
+              src="https://www.48days.com/wp-content/uploads/2016/01/junk-car-1024x573.jpg"
+              alt="Card image cap"
+              height="250"
+              width="100">
+            <div class="card-body">
+              <h4 class="card-title">No arranca carro</h4>
+              <p class="card-text">No esta arrancando mi carro.
+                </p>
+              <a class="btn btn-primary" data-toggle="modal" data-target="#modalInfoTrabajo">Detalles</a>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalInfoTrabajo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Detalles</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="defaultForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-email">Titulo</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Fecha</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Tipo de Mantenimiento</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Descripcion</label>
+                    
+                </div>
+                
+                <div class="md-form mb-4">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Requisito Extra</label>
+                </div>
+                
+                <button type="button" class="btn btn-danger btn-square">Volver</button>
+                <button type="button" class="btn btn-primary btn-square">Aceptar</button>
+               
+
+
+            </div>
+            
+            </div>
         </div>
     </div>
-    </section>
+    <!--/ Modal -->
 
-    <hr>
+      <!--/.First slide-->
+  
+     
+  
+    </div>
+    <!--/.Slides-->
+  
+  </div>
+  <!--/.Carousel Wrapper-->
+
+  <br>
+  <br>
 
     
 
