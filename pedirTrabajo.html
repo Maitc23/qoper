@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Icono -->
+    <link rel="shortcut icon" href="img/Qpequeña.png" />
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <!-- CSS de esta página -->
+    <link href="css/estiloIndex.css" rel="stylesheet">
+
+    <!-- Tipos de letra para esta página -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+ -->
+
+    <title>Pedir Trabajo</title>
+  </head>
+  <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background: #171932;">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/LOGO-TEXTO.png" alt="Logo" style="width:130px;"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item dropdown multi-level-dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-uppercase" id="menu" data-toggle="dropdown">
+                            Perfil
+                        </a>
+                        <ul class="dropdown-menu mt-2 rounded-0 darken-4 border-0 z-depth-1" style="background: #171932;"> 
+                            <li class="dropdown-item p-0">
+                                <a href="/perfilCliente.html"  class="text-white w-100">Mi Perfil </a>
+                            </li>
+                            <li class="dropdown-item p-0">
+                                <a href="#"  class="text-white w-100">Solicitudes de trabajo</a>
+                            </li>
+                            <li class="dropdown-item p-0">
+                                <a href="#"  class="text-white w-100">Cupones</a>
+                            </li>
+                        </ul>
+                    </li>                
+                    <li class="nav-item dropdown multi-level-dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-uppercase" id="menu" data-toggle="dropdown">
+                           Servicios
+                        </a>
+                        <ul class="dropdown-menu mt-2 rounded-0 darken-4 border-0 z-depth-1" style="background: #171932;"> 
+                            <li class="dropdown-item p-0">
+                                <a href="/Mantenimiento.html"  class="text-white w-100">Mantenimiento</a>
+                            </li>
+                            <li class="dropdown-item p-0">
+                                <a href="#"  class="text-white w-100">Trabajos actuales</a>
+                            </li>
+                        </ul>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contacto">Contactos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/index.html">Sing Out
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>   
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        </nav>
+
+            <br><br><br><br>
+        <!-- inicio del formulario -->
+        <div class="container-lg">
+            <br><br>
+            <div class="titulo text-center">
+                <h3>Solicitar Trabajo</h3>
+            </div>
+            <form>
+                <br>
+                <div class="row">
+                        <div class="col">
+                            <label for="fechaTrabajo">Titulo</label>
+                            <input type="text" class="form-control" placeholder="Titulo de la Solicitud" required>
+                        </div>
+
+                        <!-- <div class="col">
+                            <label for="fechaTrabajo">ID Solicitud</label>
+                            <input type="text" class="form-control" placeholder="">
+                        </div> -->
+
+                        <div class="col">
+                                <label for="fechaTrabajo">Fecha</label>
+                                <input type="date" class="form-control" placeholder="Fecha" required>
+                                <small id="emailHelp" class="form-text text-muted">
+                                    Fecha en la cual necesita que sea realizado el trabajo.
+                                </small>
+                        </div>
+                            <!-- <div class="row"> -->
+                                <div class="col">
+                                    <label for="mantenimientos">Tipo de mantenimiento</label>
+                                    <select id="mantenimientos" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                            </div>  
+                        <!-- </div> -->
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                            <label for="lugarMantenimiento">Lugar</label>
+                            <input type="text" class="form-control" id="lugar" placeholder="Lugar del trabajo " required>
+                    </div>  
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="descripcion">Descripción</label>
+                  <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción del Trabajo" required></textarea>
+                </div>
+                <br>
+                <!-- Area de Contacto -->
+                <div class="row">
+                    <div class="col">
+                            <label for="encargado">Encargado</label>
+                            <input type="text" class="form-control" id="encargado" placeholder="Encargado de Supervisión" required>
+                    </div>
+                    <div class="col">
+                        <label for="telefono">Telefono</label>
+                        <input type="tel" class="form-control" id="telefono" placeholder="666-5555" required>
+                    </div>
+                    <div class="col">
+                        <label for="correoContacto">Correo</label>
+                        <input type="email" class="form-control" id="correoContacto" placeholder="Correo de contacto">
+                    </div>  
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Requisitos extra</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Requirimientos extra del trabajo">
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="cotiza">
+                  <label class="form-check-label" for="cotiza">Cotizacion Presencial</label>
+                  <small id="email" class="form-text text-muted">Recuerde que las cotizaciones presenciales son pagadas al proveedor.</small>
+                </div>
+
+                <div class="boton">
+                <button type="submit" class="btn btn-primary  float-right">Publicar</button>
+                </div>
+            </form>
+        </div>
+
+        <br><br><br><br>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small orange darken-3">   
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                    <a href="https://mdbootstrap.com/education/bootstrap/"> Qoper S.A.</a>
+                </div>
+                <!-- Copyright -->     
+        </footer>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
