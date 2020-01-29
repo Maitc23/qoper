@@ -26,7 +26,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
  -->
 
-    <title>Pedir Trabajo</title>
+    <title>Cotizacion Trabajo</title>
   </head>
   <body>
       <!-- Navigation -->
@@ -87,14 +87,14 @@
         <div class="container-lg">
             <br><br>
             <div class="titulo text-center">
-                <h3>Solicitar Trabajo</h3>
+                <h3>Cotizacion de Trabajo</h3>
             </div>
             <form>
                 <br>
                 <div class="row">
                         <div class="col">
                             <label for="fechaTrabajo">Titulo</label>
-                            <input type="text" class="form-control" placeholder="Titulo de la Solicitud" required>
+                            <input type="text" class="form-control" placeholder="Titulo de la Solicitud" readonly>
                         </div>
 
                         <!-- <div class="col">
@@ -104,62 +104,117 @@
 
                         <div class="col">
                                 <label for="fechaTrabajo">Fecha</label>
-                                <input type="date" class="form-control" placeholder="Fecha" required>
+                                <input type="date" class="form-control" placeholder="Fecha" readonly>
                                 <small id="emailHelp" class="form-text text-muted">
-                                    Fecha en la cual necesita que sea realizado el trabajo.
+                                    Fecha de Solicitud.
                                 </small>
                         </div>
                             <!-- <div class="row"> -->
                                 <div class="col">
-                                    <label for="mantenimientos">Tipo de mantenimiento</label>
-                                    <select id="mantenimientos" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                            </div>  
+                                        <label for="fechaTrabajo">Tipo de Mantenimiento</label>
+                                        <input type="text" class="form-control" placeholder="tipoMantenimiento" readonly>
+                                </div>  
+                                <div class="col">
+                                        <label for="fechaTrabajo">ID Cotizacion</label>
+                                        <input type="text" class="form-control" placeholder="333" readonly>
+                                </div> 
                         <!-- </div> -->
                 </div>
                 <br>
                 <div class="row">
                     <div class="col">
                             <label for="lugarMantenimiento">Lugar</label>
-                            <input type="text" class="form-control" id="lugar" placeholder="Lugar del trabajo " required>
+                            <input type="text" class="form-control" id="lugar" readonly>
                     </div>  
-                </div>
-                <br>
-                <div class="form-group">
-                  <label for="descripcion">Descripción</label>
-                  <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción del Trabajo" required></textarea>
                 </div>
                 <br>
                 <!-- Area de Contacto -->
                 <div class="row">
-                    <div class="col">
-                            <label for="encargado">Encargado</label>
-                            <input type="text" class="form-control" id="encargado" placeholder="Encargado de Supervisión" required>
-                    </div>
-                    <div class="col">
-                        <label for="telefono">Telefono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="666-5555" required>
-                    </div>
-                    <div class="col">
-                        <label for="correoContacto">Correo</label>
-                        <input type="email" class="form-control" id="correoContacto" placeholder="Correo de contacto">
-                    </div>  
+                        <div class="col">
+                                <label for="encargado">Encargado</label>
+                                <input type="text" class="form-control" id="encargado" placeholder="Encargado de Supervisión" readonly>
+                        </div>
+                        <div class="col">
+                            <label for="telefono">Telefono</label>
+                            <input type="tel" class="form-control" id="telefono" placeholder="666-5555" readonly>
+                        </div>
+                        <div class="col">
+                            <label for="correoContacto">Correo</label>
+                            <input type="email" class="form-control" id="correoContacto" placeholder="" readonly>
+                        </div>  
                 </div>
                 <br>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Requisitos extra</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Requirimientos extra del trabajo">
+                  <label for="descripcion">Descripción</label>
+                  <textarea class="form-control" id="descripcion" rows="3" placeholder="Porfavor Actualice el tipo de Problema identificado durante la evaluación" required></textarea>
                 </div>
-                <div class="form-group form-check">
+                
+                
+                <br>
+                <!-- <div class="form-group">
+                  <label for="exampleInputPassword1">Requisitos extra</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1">
+                </div> -->
+                <!-- <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="cotiza">
                   <label class="form-check-label" for="cotiza">Cotizacion Presencial</label>
-                  <small id="email" class="form-text text-muted">Recuerde que las cotizaciones presenciales son pagadas al proveedor.</small>
-                </div>
+                  <small id="emailHelp" class="form-text text-muted">Recuerde que las cotizaciones presenciales son pagadas al proveedor.</small>
+                </div> -->
 
-                <div class="boton">
-                <button type="submit" class="btn btn-primary  float-right">Publicar</button>
+                <hr>
+                    <div class="title content-center">
+                        <h5>Evaluación Profesional</h5>
+                    </div>
+                    <br>
+                    <div class="row">
+                            <div class="col">
+                                    <label for="encargadoCot">Encargado de la Cotización</label>
+                                    <input type="text" class="form-control" id="encargado" placeholder="Encargado de cotización" readonly>
+                            </div>
+                            <div class="col">
+                                    <label for="fechaTrabajo">Fecha</label>
+                                    <input type="date" class="form-control" placeholder="Fecha" required>
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        Fecha de Realizacion de la Cotizacion.
+                                    </small>
+                            </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                            <label for="descripcion">Trabajo a Realizar</label>
+                            <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción del Trabajo" required></textarea>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+
+                            <div class="col">
+                                <h6 class="text-center">Lista de Materiales</h6>
+                                <br>
+                                    <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Material</th>
+                                                <th scope="col">Cantidades</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row"><input type="text" id="material" placeholder="material"></th>
+                                                <td><input type="text" id="material" placeholder="material"></td>
+                                                <td></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          <button type="submit" class="btn float-right">Agregar</button>
+                            </div>
+                    </div>
+                <hr>
+
+
+                
+                <div class="boton text-center">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
