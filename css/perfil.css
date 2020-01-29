@@ -1,4 +1,17 @@
-
+    .modal-dialog.modal-notify.modal-utxj .modal-header {
+        background-color: #149c7e; }
+    
+    .modal-dialog.modal-notify.modal-utxj .fas, .modal-dialog.modal-notify.modal-utxj .fab, .modal-dialog.modal-notify.modal-utxj .far {
+        color: #149c7e; }
+    
+    .modal-dialog.modal-notify.modal-utxj .badge {
+        background-color: #149c7e; }
+    
+    .modal-dialog.modal-notify.modal-utxj .btn .fas, .modal-dialog.modal-notify.modal-utxj .btn .fab, .modal-dialog.modal-notify.modal-utxj .btn .far {
+        color: #fff; }
+    
+    .modal-dialog.modal-notify.modal-utxj .btn.btn-outline-utxj .fas, .modal-dialog.modal-notify.modal-utxj .btn.btn-outline-utxj .fab, .modal-dialog.modal-notify.modal-utxj .btn.btn-outline-utxj .far {
+        color: #149c7e; }
     .emp-profile{
         padding: 3%;
         margin-top: 8%;
