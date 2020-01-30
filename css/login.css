@@ -1,11 +1,28 @@
 body{
-  background: radial-gradient(rgba(1,40,64,1), rgba(233, 118, 11, 1)), url(../img/fondo_login.jpeg);
+  background: linear-gradient(17deg, rgba(1,40,64,0.9) 34%, rgba(233,118,11,0.9) 100%), url(../img/fondo_login.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
 }
 
 .altura{
   height: 100vh;
+}
+
+.btn{
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-weight: 600;
+}
+
+.titulo{
+  line-height: 40px;
+  margin-bottom: 25px;
+  font-family: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+input{
+  padding: 12px 20px;
 }
