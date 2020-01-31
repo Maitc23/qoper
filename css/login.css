@@ -1,9 +1,9 @@
 body{
-  background: linear-gradient(17deg, rgba(1,40,64,0.9) 34%, rgba(233,118,11,0.9) 100%), url(../img/fondo_login.jpeg);
+  background: linear-gradient(17deg, rgba(233,118,11,0.5) 40%, rgba(233,118,11,0.5) 40%), url(../img/fondo_login.jpeg);
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
 }
