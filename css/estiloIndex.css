@@ -14,7 +14,12 @@
   a:hover {
     color: #F26513;
   }
-  
+
+  #txtAhorra, #txtServicio, #txtPro, #txtGarantia{
+    color: #666666;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  }
+
   .text-primary {
     color: #F28A2E !important;
   }
