@@ -11,6 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <!--font-->
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <!-- Icono -->
     <link rel="shortcut icon" href="../img/Qpequeña.png" />
     <!-- CSS Page -->
@@ -55,7 +57,7 @@
                         <a class="nav-link js-scroll-trigger" href="#contacto">Contactos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="../index.html">Sing Out
+                        <a class="nav-link js-scroll-trigger" href="../index.html">Cerrar sesión
                             <i class="fas fa-sign-out-alt"></i>
                         </a>   
                     </li>
@@ -279,14 +281,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Trabajo Ejemplo 1</label>
+                                        <hr>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-rounded btn-sm mb-4 " data-toggle="modal" data-target="#modalInfoTrabajo">Ver</button>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Trabajo Ejemplo 2</label>
+                                        <hr>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-rounded btn-sm mb-4 " data-toggle="modal" data-target="#modalInfoTrabajo">Ver</button>
@@ -295,6 +300,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Trabajo Ejemplo 3</label>
+                                        <hr>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-rounded btn-sm mb-4 " data-toggle="modal" data-target="#modalInfoTrabajo">Ver</button>
@@ -303,6 +309,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Trabajo Ejemplo 4</label>
+                                        <hr>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-rounded btn-sm mb-4 " data-toggle="modal" data-target="#modalInfoTrabajo">Ver</button>
@@ -311,55 +318,51 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Trabajo Ejemplo 5</label>
+                                        <hr>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-rounded btn-sm mb-4 " data-toggle="modal" data-target="#modalInfoTrabajo">Ver</button>
                                     </div>
                                 </div>
 
-                                <!-- Modal TRABAJOS ACTUALES -->
+                             <!-- Modal -->
       <div class="modal fade" id="modalInfoTrabajo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Detalles</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
-            <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Titulo</label>
-                </div>
+            <div class="text-center">
+                <p></p>
+              <strong>Titulo</strong>
+              <p>Nombre generico aqui.</p>
+              <p></p>
+              <hr>
+              <strong>Tipo de Mantenimiento</strong>
+              <p>Anal</p>
+              <p></p>
+              <hr>
+              <strong>Nombre</strong>
+              <p>Martil Palazuelos</p>
+              <p></p>
+              <hr>
+              <strong>Descripcion</strong>
+              <p>Descripcion hyper detallada que hara al men de mantenimiento llorar con Y.</p>
+              <p></p>
+              <hr>
+              <strong>Requisitos Extra</strong>
+              <p>Requisitos extra X aqui uwu</p>
+              <p></p>
+              <hr>
+              <strong>Fecha del post</strong>
+              <p>6/9/1969</p>
+              <p></p>
 
-                <div class="md-form mb-4">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Fecha</label>
-                </div>
-
-                <div class="md-form mb-4">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Tipo de Mantenimiento</label>
-                </div>
-
-                <div class="md-form mb-4">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Descripcion</label>
-                    
                 </div>
                 
-                <div class="md-form mb-4">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Requisito Extra</label>
-                </div>
-                
-                <button type="button" class="btn btn-primary btn-square">Volver</button>
+                <button type="button" class="btn btn-primary btn-square">Aceptar</button>
+                <button type="button" class="btn btn-danger btn-square" class="close" data-dismiss="modal">Volver</button>
                 
                
 
@@ -369,7 +372,7 @@
             </div>
         </div>
     </div>
-    <!--/ Modal TRABAJOS ACTUALES -->
+    <!--/ Modal -->
                     </div>
                         </div>
                     </div>
