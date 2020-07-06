@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
 import './App.css';
 
-import LandingPage from './components/LadingPage'
+import LandingPage from './components/LandingPage'
 import Navigation from './components/layout/Navigation'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import UserContext from './context/UserContenxt'
+import UserContext from './context/UserContext'
 
 export default function App() {
 

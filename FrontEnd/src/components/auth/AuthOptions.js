@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import UserContext from '../../context/UserContenxt'
+import UserContext from '../../context/UserContext'
 
 export default function AuthOptions() {
 
