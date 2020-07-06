@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import LandingPage from './components/ladingPage'
-import Navigation from './components/layout/navigation'
-import Login from './components/auth/login'
-import Register from './components/auth/register'
-import UserContext from './context/userContenxt'
+import LandingPage from './components/LadingPage'
+import Navigation from './components/layout/Navigation'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
+import UserContext from './context/UserContenxt'
 
-function App() {
+export default function App() {
 
   const [userData, setUserData] = useState({
     token: undefined,
@@ -48,22 +48,25 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <Navigation />
+    <>
+      <Router>
+        
+        <UserContext.Provider value={{ userData, setUserData }}>
 
+          <Navigation />
+          <Switch>
 
-        <div className="container p-4">
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
+            <div className="container p-4">
+              <Route path="/" exact component={LandingPage} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+            </div>
 
-      </UserContext.Provider>
+          </ Switch>
 
-
-    </Router>
+        </UserContext.Provider>
+      </Router>
+    </>
   );
 }
 
-export default App;

@@ -4,10 +4,10 @@ const verifyToken = require('../middlewares/verifyToken');
 
 
 
-router.route('/signup')
+router.route('/register')
     .post(signup)
 
-router.route('/signin')
+router.route('/login')
     .post(signin)
 
 
