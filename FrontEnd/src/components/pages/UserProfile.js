@@ -10,13 +10,16 @@ export default function UserProfile() {
     
     return (
         <div className="page">
-        {userData.user ? (
-          <h1>Welcome {userData.user.nombre}</h1>
-        ) : (
+        {userData.user && userData.user.userType === 1 ?  (
+          <h1>Welcome {userData.user.nombre} Proveedor</h1>
+          
+        ) : userData.user && userData.user.userType === 2 ? (
+          <h1>Welcome {userData.user.nombre} Cliente</h1>
+        ): (
           <>
-            <h2>You are not logged in</h2>
-            <Link to="/login">Log in</Link>
-          </>
+          <h2>You are not logged in</h2>
+          <Link to="/login">Log in</Link>
+        </>
         )}
       </div>
     )

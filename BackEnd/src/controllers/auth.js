@@ -88,7 +88,7 @@ controller.signin = async (req,res, next)=> {
                 nombre: user.nombre, 
                 apellido: user.apellido,
                 email: user.email,
-                typeUser: user.typeUser
+                userType: user.userType
             } 
         });
 
