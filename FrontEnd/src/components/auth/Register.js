@@ -40,8 +40,9 @@ export default function Register() {
             token: loginRes.data.token,
             user: loginRes.data.user
         });
+        
         localStorage.setItem('auth-token', loginRes.data.token);
-        history.push("/");
+        history.push("/profile");
     }catch(err) {
         err.response.data.message && setError(err.response.data.message);   
     }
