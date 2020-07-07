@@ -1,43 +1,56 @@
-import React, { useContext } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import UserContext from '../../context/UserContext'
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
+import { Link, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  leftSpacing: {
+    marginLeft: theme.spacing(2),
+  }
+}));
 
 export default function AuthOptions() {
 
-    const { userData, setUserData } = useContext(UserContext);
+  const classes = useStyles();
 
-    const history = useHistory();
+  const { userData, setUserData } = useContext(UserContext);
 
-    const register = () => history.push('/register');
-    const login = () => history.push('/login');
-    const logout = () => {
-        setUserData({
-            token: undefined,
-            user: undefined
-        });
-        localStorage.setItem("auth-token", "");
-    }
+  const history = useHistory();
 
-    return (
-        <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ml-auto">
-                {
+  const register = () => history.push('/register');
+  const login = () => history.push('/login');
+  const logout = () => {
+    setUserData({
+      token: undefined,
+      user: undefined
+    });
+    localStorage.setItem("auth-token", "");
+  }
 
-                    userData.user ? (
-                        <li className="nav-item">
-                            <Link className="nav-link" onClick={logout}>Log out</Link>
-                        </li>
-                    ) : (
-                            <>
-                                <li className="nav-item">
-                                    <Link className="nav-link" onClick={login}> Login</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" onClick={register}> Registro</Link>
-                                </li>
-                            </>
-                        )};
-            </ul>
-        </div>
-    )
+  return (
+    <div>
+      {
+
+        userData.user ? (
+          <Typography>
+            <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={logout}>
+              Log out
+            </Link>
+          </Typography>
+        ) : (
+            <>
+              <Typography>
+                <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={login}>
+                  Iniciar Sesión
+                </Link>
+                <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={register}>
+                  Registro
+                </Link>
+              </Typography>
+            </>
+          )}
+
+    </div>
+  )
 }

@@ -1,20 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import AuthOptions from '../auth/AuthOptions'
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/Appbar';
-import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import logoImg from '../../images/LOGO-TEXTO.png'
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { Link as Enlace } from 'react-router-dom';
+import { Link } from '@material-ui/core';
+import AuthOptions from '../auth/AuthOptions'
+import logoImg from '../../images/LOGO-TEXTO.png';
 
 const useStyles = makeStyles((theme) => ({
-  logo: {
-    width: 135,
-    height: 43.54
+  grow: {
+    flexGrow: 1,
   },
   appBarBackground: {
-    backgroundColor: '#1a237e'
+    backgroundColor: '#171932',
+  },
+  leftSpacing: {
+    marginLeft: theme.spacing(2),
   }
 }));
 
@@ -22,19 +25,36 @@ export default function Navigation() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="sticky" className={classes.appBarBackground}>
+    <div className={classes.grow}>
+      <AppBar position="static" className={classes.appBarBackground}>
         <Toolbar>
-          <Box p={1}>
-            <Link>
-              <Button>
-                <img src={logoImg} alt="Logo" width="130px" />
-              </Button>
-            </Link>
-          </Box>
+          <Enlace to="/">
+            <Box ml={5}>
+              <img src={logoImg} alt="Logo" height="40px" />
+            </Box>
+          </Enlace>
+          <div className={classes.grow} />
+          <div>
+
+            <Typography>
+              <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+                Pedir Servicio
+              </Link>
+              <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+                Perfil
+              </Link>
+              <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+                Contacto
+               </Link>
+            </Typography>
+          </div>
+          <div>
+            <Box mr={6}>
+              <AuthOptions />
+            </Box>
+          </div>
         </Toolbar>
-        <AuthOptions />
       </AppBar>
-    </div>
+    </div >
   );
 }
