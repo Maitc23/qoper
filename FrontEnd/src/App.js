@@ -8,6 +8,8 @@ import LandingPage from './components/LandingPage'
 import Navigation from './components/layout/Navigation'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import Profile from './components/pages/UserProfile'
+
 import UserContext from './context/UserContext'
 import pruebaLogin from './components/auth/pruebaLogin'
 
@@ -51,23 +53,19 @@ export default function App() {
   return (
     <>
       <Router>
-        
         <UserContext.Provider value={{ userData, setUserData }}>
-
           <Navigation />
-          <Switch>
-
-            <div className="container p-4">
+          <div className="container p-4">
+            <Switch >
               <Route path="/" exact component={LandingPage} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/pruebaLogin" component={pruebaLogin} />
-            </div>
-
-          </ Switch>
-
+              <Route path="/profile" component={Profile} />
+            </ Switch>
+          </div>
         </UserContext.Provider>
-      </Router>
+      </Router >
     </>
   );
 }

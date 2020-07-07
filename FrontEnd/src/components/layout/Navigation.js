@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import { Link as Enlace } from 'react-router-dom';
-import { Link } from '@material-ui/core';
 import AuthOptions from '../auth/AuthOptions'
 import logoImg from '../../images/LOGO-TEXTO.png';
 
@@ -58,3 +56,4 @@ export default function Navigation() {
     </div >
   );
 }
+
