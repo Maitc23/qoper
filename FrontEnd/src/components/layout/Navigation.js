@@ -40,12 +40,12 @@ export default function Navigation() {
               <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
                 Pedir Servicio
               </Link>
-              <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+              <Link component="button" variant="body" aria-label="Perfil" color="inherit" className={classes.leftSpacing}>
                 Perfil
               </Link>
-              <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+              <Link component="button" variant="body" aria-label="Contacto" color="inherit" className={classes.leftSpacing}>
                 Contacto
-               </Link>
+              </Link>
             </Typography>
           </div>
           <div>

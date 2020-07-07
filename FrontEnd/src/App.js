@@ -9,6 +9,7 @@ import Navigation from './components/layout/Navigation'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import UserContext from './context/UserContext'
+import pruebaLogin from './components/auth/pruebaLogin'
 
 export default function App() {
 
@@ -60,6 +61,7 @@ export default function App() {
               <Route path="/" exact component={LandingPage} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/pruebaLogin" component={pruebaLogin} />
             </div>
 
           </ Switch>
