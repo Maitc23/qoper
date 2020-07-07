@@ -6,7 +6,7 @@ const config = require('../config/config');
 
 controller.signup = async (req, res, next) =>{ 
     try { 
-        const {nombre, apellido, email, password, passwordCheck} = req.body;
+        const {nombre, apellido, email, password, userType, passwordCheck} = req.body;
     
         if(!email || !password || !passwordCheck) {
             return res.status(400).json({message: "Campos obligatorios no llenados"})
@@ -20,6 +20,11 @@ controller.signup = async (req, res, next) =>{
             return res.status(400).json({message: "Las contraseñas no coinciden"});
         }
 
+        if(userType === null) {
+            return res.status(400).json({message: "Seleccione su tipo de usuario"});
+        }
+    
+
         const existingEmail= await User.findOne({email: email});
 
         if(existingEmail) {
@@ -30,7 +35,8 @@ controller.signup = async (req, res, next) =>{
             nombre: nombre, 
             apellido: apellido, 
             email: email, 
-            password: password        
+            password: password, 
+            userType: userType       
         });
     
         user.password = await user.encryptPassword(user.password); 
@@ -81,7 +87,8 @@ controller.signin = async (req,res, next)=> {
                 id: user._id,
                 nombre: user.nombre, 
                 apellido: user.apellido,
-                email: user.email
+                email: user.email,
+                typeUser: user.typeUser
             } 
         });
 

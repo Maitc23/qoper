@@ -51,25 +51,32 @@ export default function App() {
 
   return (
     <>
+
       <Router>
-        
+
         <UserContext.Provider value={{ userData, setUserData }}>
 
           <Navigation />
-          <Switch>
+          <div className="container p-4">
 
-            <div className="container p-4">
+
+            <Switch >
+
               <Route path="/" exact component={LandingPage} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
+
+            </ Switch>
+          
+     
             </div>
-
-          </ Switch>
-
         </UserContext.Provider>
+        
+
       </Router>
     </>
+    
   );
 }
 
