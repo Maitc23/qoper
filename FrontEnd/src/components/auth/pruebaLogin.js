@@ -1,5 +1,4 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,14 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import logoImg from '../../images/logo.png';
-import deepOrange from '@material-ui/core/colors/deepOrange';
-import Orange from '@material-ui/core/colors/orange';
+import indigo from '@material-ui/core/colors/indigo';
 
-const DeepOrangeCheckbox = withStyles({
+const IndigoCheckbox = withStyles({
   root: {
-    color: deepOrange[400],
+    color: indigo[800],
     '&$checked': {
-      color: deepOrange[600],
+      color: indigo[800],
     },
   },
   checked: {},
@@ -29,25 +27,24 @@ const DeepOrangeCheckbox = withStyles({
 const CssTextField = withStyles({
   root: {
     '& label.Mui-focused': {
-      color: deepOrange[500],
+      color: indigo[800],
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: deepOrange[500],
+      borderBottomColor: indigo[800],
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '',
       },
       '&:hover fieldset': {
-        borderColor: deepOrange[500],
+        borderColor: indigo[800],
       },
       '&.Mui-focused fieldset': {
-        borderColor: deepOrange[500],
+        borderColor: indigo[800],
       },
     },
   },
 })(TextField);
-
 
 function Copyright() {
   return (
@@ -60,7 +57,7 @@ function Copyright() {
       {'.'}
     </Typography>
   );
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,10 +65,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: logoImg,
+    width: theme.spacing(7),
+    height: theme.spacing(8),
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -80,11 +80,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  deepOrangeButton: {
-    backgroundColor: Orange[500],
+  indigoButton: {
+    backgroundColor: indigo[700],
     color: '#FFF',
     '&:hover': {
-      backgroundColor: Orange[600],
+      backgroundColor: indigo[800],
       color: '#FFF'
     },
   },
@@ -97,9 +97,7 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <logoImg />
-        </Avatar>
+        <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
         <Typography component="h1" variant="h5">
           Iniciar sesión
         </Typography>
@@ -109,10 +107,11 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="login-email"
             label="Correo Electrónico"
             name="email"
             autoComplete="email"
+            color="primary"
             autoFocus
           />
           <CssTextField
@@ -123,11 +122,11 @@ export default function SignIn() {
             name="password"
             label="Contraseña"
             type="password"
-            id="password"
+            id="login-password"
             autoComplete="current-password"
           />
           <FormControlLabel
-            control={<DeepOrangeCheckbox value="remember" color="primary" />}
+            control={<IndigoCheckbox value="remember" color="primary" />}
             label="Recuérdame"
           />
           <Button
@@ -135,7 +134,7 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.deepOrangeButton + ' ' + classes.submit}
+            className={classes.submit}
           >
             Iniciar sesión
           </Button>
@@ -147,7 +146,7 @@ export default function SignIn() {
             </Grid>
             <Grid item>
               <Link to="/register" variant="body2">
-                {"¿No tiene una cuenta? Regístrese"}
+                ¿No tiene una cuenta? Regístrese
               </Link>
             </Grid>
           </Grid>
