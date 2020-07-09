@@ -9,6 +9,7 @@ import Navigation from './components/layout/Navigation'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
+import ListaTrabajos from './components/pages/ListaTrabajos'
 
 import UserContext from './context/UserContext'
 
@@ -66,6 +67,7 @@ export default function App() {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
+              <Route path="/listaTrabajos" component={ListaTrabajos} />
 
             </ Switch>
           
