@@ -32,28 +32,6 @@ const IndigoCheckbox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: indigo[800],
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: indigo[800],
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '',
-      },
-      '&:hover fieldset': {
-        borderColor: indigo[800],
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: indigo[800],
-      },
-    },
-  },
-})(TextField);
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -96,6 +74,25 @@ const useStyles = makeStyles((theme) => ({
       color: '#FFF'
     },
   },
+  inputDesign: {
+    '& label.Mui-focused': {
+      color: indigo[800],
+    },
+    '& label.Mui-focused:after': {
+      color: indigo[800],
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '',
+      },
+      '&:hover fieldset': {
+        borderColor: indigo[800],
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: indigo[800],
+      },
+    },
+  }
 }));
 
 
@@ -163,7 +160,8 @@ export default function Login() {
               Iniciar sesión
             </Typography>
             <form className={classes.form} noValidate>
-              <CssTextField
+              <TextField
+                className={classes.inputDesign}
                 variant="outlined"
                 margin="normal"
                 required
@@ -176,7 +174,8 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
-              <CssTextField
+              <TextField
+                className={classes.inputDesign}
                 variant="outlined"
                 margin="normal"
                 required
@@ -211,7 +210,7 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className={classes.submit + ' ' + classes.indigoButton}
               >
                 Iniciar sesión
           </Button>
