@@ -10,10 +10,10 @@ export default function Register() {
     const [password, setPassword] = useState();
     const [passwordCheck, setPasswordCheck] = useState();
     const [nombre, setName ] = useState();
-    const [userType, setUserType] = useState(1);
+    const [userType, setUserType] = useState(0);
     const [apellido, setApellido] = useState();
     const [error, setError] = useState();
-
+    
     const {setUserData} = useContext(UserContext);
     const history = useHistory();
 
@@ -36,8 +36,6 @@ export default function Register() {
             userType
         };
 
-        console.log(newUser)
-
         await Axios.post(
             'http://localhost:4000/api/register',
             newUser
@@ -53,7 +51,7 @@ export default function Register() {
             user: loginRes.data.user
         });
         
-        localStorage.setItem('auth-token', loginRes.data.token);
+        localStorage.setItem('x-access-token', loginRes.data.token);
         history.push("/profile");
     }catch(err) {
         err.response.data.message && setError(err.response.data.message);   

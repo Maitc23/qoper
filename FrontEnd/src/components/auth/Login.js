@@ -6,6 +6,7 @@ import ErrorNotice from '../misc/ErrorNotice';
 
 
 export default function Login() {
+    
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState();
@@ -30,7 +31,7 @@ export default function Login() {
                 token: loginRes.data.token,
                 user: loginRes.data.user
             });
-            localStorage.setItem('auth-token', loginRes.data.token);
+            localStorage.setItem('x-access-token', loginRes.data.token);
             history.push('/profile');
             
         }catch(err) {

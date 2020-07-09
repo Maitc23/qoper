@@ -7,8 +7,9 @@ const config = require('../config/config');
 controller.signup = async (req, res, next) =>{ 
     try { 
         const {nombre, apellido, email, password, userType, passwordCheck} = req.body;
-    
-        if(!email || !password || !passwordCheck) {
+        const correo = email.toLowerCase()
+
+        if(!correo || !password || !passwordCheck) {
             return res.status(400).json({message: "Campos obligatorios no llenados"})
         }
         
@@ -25,7 +26,7 @@ controller.signup = async (req, res, next) =>{
         }
     
 
-        const existingEmail= await User.findOne({email: email});
+        const existingEmail= await User.findOne({email: correo});
 
         if(existingEmail) {
             return res.status(400).json({message: "Correo ya registrado"});
@@ -34,7 +35,7 @@ controller.signup = async (req, res, next) =>{
         const user = new User({
             nombre: nombre, 
             apellido: apellido, 
-            email: email, 
+            email: correo, 
             password: password, 
             userType: userType       
         });
@@ -59,12 +60,14 @@ controller.signup = async (req, res, next) =>{
 controller.signin = async (req,res, next)=> { 
 
     try {
-        const {email, password} = req.body; 
+        const {email, password} = req.body;
+        const correo = email.toLowerCase()
+ 
 
-        if(!email || !password) {
+        if(!correo || !password) {
             return res.status(400).json({message: "Campos vacios."})
         }
-        const user = await User.findOne({email: email})
+        const user = await User.findOne({email: correo})
     
         if(!user) {
             return res.status(400).json({message: "Correo o Contraseña incorrectos"});
