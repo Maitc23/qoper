@@ -10,7 +10,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
 import UserContext from './context/UserContext'
-import pedirServicio from './components/auth/nuevaSolicitud'
+import pedirServicio from './components/pages/nuevaSolicitud'
 
 export default function App() {
 
