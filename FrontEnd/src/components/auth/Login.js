@@ -130,114 +130,112 @@ export default function Login() {
 
     }
 
-  }
+  };
 
-};
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
 
-const [values, setValues] = React.useState({
-  password: '',
-  showPassword: false,
-});
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
 
-const handleClickShowPassword = () => {
-  setValues({ ...values, showPassword: !values.showPassword });
-};
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
-const handleMouseDownPassword = (event) => {
-  event.preventDefault();
-};
+  const classes = useStyles();
 
-const classes = useStyles();
+  return (
+    <div>
+      {error && (
+        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+      )}
+      <form onSubmit={submit}>
 
-return (
-  <div>
-    {error && (
-      <ErrorNotice message={error} clearError={() => setError(undefined)} />
-    )}
-    <form onSubmit={submit}>
-
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
-          <Typography component="h1" variant="h5">
-            Iniciar sesión
-            </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              className={classes.inputDesign}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="login-email"
-              label="Correo Electrónico"
-              name="email"
-              autoComplete="email"
-              color="primary"
-              onChange={(e) => setEmail(e.target.value)}
-              autoFocus
-            />
-            <TextField
-              className={classes.inputDesign}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Contraseña"
-              type={values.showPassword ? "text" : "password"}
-              id="login-password"
-              autoComplete="current-password"
-              InputProps={{ // <-- This is where the toggle button is added.
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-
-                    >
-                      {values.showPassword ? <Visibility style={{ color: indigo[700] }} /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <FormControlLabel
-              control={<IndigoCheckbox value="remember" color="primary" />}
-              label="Recuérdame"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit + ' ' + classes.indigoButton}
-            >
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
+            <Typography component="h1" variant="h5">
               Iniciar sesión
-          </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/" variant="body2">
-                  ¿Olvidó su contraseña?
-                    </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/register" variant="body2">
-                  ¿No tiene una cuenta? Regístrese
-                    </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-      </Container>
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                className={classes.inputDesign}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="login-email"
+                label="Correo Electrónico"
+                name="email"
+                autoComplete="email"
+                color="primary"
+                onChange={(e) => setEmail(e.target.value)}
+                autoFocus
+              />
+              <TextField
+                className={classes.inputDesign}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Contraseña"
+                type={values.showPassword ? "text" : "password"}
+                id="login-password"
+                autoComplete="current-password"
+                InputProps={{ // <-- This is where the toggle button is added.
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
 
-    </form>
-  </div>
-)
+                      >
+                        {values.showPassword ? <Visibility style={{ color: indigo[700] }} /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <FormControlLabel
+                control={<IndigoCheckbox value="remember" color="primary" />}
+                label="Recuérdame"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit + ' ' + classes.indigoButton}
+              >
+                Iniciar sesión
+          </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link to="/" variant="body2">
+                    ¿Olvidó su contraseña?
+                    </Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/register" variant="body2">
+                    ¿No tiene una cuenta? Regístrese
+                    </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+          <Box mt={8}>
+            <Copyright />
+          </Box>
+        </Container>
+
+      </form>
+    </div>
+  )
 }
