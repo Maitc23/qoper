@@ -139,39 +139,55 @@ export default function Register() {
   ];
 
 
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      const newUser = {
-        email,
-        password,
-        passwordCheck,
-        nombre,
-        apellido,
-        userType
-      };
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [passwordCheck, setPasswordCheck] = useState();
+    const [nombre, setName ] = useState();
+    const [userType, setUserType] = useState(0);
+    const [apellido, setApellido] = useState();
+    const [error, setError] = useState();
+    
+    const {setUserData} = useContext(UserContext);
+    const history = useHistory();
 
-      console.log(newUser)
+    const selectedUserType = [
+        {id: 1, value: null, name: 'Seleeciona tu tipo de usuario'},
+        {id: 2, value: 1, name:'Proveedor'},
+        {id: 3, value: 2, name: 'Cliente'}
+    ];
 
-      await Axios.post(
-        'http://localhost:4000/api/register',
-        newUser
-      );
 
-      const loginRes = await Axios.post(
-        'http://localhost:4000/api/login', {
-        email,
-        password
-      });
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user
-      });
+    const submit = async  (e) => {
+        e.preventDefault();
+        try{
+        const newUser = {
+            email,
+            password,
+            passwordCheck,
+            nombre,
+            apellido, 
+            userType
+        };
 
-      localStorage.setItem('auth-token', loginRes.data.token);
-      history.push("/profile");
-    } catch (err) {
-      err.response.data.message && setError(err.response.data.message);
+        await Axios.post(
+            'http://localhost:4000/api/register',
+            newUser
+        );
+
+        const loginRes = await Axios.post(
+            'http://localhost:4000/api/login',{
+            email, 
+            password
+        });
+        setUserData({
+            token: loginRes.data.token,
+            user: loginRes.data.user
+        });
+        
+        localStorage.setItem('x-access-token', loginRes.data.token);
+        history.push("/profile");
+    }catch(err) {
+        err.response.data.message && setError(err.response.data.message);   
     }
   }
 

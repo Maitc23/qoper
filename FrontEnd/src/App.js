@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
+import NewJob from './components/pages/NewJob'
 import UserContext from './context/UserContext'
 import pedirServicio from './components/pages/nuevaSolicitud'
 
@@ -22,10 +23,10 @@ export default function App() {
 
   useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = localStorage.getItem('auth-token');
+      let token = localStorage.getItem('x-access-token');
 
       if (token === null) {
-        localStorage.setItem("auth-token", "");
+        localStorage.setItem("x-access-token", "");
         token = "";
       }
 
@@ -39,7 +40,7 @@ export default function App() {
         const userRes = await Axios.get(
           "http://localhost:4000/api/me",
           {
-            headers: { "x-access-token": token }
+            headers: {"x-access-token": token }
           });
         setUserData({
           token,
@@ -62,6 +63,8 @@ export default function App() {
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
               <Route parh="/nuevaSolicitud" component={pedirServicio} />
+              <Route path="/newJob" component={NewJob} />
+
             </ Switch>
           </div>
         </UserContext.Provider>
