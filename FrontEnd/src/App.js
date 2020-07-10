@@ -6,6 +6,7 @@ import './App.css';
 
 import LandingPage from './components/LandingPage'
 import Navigation from './components/layout/Navigation'
+import Footer from './components/layout/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
