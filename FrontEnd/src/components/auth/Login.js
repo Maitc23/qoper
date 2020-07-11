@@ -4,7 +4,6 @@ import UserContext from '../../context/UserContext'
 import Axios from 'axios'
 import ErrorNotice from '../misc/ErrorNotice';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -37,7 +36,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" to="/">
-        Qoper
+        Qoper S.A.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: indigo[800],
       },
     },
-  }
+  },
 }));
 
 
@@ -155,7 +154,6 @@ export default function Login() {
       <form onSubmit={submit}>
 
         <Container component="main" maxWidth="xs">
-          <CssBaseline />
           <div className={classes.paper}>
             <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
             <Typography component="h1" variant="h5">
