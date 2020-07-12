@@ -48,7 +48,7 @@ controller.userJobs = async (req, res, next) => {
         if (user.jobs.length == 0) {
             return res.status(400).json({ message: "No tiene trabajos registrados" })
         }
-
+        
         res.json(user.jobs)
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -58,7 +58,7 @@ controller.userJobs = async (req, res, next) => {
 
 controller.jobs = async (req, res, next) => {
     try {
-        const jobs = await Jobs.find( {estado: { $lt: 3 } });
+        const jobs = await Jobs.find( {estado: 1 });
 
         if(jobs.length === 0) {
             return res.status(400).json({ message: "No hay trabajos disponibles" })

@@ -29,27 +29,27 @@ export default function NewJob() {
 
     const submit = async (e) => {
         e.preventDefault();
-        try{
+        try {
             let token = localStorage.getItem('x-access-token');
 
             const newJob = {
                 titulo,
-                fecha, 
-                tipoMantenimiento, 
+                fecha,
+                tipoMantenimiento,
                 ubicacion,
-                descripcion, 
+                descripcion,
                 telefono
             };
 
             const res = await Axios.post('http://localhost:4000/api/job',
                 newJob,
-                {headers: {'x-access-token': token}}
+                { headers: { 'x-access-token': token } }
             );
-            
+
             setSuccessful(res.data.message);
 
-        }catch(err){
-            err.response.data.message && setError(err.response.data.message);   
+        } catch (err) {
+            err.response.data.message && setError(err.response.data.message);
         }
     }
 
@@ -77,7 +77,7 @@ export default function NewJob() {
                     id="trabajo-fecha"
                     name="fecha"
                     selected={fecha}
-                    onChange={ date => setDate(date)}
+                    onChange={date => setDate(date)}
                 />
 
                 <label htmlFor="trabajo-tipoMantenimiento">Tipo de mantenimiento</label>
@@ -115,7 +115,6 @@ export default function NewJob() {
                     onChange={(e) => setTelefono(e.target.value)}
                     type="text"
                 />
-
 
                 <input type="submit" value="New Job" />
 

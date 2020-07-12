@@ -13,6 +13,7 @@ import NewJob from './components/pages/NewJob'
 
 import UserContext from './context/UserContext'
 
+
 export default function App() {
 
   const [userData, setUserData] = useState({
@@ -39,12 +40,13 @@ export default function App() {
         const userRes = await Axios.get(
           "http://localhost:4000/api/me",
           {
-            headers: {"x-access-token": token }
+            headers: { "x-access-token": token }
           });
         setUserData({
           token,
           user: userRes.data
-        })
+        });
+
       }
     }
     checkLoggedIn();
@@ -57,9 +59,9 @@ export default function App() {
 
         <UserContext.Provider value={{ userData, setUserData }}>
 
+
           <Navigation />
           <div className="container p-4">
-
 
             <Switch >
 
@@ -70,15 +72,14 @@ export default function App() {
               <Route path="/newJob" component={NewJob} />
 
             </ Switch>
-          
-     
-            </div>
+
+          </div>
+
         </UserContext.Provider>
-        
 
       </Router>
     </>
-    
+
   );
 }
 
