@@ -94,7 +94,7 @@ controller.deleteJob = async (req,res, next) => {
     try{ 
 
          await Jobs.findByIdAndDelete(req.params); 
-        
+         
          res.json({message: 'Trabajo borrado'})
 
     } catch(err) {

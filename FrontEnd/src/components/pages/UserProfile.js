@@ -16,11 +16,6 @@ export default function UserProfile() {
     jobs: []
   })
 
-  useEffect(() => {
-    getJob()
-  }, [])
-
-
   const getJob = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/job',
@@ -35,6 +30,15 @@ export default function UserProfile() {
     }
 
   }
+
+  useEffect(() => {
+   
+    getJob()
+    // eslint-disable-next-line
+  },  [])
+
+
+
 
   const jobsList = () => {
     const jobs = jobsData.jobs
