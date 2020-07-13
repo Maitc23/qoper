@@ -9,8 +9,9 @@ export default function UserProfile() {
     
     
     return (
-        <div className="page">
-        {userData.user && userData.user.userType === 1 ?  (
+        <div>
+        {
+          userData.user && userData.user.userType === 1 ?  (
           <h1>Welcome {userData.user.nombre} Proveedor</h1>
           
         ) : userData.user && userData.user.userType === 2 ? (

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
-import './App.css';
+import Box from '@material-ui/core/Box';
 
 import LandingPage from './components/LandingPage'
 import Navigation from './components/layout/Navigation'
+import Footer from './components/layout/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
+import NewJob from './components/pages/NewJob'
 import UserContext from './context/UserContext'
-import pedirServicio from './components/auth/nuevaSolicitud'
+import nuevaSolicitud from './components/pages/nuevaSolicitud'
+
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
 
 export default function App() {
 
@@ -21,10 +25,10 @@ export default function App() {
 
   useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = localStorage.getItem('auth-token');
+      let token = localStorage.getItem('x-access-token');
 
       if (token === null) {
-        localStorage.setItem("auth-token", "");
+        localStorage.setItem("x-access-token", "");
         token = "";
       }
 
@@ -54,15 +58,19 @@ export default function App() {
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Navigation />
-          <div className="container p-4">
-            <Switch >
-              <Route path="/" exact component={LandingPage} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/profile" component={Profile} />
-              <Route parh="/nuevaSolicitud" component={pedirServicio} />
-            </ Switch>
+          <div className={'root'}>
+            <Box p={3}>
+              <Switch >
+                <Route path="/" exact component={LandingPage} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
+                <Route path="/newJob" component={NewJob} />
+              </ Switch>
+            </Box>
           </div>
+          <Footer />
         </UserContext.Provider>
       </Router >
     </>

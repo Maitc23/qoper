@@ -4,7 +4,6 @@ import UserContext from '../../context/UserContext'
 import Axios from 'axios'
 import ErrorNotice from '../misc/ErrorNotice';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -32,34 +31,12 @@ const IndigoCheckbox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: indigo[800],
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: indigo[800],
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '',
-      },
-      '&:hover fieldset': {
-        borderColor: indigo[800],
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: indigo[800],
-      },
-    },
-  },
-})(TextField);
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" to="/">
-        Qoper
+        Qoper S.A.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -96,10 +73,30 @@ const useStyles = makeStyles((theme) => ({
       color: '#FFF'
     },
   },
+  inputDesign: {
+    '& label.Mui-focused': {
+      color: indigo[800],
+    },
+    '& label.Mui-focused:after': {
+      color: indigo[800],
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '',
+      },
+      '&:hover fieldset': {
+        borderColor: indigo[800],
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: indigo[800],
+      },
+    },
+  },
 }));
 
 
 export default function Login() {
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
@@ -124,11 +121,12 @@ export default function Login() {
         token: loginRes.data.token,
         user: loginRes.data.user
       });
-      localStorage.setItem('auth-token', loginRes.data.token);
+      localStorage.setItem('x-access-token', loginRes.data.token);
       history.push('/profile');
 
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
+
     }
 
   };
@@ -156,14 +154,14 @@ export default function Login() {
       <form onSubmit={submit}>
 
         <Container component="main" maxWidth="xs">
-          <CssBaseline />
           <div className={classes.paper}>
             <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
             <Typography component="h1" variant="h5">
               Iniciar sesión
             </Typography>
             <form className={classes.form} noValidate>
-              <CssTextField
+              <TextField
+                className={classes.inputDesign}
                 variant="outlined"
                 margin="normal"
                 required
@@ -176,7 +174,8 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
-              <CssTextField
+              <TextField
+                className={classes.inputDesign}
                 variant="outlined"
                 margin="normal"
                 required
@@ -211,7 +210,7 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className={classes.submit + ' ' + classes.indigoButton}
               >
                 Iniciar sesión
           </Button>
