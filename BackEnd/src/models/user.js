@@ -6,9 +6,24 @@ const userSchema = new Schema( {
 
     nombre: String, 
     apellido: String, 
-    userType: {type: Number, required: true},
-    email: {type: String, required: true, unique: true}, 
-    password: {type: String, required: true, minlength: 5},
+    userType: {
+        type: Number,
+        required: true
+    },
+    email: {
+        type: String, 
+        required: true, 
+        unique: true
+    }, 
+    password: {
+        type: String, 
+        required: true, 
+        minlength: 5
+    },
+    jobs: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Jobs'
+    }]
 });
 
 userSchema.methods.encryptPassword = async (password) => { 

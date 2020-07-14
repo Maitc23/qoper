@@ -20,47 +20,73 @@ export default function AuthOptions() {
 
   const register = () => history.push('/register');
   const login = () => history.push('/login');
-  const perfil = () => history.push('/profile')
+  const perfil = () => history.push('/profile');
+  const newJob = () => history.push('/newJob')
   const logout = () => {
     setUserData({
       token: undefined,
       user: undefined
     });
-    localStorage.setItem("auth-token", "");
+    localStorage.setItem("x-access-token", "");
     window.location.href = '/';
+  }
+
+
+  const perfilOption = <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={perfil}> Perfil </Link>
+  const newJobOption = <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={newJob}> Pedir trabajo</Link>
+  const logoutOption = <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={logout}> Log out </Link>
+
+
+  function userLoggedMenu() {
+    if (userData.user.userType === 2) {
+      return (
+        <Typography>
+
+          {newJobOption}
+          {perfilOption}
+          {logoutOption}
+
+        </Typography>
+      )
+    } else {
+      return (
+        <Typography>
+
+          {perfilOption}
+          {logoutOption}
+        
+        </Typography>
+      )
+    }
+  }
+
+  function userLoggedOutMenu() {
+    return (
+      <>
+      <Typography>
+          <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={login}>
+            Iniciar Sesión
+          </Link>
+          <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={register}>
+            Registro
+          </Link>
+          <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
+            Contacto
+          </Link>
+      </Typography>
+    </>
+    )
   }
 
   return (
     <div>
       {
-
         userData.user ? (
-          <Typography>
-            <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
-              Pedir Servicio
-            </Link>
-            <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={perfil}>
-              Perfil
-            </Link>
-            <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={logout}>
-              Log out
-            </Link>
-          </Typography>
+          userLoggedMenu()
         ) : (
-            <>
-              <Typography>
-                <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={login}>
-                  Iniciar Sesión
-                </Link>
-                <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing} onClick={register}>
-                  Registro
-                </Link>
-                <Link component="button" variant="body" aria-label="PedirServicio" color="inherit" className={classes.leftSpacing}>
-                  Contacto
-               </Link>
-              </Typography>
-            </>
-          )}
+          userLoggedOutMenu()
+        )
+      }
     </div>
   )
 }

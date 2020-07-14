@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
-import { Link as Enlace } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthOptions from '../auth/AuthOptions'
 import logoImg from '../../images/LOGO-TEXTO.png';
 
@@ -26,14 +26,14 @@ export default function Navigation() {
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBarBackground}>
         <Toolbar>
-          <Enlace to="/">
+          <Link to="/">
             <Box ml={5}>
               <img src={logoImg} alt="Logo" height="40px" />
             </Box>
-          </Enlace>
+          </Link>
           <div className={classes.grow} />
           <div>
-            <Box>
+            <Box mr={6}>
               <AuthOptions />
             </Box>
           </div>
