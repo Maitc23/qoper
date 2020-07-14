@@ -148,10 +148,8 @@ export default function Login() {
 
   return (
     <div>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-      <form onSubmit={submit}>
+   
+      
 
         <Container component="main" maxWidth="xs">
           <div className={classes.paper}>
@@ -159,7 +157,10 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Iniciar sesión
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} onSubmit={submit} noValidate>
+            {error && (
+              <ErrorNotice message={error} clearError={() => setError(undefined)} />
+            )}
               <TextField
                 className={classes.inputDesign}
                 variant="outlined"
@@ -232,8 +233,6 @@ export default function Login() {
             <Copyright />
           </Box>
         </Container>
-
-      </form>
     </div>
   )
 }

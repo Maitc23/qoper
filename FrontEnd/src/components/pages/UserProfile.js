@@ -20,8 +20,7 @@ export default function UserProfile() {
     try {
       const works = await Axios.get('http://localhost:4000/api/job',
         { headers: { 'x-access-token': token } }
-      );
-
+      );  
       setJobData({
         jobs: works.data
       })
@@ -37,14 +36,12 @@ export default function UserProfile() {
     // eslint-disable-next-line
   },  [])
 
-
-
-
   const jobsList = () => {
     const jobs = jobsData.jobs
+    console.log(jobs)
     const listJobs = jobs.map(job => (
       <div key={job._id}>
-        <p > {job.titulo} {job.ubicacion} {job.tipoMantenimiento} {job.telefono}</p>
+        <p > {job.titulo} {job.ubicacion.ciudad} {job.ubicacion.corregimiento} {job.tipoMantenimiento} {job.telefono}</p>
         
         <button className="btn btn-danger" onClick={() => deleteJob(job._id)}>
           Delete
@@ -87,6 +84,7 @@ export default function UserProfile() {
             {error ? (
               <ErrorMessage message={error} />
             ) : (
+              
                 <>
                   {jobsList()}
                 </>
@@ -95,10 +93,10 @@ export default function UserProfile() {
           </>
 
         ) : (
-              <>
-                <h2>You are not logged in</h2>
-                <Link to="/login">Log in</Link>
-              </>
+                <>
+                  <h2>You are not logged in</h2>
+                  <Link to="/login">Log in</Link>
+                </>
             )}
     </div>
   )
