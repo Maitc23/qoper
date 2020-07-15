@@ -52,11 +52,6 @@ export default function UserProfile() {
       </div>
     ))
     return (
-<<<<<<< HEAD
-        <div>
-        {
-          userData.user && userData.user.userType === 1 ?  (
-=======
       <>
         {listJobs}
       </>
@@ -82,7 +77,6 @@ export default function UserProfile() {
 
       {
         userData.user && userData.user.userType === 1 ? (
->>>>>>> master
           <h1>Welcome {userData.user.nombre} Proveedor</h1>
 
         ) : userData.user && userData.user.userType === 2 ? (
