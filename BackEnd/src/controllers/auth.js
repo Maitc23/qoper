@@ -103,7 +103,7 @@ controller.signin = async (req,res, next)=> {
 
 controller.me = async (req,res, next) => { 
     
-    const user = await User.findById(req.userId, { password: 0 });
+    const user = await User.findById(req.userId, { password: 0 ,jobs: 0});
     
     if(!user){
         return res.status(404).send('USER NOT FOUND')

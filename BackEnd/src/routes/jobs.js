@@ -5,10 +5,10 @@ const verifyToken = require('../middlewares/verifyToken');
 
 router.route('/job')
     .post(verifyToken, newJob)
-    .get(userJobs)
+    .get(verifyToken,userJobs)
 
 router.route('/jobs')
-    .get(jobs)
+    .get(verifyToken,jobs)
 
 router.route('/job/:_id')
     .put(verifyToken, updateJob)

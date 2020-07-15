@@ -16,6 +16,7 @@ import nuevaSolicitud from './components/pages/nuevaSolicitud'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
 
+
 export default function App() {
 
   const [userData, setUserData] = useState({
@@ -47,7 +48,8 @@ export default function App() {
         setUserData({
           token,
           user: userRes.data
-        })
+        });
+
       }
     }
     checkLoggedIn();
@@ -57,6 +59,7 @@ export default function App() {
     <>
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
+<<<<<<< HEAD
           <Navigation />
           <div className={'root'}>
             <Box p={3}>
@@ -74,6 +77,30 @@ export default function App() {
         </UserContext.Provider>
       </Router >
     </>
+=======
+
+
+          <Navigation />
+          <div className="container p-4">
+
+            <Switch >
+
+              <Route path="/" exact component={LandingPage} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/newJob" component={NewJob} />
+
+            </ Switch>
+
+          </div>
+
+        </UserContext.Provider>
+
+      </Router>
+    </>
+
+>>>>>>> master
   );
 }
 
