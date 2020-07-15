@@ -62,7 +62,7 @@ export default function FormPropsTextFields() {
           <Grid item xs={12}>
             <Typography variant="h4">
               Solicitud de trabajo
-          </Typography>
+            </Typography>
           </Grid>
         </Grid>
       </Box>

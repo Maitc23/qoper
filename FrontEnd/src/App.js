@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Axios from 'axios';
-import Box from '@material-ui/core/Box';
 
 import LandingPage from './components/LandingPage'
 import Navigation from './components/layout/Navigation'
@@ -61,7 +60,6 @@ export default function App() {
         <UserContext.Provider value={{ userData, setUserData }}>
           <Navigation />
           <div className={'root'}>
-            <Box p={3}>
               <Switch >
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/login" component={Login} />
@@ -70,7 +68,6 @@ export default function App() {
                 <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
                 <Route path="/newJob" component={NewJob} />
               </ Switch>
-            </Box>
           </div>
           <Footer />
         </UserContext.Provider>
