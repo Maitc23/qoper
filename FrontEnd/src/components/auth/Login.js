@@ -21,6 +21,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 
+
 const IndigoCheckbox = withStyles({
   root: {
     color: indigo[800],
