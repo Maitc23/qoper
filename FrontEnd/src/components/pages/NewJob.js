@@ -175,7 +175,6 @@ export default function NewJob() {
               fullWidth
               value={tipoMantenimiento}
               onChange={(e) => setTipoMantenimiento(e.target.value)}
-              label="Tipo de Mantenimiento" variant="outlined"
               variant="outlined"
               SelectProps={{
                 native: true,

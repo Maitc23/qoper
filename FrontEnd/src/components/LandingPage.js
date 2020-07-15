@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
@@ -11,6 +11,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { Link } from 'react-router-dom'
 
 import '../index.css';
+import UserContext from '../context/UserContext';
 
 function WarrantyIcon(props) {
   return (
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function LandingPage() {
-
+  const { userData } = useContext(UserContext);
   const classes = useStyles();
 
   return (
@@ -81,17 +82,47 @@ export default function LandingPage() {
           <div class="intro-text">
             <div class="intro-lead-in">¡Bienvenidos a Qoper!</div>
             <div class="intro-heading text-uppercase">Predecimos, Prevenimos y Corregimos</div>
-            <Link to="/login" style={{ textDecoration: 'none' }}>
-              <Button variant="contained" color="primary" size="large" className={classes.actionButton} disableElevation>
-                <Box p={1} fontWeight="fontWeightBold">
-                  <Typography component="div" variant="h6" color="initial">
-                    <Box fontWeight={500}>
-                      CONTRATAR SERVICIOS
+            {
+              userData.user && userData.user.userType === 1 ? (
+                <Link to="/profile" style={{ textDecoration: 'none' }}>
+                  <Button variant="contained" color="primary" size="large" className={classes.actionButton} disableElevation>
+                    <Box p={1} fontWeight="fontWeightBold">
+                      <Typography component="div" variant="h6" color="initial">
+                        <Box fontWeight={500}>
+                          REALIZAR TRABAJOS
                   </Box>
-                  </Typography>
-                </Box>
-              </Button>
-            </Link>
+                      </Typography>
+                    </Box>
+                  </Button>
+                </Link>
+              ) : userData.user && userData.user.userType === 2 ? (
+
+                <Link to="/newJob" style={{ textDecoration: 'none' }}>
+                  <Button variant="contained" color="primary" size="large" className={classes.actionButton} disableElevation>
+                    <Box p={1} fontWeight="fontWeightBold">
+                      <Typography component="div" variant="h6" color="initial">
+                        <Box fontWeight={500}>
+                          CONTRATAR SERVICIOS
+                  </Box>
+                      </Typography>
+                    </Box>
+                  </Button>
+                </Link>
+              ) : (
+
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                      <Button variant="contained" color="primary" size="large" className={classes.actionButton} disableElevation>
+                        <Box p={1} fontWeight="fontWeightBold">
+                          <Typography component="div" variant="h6" color="initial">
+                            <Box fontWeight={500}>
+                              CONTRATAR SERVICIOS
+                  </Box>
+                          </Typography>
+                        </Box>
+                      </Button>
+                    </Link>
+                  )
+            }
           </div>
         </Container>
       </header>
