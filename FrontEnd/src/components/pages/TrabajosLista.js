@@ -1,26 +1,27 @@
 import React from 'react';
-import { Grid, Divider } from '@material-ui/core';
+import { Grid} from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 import LTContent from './LTContent';
+import {Container} from '@material-ui/core';
 
-const TrabajosLista = () => {
 
-    return (
-        //<container >
-        <Grid container spacing={1}>
-            <Grid item sm={3}> 
-            </Grid>
-            
-            <Grid item sm={9}>
-                    <Grid item>
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqui estan los cards
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqui estan los cards
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqui estan los cards
-                   </Grid>
+
   
-            </Grid>
+  const TrabajosLista = () => {
+    
+    return (
+      <Container maxWidth="lg">
+        <Grid container direction="row" spacing={1}>
+          <Grid item xs={12} sm={2}>
+            <Paper>xs</Paper>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <LTContent/>
+          </Grid>
         </Grid>
-        //</container>
-    )
-};
+      </Container>
+    );
+  }
+
 
 export default TrabajosLista;

@@ -62,20 +62,6 @@ export default function App() {
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Navigation />
-          <div className="container p-4">
-
-
-            <Switch >
-
-              <Route path="/" exact component={LandingPage} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/profile" component={Profile} />
-              
-            </ Switch>
-          
-     
-            </div>
           <div className={'root'}>
             <Box p={3}>
               <Switch >
@@ -87,7 +73,6 @@ export default function App() {
                 <Route path="/newJob" component={NewJob} />
                 <Route path="/trabajosLista" component={TrabajosLista} />
                 <Route path="/ListaTrabajos" component={ListaTrabajos} />
-
               </ Switch>
             </Box>
           </div>

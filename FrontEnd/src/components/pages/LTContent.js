@@ -12,7 +12,7 @@ const LTContent = () => {
     )
     }
 return (
-    <Grid container spacing={4}>
+    <Grid container spacing={1}>
             {LTCardInfo.map(LtInf_Obj => getLTCardInfo(LtInf_Obj))}
     </Grid>
     );
