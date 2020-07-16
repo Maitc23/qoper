@@ -3,6 +3,8 @@ const controller = {};
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/config');
+const Cliente = require('../models/cliente');
+const Proveedor = require('../models/proveedor');
 
 controller.signup = async (req, res, next) =>{ 
     try { 
@@ -44,8 +46,22 @@ controller.signup = async (req, res, next) =>{
         await user.save();
         const token = jwt.sign({id: user._id}, config.secret, {
             expiresIn: 60 * 60 * 24
-        }) 
-    
+        });
+
+        const userCreated = await User.findById(user._id);
+        
+        if(userType === 1) {
+            const proveedor = new Proveedor({
+                user: userCreated
+            });
+            await proveedor.save()
+        } else {
+           const client = new Cliente({
+                user: userCreated
+            }); 
+            await client.save()
+        }
+
         res.json({
             auth: true,
             token: token,

@@ -77,11 +77,11 @@ export default function LandingPage() {
 
   return (
     <div className={classes.margin}>
-      <header class="masthead">
+      <header className="masthead">
         <Container maxWidth="lg">
-          <div class="intro-text">
-            <div class="intro-lead-in">¡Bienvenidos a Qoper!</div>
-            <div class="intro-heading text-uppercase">Predecimos, Prevenimos y Corregimos</div>
+          <div className="intro-text">
+            <div className="intro-lead-in">¡Bienvenidos a Qoper!</div>
+            <div className="intro-heading text-uppercase">Predecimos, Prevenimos y Corregimos</div>
             {
               userData.user && userData.user.userType === 1 ? (
                 <Link to="/profile" style={{ textDecoration: 'none' }}>
@@ -149,7 +149,7 @@ export default function LandingPage() {
           </Grid>
 
           {/* Icono ahorrar - Piggy Bank  */}
-          <Grid
+          <Grid item
             container
             xs={12}
             sm={2}
@@ -177,7 +177,7 @@ export default function LandingPage() {
           </Grid>
 
           {/* Icono ahorrar - Piggy Bank  */}
-          <Grid
+          <Grid item
             container
             xs={12}
             sm={2}
@@ -205,7 +205,7 @@ export default function LandingPage() {
           </Grid>
 
           {/* Icono ahorrar - Piggy Bank  */}
-          <Grid
+          <Grid item
             container
             xs={12}
             sm={2}
@@ -233,7 +233,7 @@ export default function LandingPage() {
           </Grid>
 
           {/* Icono ahorrar - Piggy Bank  */}
-          <Grid
+          <Grid item
             container
             xs={12}
             sm={2}
