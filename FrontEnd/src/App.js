@@ -15,6 +15,7 @@ import nuevaSolicitud from './components/pages/nuevaSolicitud'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
 
+
 export default function App() {
 
   const [userData, setUserData] = useState({
@@ -46,7 +47,8 @@ export default function App() {
         setUserData({
           token,
           user: userRes.data
-        })
+        });
+
       }
     }
     checkLoggedIn();
