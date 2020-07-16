@@ -6,13 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar, IconButton, CardMedia } from '@material-ui/core';
-import ShareIcon from '@material-ui/icons/Share';
 import BuildIcon from '@material-ui/icons/Build';
 
 
-
 const LTCard = (props) => {
-
     const { title, subtitle, description, imgSrc } = props;
 
     return (
@@ -24,14 +21,14 @@ const LTCard = (props) => {
                     </Avatar>}
                 action={
                     <IconButton aria-label="settings">
-                        <ShareIcon />
+                        
                     </IconButton>
                 }
                 title={title}
                 subheader={subtitle}
             />
             <CardMedia
-                style={{ height: "100px" }}
+                style={{ height: "50px" }}
                 image={imgSrc}
             />
             <CardContent>
@@ -47,6 +44,7 @@ const LTCard = (props) => {
             </CardActions>
         </Card>
     );
+
 }
 
 export default LTCard;

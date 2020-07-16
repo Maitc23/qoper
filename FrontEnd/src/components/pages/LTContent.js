@@ -6,7 +6,7 @@ import LTCardInfo from './LTCardInfo'
 const LTContent = () => {
     const getLTCardInfo = (LtInf_Obj) => {
         return (
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={12}>
                 <LTCard {...LtInf_Obj} />
             </Grid>
     )

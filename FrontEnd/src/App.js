@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
+import TrabajosLista from './components/pages/TrabajosLista'
 import ListaTrabajos from './components/pages/ListaTrabajos'
 import NewJob from './components/pages/NewJob'
 import UserContext from './context/UserContext'
@@ -70,8 +71,7 @@ export default function App() {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
-              <Route path="/listaTrabajos" component={ListaTrabajos} />
-
+              
             </ Switch>
           
      
@@ -85,6 +85,9 @@ export default function App() {
                 <Route path="/profile" component={Profile} />
                 <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
                 <Route path="/newJob" component={NewJob} />
+                <Route path="/trabajosLista" component={TrabajosLista} />
+                <Route path="/ListaTrabajos" component={ListaTrabajos} />
+
               </ Switch>
             </Box>
           </div>
