@@ -9,86 +9,86 @@ import Axios from 'axios';
 
 export default function JobList() {
 
-  
-const { userData} = useContext(UserContext);
-let token = localStorage.getItem('x-access-token');
+
+  const { userData } = useContext(UserContext);
+  let token = localStorage.getItem('x-access-token');
 
 
-const [jobData, setJobData] = useState({
+  const [jobData, setJobData] = useState({
     job: []
-})
+  })
 
-useEffect(()=> {
-    
+  useEffect(() => {
+
     getJob()
-    
-}, [])
 
-const getJob = async () => {
-    
-        const works = await Axios.get('http://localhost:4000/api/jobs',
-        {headers: {'x-access-token': token}}
-        );
+  }, [])
 
-        setJobData({
-            job: works.data
-        })
-    
-}
+  const getJob = async () => {
 
-//Estructura del trabajo que se muestra en pantalla
-const jobListing = () => {
+    const works = await Axios.get('http://localhost:4000/api/jobs',
+      { headers: { 'x-access-token': token } }
+    );
+
+    setJobData({
+      job: works.data
+    })
+
+  }
+
+  //Estructura del trabajo que se muestra en pantalla
+  const jobListing = () => {
     const job = jobData.job
     const listingJobs = job.map(jobs => (
-        <div key={jobs._id}>
-                
-                <p>
-                 <h6>Titulo: {jobs.titulo}</h6>
-                 <h6>Detalles: {jobs.descripcion}</h6>
-                 <h6>Ubicacion: {jobs.ubicacion}</h6> 
-                 <h6>Tipo: {jobs.tipoMantenimiento}</h6> 
-                 <h6>Telefono: {jobs.telefono}</h6> 
-                 <h6>Fecha: {jobs.fecha}</h6> 
-                 <h6>Solicitante: {jobs.solicitante}</h6>
-                </p>
-                
-            
+      <div key={jobs._id}>
+
+        <p>
+          <h6>Titulo: {jobs.titulo}</h6>
+          <h6>Detalles: {jobs.descripcion}</h6>
+          <h6>Ciudad: {jobs.ubicacion.ciudad}</h6>
+          <h6>Tipo: {jobs.tipoMantenimiento}</h6>
+          <h6>Telefono: {jobs.telefono}</h6>
+          <h6>Fecha: {jobs.fecha}</h6>
+          <h6>Solicitante: {jobs.solicitante}</h6>
+        </p>
+
+
         <button>
-            Aceptar
+          Aceptar
         </button>
-        
+
         <p></p>
-        
-        </div>
+
+      </div>
 
     ))
     return (
-        <>
+      <>
         {listingJobs}
-        </>
+      </>
     )
-    
-}
+
+  }
 
 
-//Los trabajos siendo listados en pantalla
-return (
+  //Los trabajos siendo listados en pantalla
+  return (
 
     <div className="page">
-    <h4>Trabajos Disponibles</h4>
-            
-            
-            {
-             
-                <>
-                {jobListing()}
-                </>
+      <h4>Trabajos Disponibles</h4>
 
-            }
+
+      {
+
+        <>
+          {jobListing()}
+        </>
+
+      }
 
 
     </div>
 
-)
+  )
 
 }
