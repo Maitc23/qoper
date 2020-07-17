@@ -59,25 +59,6 @@ export default function App() {
     <>
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
-<<<<<<< HEAD
-          <Navigation />
-          <div className={'root'}>
-            <Box p={3}>
-              <Switch >
-                <Route path="/" exact component={LandingPage} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
-                <Route path="/newJob" component={NewJob} />
-              </ Switch>
-            </Box>
-          </div>
-          <Footer />
-        </UserContext.Provider>
-      </Router >
-    </>
-=======
 
 
           <Navigation />
@@ -100,7 +81,6 @@ export default function App() {
       </Router>
     </>
 
->>>>>>> master
   );
 }
 
