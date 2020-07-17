@@ -15,6 +15,8 @@ import BuildIcon from '@material-ui/icons/Build';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import deepOrange from '@material-ui/core/colors/orange';
+import Modal from '@material-ui/core/Modal';
+import LTModal from '../misc/LTModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,15 +100,16 @@ const LTCard = () => {
                   </Typography>
                 }
               />
-              <CardContent>
+              <CardContent className={classes.content}>
                 <Typography variant="body2" component="p">
                   {job.descripcion}
                 </Typography>
+                <Typography variant="body2" component="p">
+                  {job.estado}
+                </Typography>
               </CardContent>
               <CardActions>
-                <Button>
-                  More Info
-                </Button>
+                <LTModal />
               </CardActions>
             </Grid>
           </Grid>
@@ -164,6 +167,8 @@ const LTCard = () => {
       }
     </div>
   );
+
+
 
 }
 

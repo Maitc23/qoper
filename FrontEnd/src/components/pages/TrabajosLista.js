@@ -5,10 +5,6 @@ import LTCard from '../misc/LTCard';
 import { Container } from '@material-ui/core';
 
 
-
-
-
-
 const TrabajosLista = () => {
 
   return (
