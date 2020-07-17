@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { Avatar, IconButton, CardMedia } from '@material-ui/core';
 import BuildIcon from '@material-ui/icons/Build';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({

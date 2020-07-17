@@ -59,7 +59,7 @@ const PaypalCheckOutButton = ({product}) => {
         <div>
           {error && <div>Uh oh, ocurrio un error, intente otra vez! {error.message}</div>}
           <h1>
-            //TEMPLATE DE FACTURA AAQUI
+           {/*TEMPLATE DE FACTURA AQUI*/}
             {product.description} por ${product.price}
           </h1>
           <div ref={paypalRef} />

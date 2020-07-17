@@ -78,7 +78,6 @@ controller.signin = async (req,res, next)=> {
     try {
         const {email, password} = req.body;
         const correo = email.toLowerCase()
- 
 
         if(!correo || !password) {
             return res.status(400).json({message: "Campos vacios."})
@@ -162,5 +161,6 @@ controller.tokenIsValid = async (req, res, next) => {
         res.status(500).json({error: err.message});
     }
 }
+
 
 module.exports = controller;

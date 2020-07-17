@@ -3,6 +3,9 @@ const controller = {};
 
 const Jobs = require('../models/jobs');
 const User = require('../models/user');
+const proveedor = require('../models/proveedor');
+const { findById } = require('../models/jobs');
+const user = require('../models/user');
 
 
 controller.newJob = async (req, res, next) => {
@@ -58,7 +61,11 @@ controller.newJob = async (req, res, next) => {
 
 controller.userJobs = async (req, res, next) => {
     try {
-        const user = await User.findById(req.userId).populate('jobs');
+        const user = await User.findById(req.userId ).populate( 
+            {
+                path: 'jobs',
+                match: { estado: { $lte: 4 } },
+        });
 
         if (user.jobs.length == 0) {
             return res.status(400).json({ message: "No tiene trabajos registrados" })
@@ -73,7 +80,7 @@ controller.userJobs = async (req, res, next) => {
 
 controller.jobs = async (req, res, next) => {
     try {
-        const jobs = await Jobs.find( {estado: 1 });
+        const jobs = await Jobs.find( {estado: 1 } );
 
         if(jobs.length === 0) {
             return res.status(400).json({ message: "No hay trabajos disponibles" })
@@ -116,4 +123,95 @@ controller.deleteJob = async (req,res, next) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+controller.acceptJob = async (req, res, next) => {
+    try{
+        const proveedor = await User.findById(req.userId)
+
+        const job = await Jobs.findOneAndUpdate(req.params,{
+            proveedor, 
+            estado: 2
+        });      
+        
+        proveedor.jobs.push(job);
+        await proveedor.save();
+
+        return res.status(200).json({ message: 'Trabajo Aceptado'});
+
+    }catch(err){
+        res.status(500).json({error: err.message});
+    }
+}
+
+
+controller.acceptCotization = async ( req, res ,next) => {
+    try {
+
+        await Jobs.findOneAndUpdate(req.params, {
+            estado: 3
+        });
+
+        return res.status(200).json({ message: 'Cotizacion Aceptada'});
+
+    }catch(err) {
+        res.status(500).json({error: err.message});
+
+    }
+}
+
+controller.completedJob = async (req, res, next) => {
+    try{
+
+        await Jobs.findOneAndUpdate(req.params, {
+            estado: 6
+            });
+
+            return res.status(200).json({ message: 'Trabajo Completado'});
+
+    }catch(err){
+        res.status(500).json({error: err.message});
+    }
+}
+
+controller.pausedJob = async (req, res, next) => {
+    try{
+
+        await Jobs.findOneAndUpdate(req.params, {
+            estado: 4
+            });
+
+            return res.status(200).json({ message: 'Trabajo en pausa'});
+
+    }catch(err){
+        res.status(500).json({error: err.message});
+    }
+}
+
+controller.cancelledJob = async (req, res, next) => {
+    try{
+        
+        const job = await Jobs.findById(req.params); 
+        const user = await User.findById(job.proveedor)
+        
+        var index = user.jobs.indexOf(req.params._id)
+       
+        user.jobs.splice(index, 1)
+
+        await User.findByIdAndUpdate(job.proveedor, {
+            jobs: user.jobs
+        }) 
+
+      await Jobs.findByIdAndUpdate(req.params, {
+            $unset: {proveedor: ""},  
+            estado: 5
+       }); 
+
+        return res.status(200).json({ message: 'Trabajo Cancelado'});
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({error: err.message});
+    }
+}
+
 module.exports = controller;
