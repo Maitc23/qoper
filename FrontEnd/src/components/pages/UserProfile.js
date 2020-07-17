@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import UserContext from '../../context/UserContext'
 import ErrorMessage from '../misc/ErrorMessage';
-
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -40,6 +39,7 @@ export default function UserProfile() {
     const jobs = jobsData.jobs
     console.log(jobs)
     const listJobs = jobs.map(job => (
+    
       <div key={job._id}>
         <p > {job.titulo} {job.ubicacion.ciudad} {job.ubicacion.corregimiento} {job.tipoMantenimiento} {job.telefono}</p>
         

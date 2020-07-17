@@ -90,7 +90,7 @@ export default function LandingPage() {
                       <Typography component="div" variant="h6" color="initial">
                         <Box fontWeight={500}>
                           REALIZAR TRABAJOS
-                  </Box>
+                    </Box>
                       </Typography>
                     </Box>
                   </Button>
@@ -116,7 +116,7 @@ export default function LandingPage() {
                           <Typography component="div" variant="h6" color="initial">
                             <Box fontWeight={500}>
                               CONTRATAR SERVICIOS
-                  </Box>
+                            </Box>
                           </Typography>
                         </Box>
                       </Button>
