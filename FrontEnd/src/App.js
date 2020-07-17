@@ -10,6 +10,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
 import NewJob from './components/pages/NewJob'
+import JobList from './components/pages/JobList'
 
 import UserContext from './context/UserContext'
 
@@ -68,6 +69,7 @@ export default function App() {
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
               <Route path="/newJob" component={NewJob} />
+              <Route path="/jobList" component={JobList} /> 
 
             </ Switch>
           
