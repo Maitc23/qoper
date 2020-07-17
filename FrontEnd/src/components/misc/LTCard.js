@@ -10,13 +10,29 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Avatar, CardMedia } from '@material-ui/core';
-import BuildIcon from '@material-ui/icons/Build';
+import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import deepOrange from '@material-ui/core/colors/orange';
 import Modal from '@material-ui/core/Modal';
 import LTModal from '../misc/LTModal';
+
+
+import BuildIcon from '@material-ui/icons/Build'; //Industrial
+import AcUnitIcon from '@material-ui/icons/AcUnit'; //Refrigeración 
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects'; //Electricidad
+import KitchenIcon from '@material-ui/icons/Kitchen'; //Línea blanca
+import PersonIcon from '@material-ui/icons/Person'; //Otros
+
+//Plomería
+function WaterIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M12,3L2,12h3v8h14v-8h3L12,3z M12,16c-1.1,0-2-0.9-2-2c0-1.1,2-4,2-4s2,2.9,2,4C14,15.1,13.1,16,12,16z  " />
+    </SvgIcon>
+  );
+}
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,19 +111,23 @@ const LTCard = () => {
                   </Typography>
                 }
                 subheader={
-                  <Typography variant="h6" component="h4">
+                  <Typography variant="body2" component="h4">
                     {job.tipoMantenimiento}
                   </Typography>
                 }
               />
-              <CardContent className={classes.content}>
-                <Typography variant="body2" component="p">
-                  {job.descripcion}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {job.estado}
-                </Typography>
-              </CardContent>
+
+              <Grid>
+                <CardContent className={classes.content}>
+                  <Typography variant="body2" component="p">
+                    {job.descripcion}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {job.estado}
+                  </Typography>
+                </CardContent>
+              </Grid>
+
               <CardActions>
                 <LTModal />
               </CardActions>
