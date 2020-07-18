@@ -88,7 +88,7 @@ const LTCard = () => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-      <Grid container direction="column" key={job._id} zeroMinWidth>
+      <Grid container direction="column" key={job._id} item zeroMinWidth>
         <Card className={classes.root} variant="elevation" elevation={5}>
           <Grid container direction="row" >
             <Grid item xs={2}>
@@ -129,7 +129,7 @@ const LTCard = () => {
               </Grid>
 
               <CardActions>
-                <LTModal />
+                <LTModal id={job._id} />
               </CardActions>
             </Grid>
           </Grid>

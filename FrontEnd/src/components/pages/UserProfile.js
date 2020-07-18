@@ -10,7 +10,6 @@ export default function UserProfile() {
   const { userData } = useContext(UserContext);
   let token = localStorage.getItem('x-access-token');
   const [error, setError] = useState();
-
   const [jobsData, setJobData] = useState({
     jobs: []
   })
@@ -37,9 +36,7 @@ export default function UserProfile() {
 
   const jobsList = () => {
     const jobs = jobsData.jobs
-    console.log(jobs)
     const listJobs = jobs.map(job => (
-    
       <div key={job._id}>
         <p > {job.titulo} {job.ubicacion.ciudad} {job.ubicacion.corregimiento} {job.tipoMantenimiento} {job.telefono}</p>
         

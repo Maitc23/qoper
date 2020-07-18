@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import ErrorMessage from '../misc/ErrorMessage';
+import Axios from 'axios';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -28,12 +30,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal(workId) {
+
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
+  let token = localStorage.getItem('x-access-token');
+  const [error, setError] = useState();
+  const [jobData, setJobData] = useState({
+    job: [],
+    ubicacion: []
+  });
+
+  const job = jobData.job
+  const ubicacion = jobData.ubicacion
   const handleOpen = () => {
     setOpen(true);
   };
@@ -42,29 +54,78 @@ export default function SimpleModal() {
     setOpen(false);
   };
 
+
+  const getJob = async () => {
+    try {
+      const job = await Axios.get('http://localhost:4000/api/job/' + workId.id,
+        { headers: { 'x-access-token': token } }
+      );
+
+      setJobData({
+        job: job.data,
+        ubicacion: job.data.ubicacion
+      });
+
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  useEffect(() => {
+
+    getJob()
+    // eslint-disable-next-line
+  }, [])
+
+  
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+      <h2 id="simple-modal-title">{job.titulo}</h2>
+      <p>
+        fecha:
+    {job.fecha}
       </p>
-      <SimpleModal />
+      <p>
+        {job.tipoMantenimiento}
+      </p>
+      <p>
+        {job.telefono}
+      </p>
+      <p>
+        {job.nombreSupervisor}
+      </p>
+      <p>
+        ubicacion:
+        {ubicacion.ciudad}
+      </p>
+      <p id="simple-modal-description">
+        descripcion:
+      {job.descripcion}
+      </p>
     </div>
-  );
+  )
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
+      {error ? (
+        <ErrorMessage message={error} />
+      ) : (
+          <>
+            <button type="button" onClick={handleOpen}>
+              Open Modal
+            </button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            >
+              {body}
+            </Modal>
+          </>
+        )
+
+      }
     </div>
   );
 }

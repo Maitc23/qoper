@@ -3,10 +3,23 @@ const controller = {};
 
 const Jobs = require('../models/jobs');
 const User = require('../models/user');
-const proveedor = require('../models/proveedor');
-const { findById } = require('../models/jobs');
-const user = require('../models/user');
 
+
+
+
+controller.getJob = async ( req, res, next) => { 
+    try {
+        const job = await Jobs.findById(req.params); 
+
+        if(job.length === 0) {
+            return res.status(400).json({ message: "Trabajo seleccionado no disponible" }) 
+        }
+
+        res.json(job)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
 
 controller.newJob = async (req, res, next) => {
     try {

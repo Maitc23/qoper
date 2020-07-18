@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {newJob, userJobs, jobs, deleteJob, updateJob, acceptJob, acceptCotization, completedJob, pausedJob, cancelledJob} = require('../controllers/jobs')
+const {newJob, userJobs, jobs, deleteJob, updateJob, acceptJob, acceptCotization, completedJob, pausedJob, cancelledJob, getJob} = require('../controllers/jobs')
 const verifyToken = require('../middlewares/verifyToken');
 
 
@@ -10,9 +10,12 @@ router.route('/job')
 router.route('/jobs')
     .get(verifyToken,jobs)
 
+
+
 router.route('/job/:_id')
     .put(verifyToken, updateJob)
     .delete(verifyToken, deleteJob)
+    .get(verifyToken, getJob)
    
 router.route('/acceptJob/:_id')
     .put(verifyToken, acceptJob)
