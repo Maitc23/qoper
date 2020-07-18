@@ -132,9 +132,10 @@ export default function LandingPage() {
           direction="row"
           justify="center"
           alignItems="center"
+          spacing={7}
         >
           <Grid item xs={12}>
-            <Box m={5} my={9} textAlign="center">
+            <Box m={5} textAlign="center">
               <Box>
                 <Typography variant="h4" className="title">
                   BENEFICIOS

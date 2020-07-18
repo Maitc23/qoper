@@ -10,156 +10,185 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Avatar, IconButton, CardMedia } from '@material-ui/core';
-import BuildIcon from '@material-ui/icons/Build';
+import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import deepOrange from '@material-ui/core/colors/orange';
+import Modal from '@material-ui/core/Modal';
+import LTModal from '../misc/LTModal';
 
-const useStyles = makeStyles({
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 0px 0px 0px rgba(255, 105, 135, .3)',
-        color: 'white',
-        paddingTop: '1.8%',
-        paddingLeft: '1.8%',
-    },
-});
+
+import BuildIcon from '@material-ui/icons/Build'; //Industrial
+import AcUnitIcon from '@material-ui/icons/AcUnit'; //Refrigeración 
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects'; //Electricidad
+import KitchenIcon from '@material-ui/icons/Kitchen'; //Línea blanca
+import PersonIcon from '@material-ui/icons/Person'; //Otros
+
+//Plomería
+function WaterIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M12,3L2,12h3v8h14v-8h3L12,3z M12,16c-1.1,0-2-0.9-2-2c0-1.1,2-4,2-4s2,2.9,2,4C14,15.1,13.1,16,12,16z  " />
+    </SvgIcon>
+  );
+}
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    background: '#2c387e',
+    border: 0,
+    borderRadius: 10,
+    color: 'white',
+    paddingTop: '1.8%',
+    paddingLeft: '1.8%',
+  },
+  deepOrangeAvatar: {
+    backgroundColor: deepOrange[700],
+    width: theme.spacing(18),
+    height: theme.spacing(18),
+  },
+  avatarIcon: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    color: '#FFF',
+  }
+}));
 
 const LTCard = () => {
 
-    const classes = useStyles();
-    const { userData } = useContext(UserContext);
-    const token = localStorage.getItem('x-access-token');
-    const [error, setError] = useState();
-    const [jobsData, setJobData] = useState({
-        jobs: []
-    });
+  const classes = useStyles();
+  const { userData } = useContext(UserContext);
+  const token = localStorage.getItem('x-access-token');
+  const [error, setError] = useState();
+  const [jobsData, setJobData] = useState({
+    jobs: []
+  });
 
-    const getJob = async () => {
-        try {
-            const works = await Axios.get('http://localhost:4000/api/job',
-                { headers: { 'x-access-token': token } }
-            );
-            setJobData({
-                jobs: works.data
-            })
-        } catch (err) {
-            err.response.data.message && setError(err.response.data.message);
-        }
+  const getJob = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/job',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
     }
+  }
 
-    useEffect(() => {
+  useEffect(() => {
 
-        getJob()
-        // eslint-disable-next-line
-    }, [])
+    getJob()
+    // eslint-disable-next-line
+  }, [])
 
-    const jobsList = () => {
-        const jobs = jobsData.jobs;
+  const jobsList = () => {
+    const jobs = jobsData.jobs;
 
-        const listJobs = jobs.map(job => (
-            <Grid container direction="column" key={job._id}>
-                <Card className={classes.root}>
-                    <Grid container direction="row">
-                        <Grid item xs={2}>
-                            <CardMedia
-                                style={{ 'width': 'auto', height: "175px" }}
-                                image={"https://www.redeszone.net/app/uploads-redeszone.net/2019/10/cambios-navegar-internet.jpg"}
-                            />
-                        </Grid>
-
-                        <Grid item xs={10}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar>
-                                        <BuildIcon />
-                                    </Avatar>}
-                                action={
-                                    <IconButton aria-label="settings">
-
-                                    </IconButton>
-                                }
-                                title={job.titulo}
-                                subheader={job.tipoMantenimiento}
-
-                            />
-                            <CardContent>
-                                <Typography variant="body2" component="p">
-                                    {job.descripcion}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {
-                                        job.estado === 1 ? (
-                                            <p> Hola</p>
-                                        ) : (
-                                                <p> DFHSJKHFASD</p>
-                                            )
-                                    }
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button>
-                                    More Info
-                            </Button>
-                            </CardActions>
-                        </Grid>
-                    </Grid>
-                </Card>
-                <hr />
+    const listJobs = jobs.map(job => (
+      <Grid container direction="column" key={job._id} zeroMinWidth>
+        <Card className={classes.root} variant="elevation" elevation={5}>
+          <Grid container direction="row" >
+            <Grid item xs={2}>
+              <CardMedia
+                style={{ 'width': 'auto', height: '155px' }}
+                image={"https://www.redeszone.net/app/uploads-redeszone.net/2019/10/cambios-navegar-internet.jpg"}
+              />
             </Grid>
-        ))
 
-        return (
-            <>
-                {listJobs}
-                <br />
-            </>
-        )
-    }
+            <Grid item xs={10}>
+              <CardHeader
+                avatar={
+                  <Avatar>
+                    <BuildIcon />
+                  </Avatar>
+                }
+                title={
+                  <Typography variant="h5" component="h2">
+                    {job.titulo}
+                  </Typography>
+                }
+                subheader={
+                  <Typography variant="body2" component="h4">
+                    {job.tipoMantenimiento}
+                  </Typography>
+                }
+              />
 
+              <Grid>
+                <CardContent className={classes.content}>
+                  <Typography variant="body2" component="p">
+                    {job.descripcion}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {job.estado}
+                  </Typography>
+                </CardContent>
+              </Grid>
 
-/*     
-    const deleteJob = async (id) => {
-        try {
-            await Axios.delete('http://localhost:4000/api/job/' + id,
-                { headers: { 'x-access-token': token } }
-            )
-            getJob()
-
-        } catch (err) {
-            err.response.data.message && setError(err.response.data.message);
-        }
-    }
- */
-
-
-
+              <CardActions>
+                <LTModal />
+              </CardActions>
+            </Grid>
+          </Grid>
+        </Card>
+        <br></br>
+      </Grid>
+    ))
 
     return (
-        <div className="page">
-            {
-                userData.user && userData.user.userType === 2 ? (
+      <>
+        {listJobs}
+        <hr />
+      </>
+    )
+  }
 
-                    <>
-                        {error ? (
-                            <ErrorMessage message={error} />
-                        ) : (
-                                <>
-                                    {jobsList()}
-                                </>
-                            )}
-                    </>
-                ) : (
-                        <>
-                            <h2>You are not logged in</h2>
-                            <Link to="/login">Log in</Link>
-                        </>
-                    )
-            }
-        </div>
-    );
+
+  /*     
+      const deleteJob = async (id) => {
+          try {
+              await Axios.delete('http://localhost:4000/api/job/' + id,
+                  { headers: { 'x-access-token': token } }
+              )
+              getJob()
+  
+          } catch (err) {
+              err.response.data.message && setError(err.response.data.message);
+          }
+      }
+   */
+
+
+
+
+  return (
+    <div className="page">
+      {
+        userData.user && userData.user.userType === 2 ? (
+
+          <>
+            {error ? (
+              <ErrorMessage message={error} />
+            ) : (
+                <>
+                  {jobsList()}
+                </>
+              )}
+          </>
+        ) : (
+            <>
+              <h2>You are not logged in</h2>
+              <Link to="/login">Log in</Link>
+            </>
+          )
+      }
+    </div>
+  );
+
+
 
 }
 
