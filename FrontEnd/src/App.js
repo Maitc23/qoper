@@ -12,6 +12,7 @@ import Profile from './components/pages/UserProfile'
 import NewJob from './components/pages/NewJob'
 import UserContext from './context/UserContext'
 import nuevaSolicitud from './components/pages/nuevaSolicitud'
+import checkout from './components/pages/Checkout'
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
@@ -71,6 +72,7 @@ export default function App() {
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
               <Route path="/newJob" component={NewJob} />
+              <Route path="/checkout" component={checkout} />
 
             </ Switch>
 
