@@ -57,7 +57,7 @@ export default function UserProfile() {
       await Axios.delete('http://localhost:4000/api/job/' + id,
         { headers: { 'x-access-token': token } }
       )
-    getJob()
+      getJob()
     
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);

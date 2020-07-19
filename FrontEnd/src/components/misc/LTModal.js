@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
-
+import UserContext from '../../context/UserContext'
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -37,6 +37,7 @@ export default function SimpleModal(workId) {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
+  const { userData } = useContext(UserContext)
   let token = localStorage.getItem('x-access-token');
   const [error, setError] = useState();
   const [jobData, setJobData] = useState({
@@ -71,13 +72,14 @@ export default function SimpleModal(workId) {
     }
   }
 
+
   useEffect(() => {
 
     getJob()
     // eslint-disable-next-line
   }, [])
 
-  
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">{job.titulo}</h2>
@@ -104,7 +106,6 @@ export default function SimpleModal(workId) {
       </p>
     </div>
   )
-
   return (
     <div>
       {error ? (
@@ -124,7 +125,6 @@ export default function SimpleModal(workId) {
             </Modal>
           </>
         )
-
       }
     </div>
   );
