@@ -22,24 +22,24 @@ import { ButtonBase } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 250,
+    width: 'auto',
     height: 250,
-   
   },
-  
+
   rot: {
-    flexGrow: 1,
+    width: 'auto',
+    
   },
 
   paper: {
-    padding: theme.spacing(2),
+    //padding: theme.spacing(2),
     //display: 'flex',
-   // overflow: 'auto',
-   // flexDirection: 'column',
-   marginRight: true,
+    // overflow: 'auto',
+    // flexDirection: 'column',
+    // marginRight: true,
     margin: 'auto',
     maxWidth: 500,
-    
+
   },
   fixedHeight: {
     height: 250,
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserProfile() {
 
-  
+
 
   const classes = useStyles();
 
@@ -130,7 +130,7 @@ export default function UserProfile() {
   return (
 
     <div className="page">
-      
+
       {
         userData.user && userData.user.userType === 1 ? (
           <h1>Welcome {userData.user.nombre} Proveedor</h1>
@@ -139,73 +139,94 @@ export default function UserProfile() {
           <>
 
             <h1>{userData.user.nombre} Cliente</h1>
-            <Box mb={3}>
-              <Grid container>
+
+
+
+
+
+
+            <Container maxWidth="lg">
+
+              <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Typography variant="h4">Mi Perfil</Typography>
                 </Grid>
-              </Grid>
-            </Box>
-            <Grid item xs={6}>
-            <Paper className={classes.root}>
-              <MenuList>
-                <MenuItem>
-                  <ListItemIcon>
-                    <PersonIcon fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit">Mis Datos</Typography>
-                </MenuItem>
-                <MenuItem>
-                  <ListItemIcon>
-                    <ScheduleIcon fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit">Trabajos Pendientes</Typography>
-                </MenuItem>
-                <MenuItem>
-                  <ListItemIcon>
-                    <AssignmentTurnedInIcon fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
-                </MenuItem>
-              </MenuList>
-            </Paper>
-            </Grid>
+
+
+
+                <Grid item  xs={6} md={3}>
+
+                  <Paper className={classes.root}>
+                    <MenuList>
+                      <MenuItem>
+                        <ListItemIcon>
+                          <PersonIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit">Mis Datos</Typography>
+                      </MenuItem>
+                      <MenuItem>
+                        <ListItemIcon>
+                          <ScheduleIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit">Trabajos Pendientes</Typography>
+                      </MenuItem>
+                      <MenuItem>
+                        <ListItemIcon>
+                          <AssignmentTurnedInIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
+                      </MenuItem>
+                    </MenuList>
+                  </Paper>
+                </Grid>
 
 
 
 
+                <Grid item xs={6} md={9}>
+                  
 
-            <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        
-        <div className={classes.rot}>
-          <Paper className={classes.paper}>
-            <Grid container spacing={2}>
-              <Grid item> 
-                <ButtonBase className={classes.image}>
-                  <img className={classes.img} alt="complex" src="/images/prueba.jpg" />
-                </ButtonBase>
-              </Grid>
-              <Grid item xs={12} xs container>
-                <Grid item xs container direction="colum" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="subtitle1">
-                      Nombre:
+                      <Paper >
+                        <Grid container >
+                          <Grid item>
+                            <ButtonBase className={classes.image}>
+                              <img className={classes.img} alt="" src="https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.fisc.utp.ac.pa%2Fsites%2Ffisc.utp.ac.pa%2Ffiles%2Fdocumentos%2F2019%2Fpdf%2Fcv-rosa-dutari.pdf&psig=AOvVaw1m7hQ2pjdpIr1ZFsDQo3se&ust=1595055470124000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCixeja0-oCFQAAAAAdAAAAABAM" />
+                            </ButtonBase>
+                          </Grid>
+                          <Grid item xs={12} container>
+                            <Grid item xs container direction="column" spacing={1}>
+                              <Grid item xs>
+                                <Typography gutterBottom variant="subtitle1">
+                                  Nombre:
+                    </Typography>
+                                <Typography gutterBottom variant="subtitle1">
+                                  Apellido:
+                    </Typography>
+                                <Typography gutterBottom variant="subtitle1">
+                                  Correo Electronico:
                     </Typography>
                     <Typography gutterBottom variant="subtitle1">
-                      Apellido:
+                                  Correo Electronico:
                     </Typography>
                     <Typography gutterBottom variant="subtitle1">
-                      Correo Electronico:
+                                  Correo Electronico:
                     </Typography>
-                  </Grid>
+                    <Typography gutterBottom variant="subtitle1">
+                                  Correo Electronico:
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1">
+                                  Correo Electronico:
+                    </Typography>
+                    
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Paper>
+                    
                 </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-        </div>
-      </main>
-
+            </Container>
 
 
             {error ? (
