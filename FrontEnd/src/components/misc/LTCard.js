@@ -14,7 +14,6 @@ import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import deepOrange from '@material-ui/core/colors/orange';
-import Modal from '@material-ui/core/Modal';
 import LTModal from '../misc/LTModal';
 
 

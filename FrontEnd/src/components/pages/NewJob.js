@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Typography from '@material-ui/core/Typography';
-
+import 'date-fns';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -12,15 +12,24 @@ import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useContext } from 'react'
 import ErrorNotice from '../misc/ErrorNotice';
 import SuccessfulNotice from '../misc/SuccessfulNotice';
+import DateFnsUtils from '@date-io/date-fns';
 import DatePicker from 'react-datepicker';
+import {
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 
 
+
+
+
 const useStyles = makeStyles((theme) => ({
-  diseño: { 
+  diseño: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '30ch',
@@ -98,14 +107,14 @@ export default function NewJob() {
         ciudad,
         provincia,
         corregimiento,
-        calle, 
-        residencia, 
-        piso, 
+        calle,
+        residencia,
+        piso,
         datosExtra,
         correo,
         nombreSupervisor,
         requisitosExtra
-        
+
       };
 
       const res = await Axios.post('http://localhost:4000/api/job',
@@ -113,7 +122,7 @@ export default function NewJob() {
         { headers: { 'x-access-token': token } }
       );
 
-     
+
       history.push('/newJob');
 
       setSuccessful(res.data.message);
@@ -123,281 +132,284 @@ export default function NewJob() {
     }
   }
 
+  // The first commit of Material-UI
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
     <Container component="main" maxWidth="md">
-    {userData.user ? (
-      <>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-      {successful && (
-        <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
-      )}
-      <Box mb={3}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h4">
-              Solicitud de trabajo
+      {userData.user ? (
+        <>
+          {error && (
+            <ErrorNotice message={error} clearError={() => setError(undefined)} />
+          )}
+          {successful && (
+            <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
+          )}
+          <Box my={3}>
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Solicitud de trabajo
           </Typography>
-          </Grid>
-        </Grid>
-      </Box>
+              </Grid>
+            </Grid>
+          </Box>
 
-      <form noValidate autoComplete="off" onSubmit={submit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="body1" color="initial">
-              Datos del mantenimiento
+          <form noValidate autoComplete="off" onSubmit={submit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography variant="body1" color="initial">
+                  Datos del mantenimiento
             </Typography>
-            <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
-              <hr />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              className={classes.diseño}
-              id="titulo"
-              label="Nombre de tu Solicitud"
-              type="text"
-              variant="outlined"
-              required
-              fullWidth
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              className={classes.diseño}
-              id="tipoMante"
-              select
-              label="Tipo de Mantenimiento"
-              required
-              fullWidth
-              value={tipoMantenimiento}
-              onChange={(e) => setTipoMantenimiento(e.target.value)}
-              variant="outlined"
-              SelectProps={{
-                native: true,
-              }}
-            >
-              {selectTipoMantenimiento.map(tipoMantenimiento => (
-                <option key={tipoMantenimiento.id} value={tipoMantenimiento.value}>
-                  {tipoMantenimiento.name}
-                </option>
-              ))}
-            </TextField>
-          </Grid>
+                <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
+                  <hr />
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  className={classes.diseño}
+                  id="titulo"
+                  label="Nombre de tu Solicitud"
+                  type="text"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  className={classes.diseño}
+                  id="tipoMante"
+                  select
+                  label="Tipo de Mantenimiento"
+                  required
+                  fullWidth
+                  value={tipoMantenimiento}
+                  onChange={(e) => setTipoMantenimiento(e.target.value)}
+                  variant="outlined"
+                  SelectProps={{
+                    native: true,
+                  }}
+                >
+                  {selectTipoMantenimiento.map(tipoMantenimiento => (
+                    <option key={tipoMantenimiento.id} value={tipoMantenimiento.value}>
+                      {tipoMantenimiento.name}
+                    </option>
+                  ))}
+                </TextField>
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="descripcion"
-              label="Descripcion"
-              type="text"
-              fullWidth
-              variant="outlined"
-              multiline
-              rows={4}
-              onChange={(e) => setDescripcion(e.target.value)}
-              required
-            />
-          </Grid>
-          <label htmlFor="trabajo-fecha">Fecha del trabajo</label>
-          <DatePicker
-            id="trabajo-fecha"
-            name="fecha"
-            selected={fecha}
-            onChange={date => setDate(date)}
-          />
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="descripcion"
+                  label="Descripcion"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  onChange={(e) => setDescripcion(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <label htmlFor="trabajo-fecha">Fecha del trabajo</label>
+                <br></br>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DateTimePicker value={selectedDate} onChange={date => setDate(date)} />
+                </MuiPickersUtilsProvider>
+              </Grid>
 
-
-          <Grid item xs={12}>
-            <Box mt={2}>
-              <Typography variant="body1" color="initial">
-                Dirección
+              <Grid item xs={12}>
+                <Box mt={2}>
+                  <Typography variant="body1" color="initial">
+                    Dirección
               </Typography>
-            </Box>
-            <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
-              <hr />
-            </Box>
-          </Grid>
+                </Box>
+                <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
+                  <hr />
+                </Box>
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="ciudad"
-              label="Ciudad"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Ciudad"
-              onChange={(e) => setCiudad(e.target.value)}
-              required
-            />
-          </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="ciudad"
+                  label="Ciudad"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Ciudad"
+                  onChange={(e) => setCiudad(e.target.value)}
+                  required
+                />
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="provincia"
-              label="Provincia"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Provincia"
-              onChange={(e) => setProvincia(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="correigimiento_zona"
-              label="Corregimiento / Zona"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Corregimiento / Zona"
-              onChange={(e) => setCorregimiento(e.target.value)}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="provincia"
+                  label="Provincia"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Provincia"
+                  onChange={(e) => setProvincia(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="correigimiento_zona"
+                  label="Corregimiento / Zona"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Corregimiento / Zona"
+                  onChange={(e) => setCorregimiento(e.target.value)}
 
-              required
-            />
-          </Grid>
+                  required
+                />
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="calle"
-              label="Calle"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Calle"
-              onChange={(e) => setCalle(e.target.value)}
-              required
-            />
-          </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="calle"
+                  label="Calle"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Calle"
+                  onChange={(e) => setCalle(e.target.value)}
+                  required
+                />
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="edificio_casa"
-              label="Edificio / Casa"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Edificio / Casa"
-              onChange={(e) => setResidencia(e.target.value)}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="edificio_casa"
+                  label="Edificio / Casa"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Edificio / Casa"
+                  onChange={(e) => setResidencia(e.target.value)}
 
-              required
-            />
-          </Grid>
+                  required
+                />
+              </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="piso_dept"
-              label="Piso / Dept."
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="Piso / Dept."
-              onChange={(e) => setPiso(e.target.value)}
-            />
-          </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="piso_dept"
+                  label="Piso / Dept."
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Piso / Dept."
+                  onChange={(e) => setPiso(e.target.value)}
+                />
+              </Grid>
 
-          <Grid item xs={12}>
-            <TextField
-              id="direccion_extra"
-              label="Indicaciones adicionales"
-              type="text"
-              fullWidth
-              variant="outlined"
-              placeholder="La casa tiene verjas negras y un picanto rojo aparcado dentro"
-              multiline
-              rows={2}
-              onChange={(e) => setDatosExtra(e.target.value)}
-            />
-          </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="direccion_extra"
+                  label="Indicaciones adicionales"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="La casa tiene verjas negras y un picanto rojo aparcado dentro"
+                  multiline
+                  rows={2}
+                  onChange={(e) => setDatosExtra(e.target.value)}
+                />
+              </Grid>
 
-          <Grid item xs={12}>
-            <Box mt={2}>
-              <Typography variant="body1" color="initial">
-                Datos del representante
+              <Grid item xs={12}>
+                <Box mt={2}>
+                  <Typography variant="body1" color="initial">
+                    Datos del representante
           </Typography>
-            </Box>
-            <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
-              <hr />
-            </Box>
-          </Grid>
+                </Box>
+                <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
+                  <hr />
+                </Box>
+              </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <TextField
-              className={classes.diseño}
-              id="encargado"
-              label="Nombre del supervisor"
-              type="text"
-              variant="outlined"
-              fullWidth
-              onChange={(e) => setNombreSupervisor(e.target.value)}
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  className={classes.diseño}
+                  id="encargado"
+                  label="Nombre del supervisor"
+                  type="text"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => setNombreSupervisor(e.target.value)}
 
-              required
-            />
-          </Grid>
+                  required
+                />
+              </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <TextField
-              className={classes.diseño}
-              id="Teléfono"
-              label="Teléfono de contacto"
-              placeholder="0000-0000"
-              type="number"
-              variant="outlined"
-              fullWidth
-              onChange={(e) => setTelefono(e.target.value)}
-              InputProps={{
-                startAdornment: <InputAdornment position="start">507 - </InputAdornment>,
-              }}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              className={classes.diseño}
-              id="correo"
-              label="Correo Electronico"
-              placeholder="example@email.com"
-              type="email"
-              variant="outlined"
-              fullWidth
-              onChange={(e) => setCorreo(e.target.value)}
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  className={classes.diseño}
+                  id="Teléfono"
+                  label="Teléfono de contacto"
+                  placeholder="0000-0000"
+                  type="number"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => setTelefono(e.target.value)}
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">507 - </InputAdornment>,
+                  }}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  className={classes.diseño}
+                  id="correo"
+                  label="Correo Electronico"
+                  placeholder="example@email.com"
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  onChange={(e) => setCorreo(e.target.value)}
 
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="requisitos"
-              label="Requisitos Extras"
-              type="text"
-              fullWidth
-              variant="outlined"
-              multiline
-              rows={4}
-              onChange={(e) => setRequisitosExtra(e.target.value)}
-            />
-          </Grid>
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="requisitos"
+                  label="Requisitos Extras"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  onChange={(e) => setRequisitosExtra(e.target.value)}
+                />
+              </Grid>
 
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.diseño}
-              style={{ 'marginTop': '20px' }}
-              type="submit"
-            >
-              Solicitar trabajo
-          </Button>
-        </Grid>
-      </form>
-      </>
-    ) : (
-      <>
-      <h2>You are not logged in</h2>
-      <Link to="/login">Log in</Link>
-    </>
-    )}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.diseño}
+                  style={{ 'marginTop': '20px', 'marginBottom': '50px' }}
+                  type="submit"
+                >
+                  Solicitar trabajo
+                </Button>
+
+            </Grid>
+          </form>
+        </>
+      ) : (
+          <>
+            <h2>You are not logged in</h2>
+            <Link to="/login">Log in</Link>
+          </>
+        )}
     </Container>
   )
 }
