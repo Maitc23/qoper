@@ -15,6 +15,7 @@ import JobList from './components/pages/JobList'
 import UserContext from './context/UserContext'
 import nuevaSolicitud from './components/pages/nuevaSolicitud'
 import Factura from './components/pages/Factura'
+import checkout from './components/pages/Checkout'
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
@@ -62,24 +63,25 @@ export default function App() {
     <>
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
-          <Navigation />
-          <div className={'root'}>
-              <Switch >
-                <Route path="/" exact component={LandingPage} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
-                <Route path="/newJob" component={NewJob} />
-                <Route path="/factura" component={Factura} />
-                <Route path="/trabajosLista" component={TrabajosLista} />
-                <Route path="/jobList" component={JobList} /> 
+        <Navigation />
+        <div className={'root'}>
+          <Switch >
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
+            <Route path="/newJob" component={NewJob} />
+            <Route path="/factura" component={Factura} />
+            <Route path="/trabajosLista" component={TrabajosLista} />
+            <Route path="/jobList" component={JobList} />
+            <Route path="/checkout" component={checkout} />
 
-              </ Switch>
-          </div>
-          <Footer />
+          </ Switch>
+        </div>
+        <Footer />
         </UserContext.Provider>
-      </Router >
+    </Router >
     </>
   );
 }
