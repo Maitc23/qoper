@@ -65,8 +65,8 @@ const PaypalCheckOutButton = ({ product }) => {
     </div>
   );
 }
-
-
+    
+    
 
 
 

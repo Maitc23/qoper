@@ -74,7 +74,11 @@ const jobSchema = new Schema( {
     },
     requisitosExtra: {
         type: String
-    }
+    },
+    proveedor: {
+        type: Schema.Types.ObjectId, 
+        ref:'Users'
+    }  
 }, {
     timestamps: true
 });

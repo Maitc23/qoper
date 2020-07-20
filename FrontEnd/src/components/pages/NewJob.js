@@ -87,7 +87,7 @@ export default function NewJob() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      let token = localStorage.getItem('x-access-token');
+      const token = localStorage.getItem('x-access-token');
 
       const newJob = {
         titulo,
