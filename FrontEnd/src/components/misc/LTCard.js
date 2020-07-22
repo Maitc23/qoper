@@ -149,6 +149,7 @@ const LTCard = (state) => {
       err.response.data.message && setError(err.response.data.message);
     }
   }
+  
   useEffect(() => {
 
     if (state.state === 1) {

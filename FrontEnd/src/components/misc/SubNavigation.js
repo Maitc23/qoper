@@ -8,7 +8,17 @@ import MenuList from '@material-ui/core/MenuList';
 import ScheduleIcon from '@material-ui/icons/Schedule'; import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
+<<<<<<< HEAD
+=======
+import Grid from '@material-ui/core/Grid';
+import PauseIcon from '@material-ui/icons/Pause';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import CancelIcon from '@material-ui/icons/Cancel';
+import BuildIcon from '@material-ui/icons/Build';
+
+>>>>>>> b55d452f4317ab16a7899943f9570f2e37c1c593
 import deepOrange from '@material-ui/core/colors/orange';
+import { ListItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +71,7 @@ export default function SubNavigation() {
               </MenuItem>
               <MenuItem className={classes.iconHover} onClick={CotizationJobs}>
                 <ListItemIcon className={classes.iconClass}>
-                  <ScheduleIcon fontSize="small" />
+                  <BuildIcon fontSize="small" />
                 </ListItemIcon>
                 <Typography variant="inherit">Trabajos en cotizacion</Typography>
               </MenuItem>
@@ -73,42 +83,50 @@ export default function SubNavigation() {
               </MenuItem>
               <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                 <ListItemIcon className={classes.iconClass}>
-                  <ScheduleIcon fontSize="small" />
+                  <AssignmentTurnedInIcon fontSize="small" />
                 </ListItemIcon>
                 <Typography variant="inherit">Trabajos realizados</Typography>
               </MenuItem>
             </>
-          ) : (
+          ) :
+          
+          (
               <>
                 <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
                   <ListItemIcon className={classes.iconClass}>
-                    <ScheduleIcon fontSize="small" />
+                    <ListAltIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos pendientes</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={PausedJobs}>
                   <ListItemIcon className={classes.iconClass}>
-                    <ScheduleIcon fontSize="small" />
+                    <PauseIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos pausados</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CotizationJobs}>
                   <ListItemIcon className={classes.iconClass}>
-                    <ScheduleIcon fontSize="small" />
+                    <BuildIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos en cotizacion</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CancelledJob}>
                   <ListItemIcon className={classes.iconClass}>
-                    <ScheduleIcon fontSize="small" />
+                    <CancelIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos cancelados</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                   <ListItemIcon className={classes.iconClass}>
+<<<<<<< HEAD
                     <ScheduleIcon fontSize="small" />
                   </ListItemIcon> 
                   <Typography variant="inherit">Trabajos finalizados</Typography>
+=======
+                    <AssignmentTurnedInIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Typography variant="inherit">Trabajos creados finalizados</Typography>
+>>>>>>> b55d452f4317ab16a7899943f9570f2e37c1c593
                 </MenuItem>
               </>
             )
