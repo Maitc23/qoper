@@ -137,9 +137,9 @@ export default function SimpleModal(work) {
       setSuccessful(res.data.message);
       const cotizationData = localStorage.getItem('cotData');
 
-      if(cotizationData === null) { 
+      if (cotizationData === null) {
         localStorage.setItem("cotData", job.id);
-      }else { 
+      } else {
         localStorage.removeItem("cotData")
         localStorage.setItem("cotData", job.id)
       }
@@ -168,10 +168,10 @@ export default function SimpleModal(work) {
       <Box textOverflow="clip" overflow="hidden">
         <h2 id="simple-modal-title">{job.titulo}</h2>
       </Box>
-      <p>
+      <div>
         fecha:
         {job.fecha}
-      </p>
+      </div>
       <p>
         {job.tipoMantenimiento}
       </p>
@@ -251,8 +251,8 @@ export default function SimpleModal(work) {
         <ErrorMessage message={error} />
       ) : (
           <>
-              <Button  color="primary"  size="small" onClick={handleOpen}>
-                Ver info
+            <Button color="primary" size="small" onClick={handleOpen}>
+              Ver info
                 </Button>
             <Modal
               open={open}
