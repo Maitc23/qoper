@@ -12,6 +12,10 @@ import Grid from '@material-ui/core/Grid'
 import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import { ButtonBase } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+import indigo from '@material-ui/core/colors/indigo';
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,11 +27,6 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto',
   },
   paper: {
-    //padding: theme.spacing(2),
-    //display: 'flex',
-    // overflow: 'auto',
-    // flexDirection: 'column',
-    // marginRight: true,
     margin: 'auto',
     maxWidth: 500,
   },
@@ -42,9 +41,36 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100%',
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 250,
+    height: 250,
   },
+
+  diseño: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '30ch',
+    },
+    '& label.Mui-focused': {
+      color: indigo[800],
+    },
+    '& label.Mui-focused:after': {
+      color: indigo[800],
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: indigo[800],
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '',
+      },
+      '&:hover fieldset': {
+        borderColor: indigo[800],
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: indigo[800],
+      },
+    },
+  }
 }));
 
 
@@ -97,23 +123,28 @@ export default function UserProfile() {
     )
   }
 
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const deleteJob = async (id) => {
     try {
-       await Axios.delete('http://localhost:4000/api/job/' + id,
+      await Axios.delete('http://localhost:4000/api/job/' + id,
         { headers: { 'x-access-token': token } }
-      ) 
-  
+      )
+
       getJob()
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
     }
   }
 
-  
+ 
+
+ 
+
 
   return (
+    
 
     <div className="page" style={{ 'marginTop': '40px' }}>
 
@@ -121,86 +152,52 @@ export default function UserProfile() {
         userData.user && userData.user.userType === 1 ? (
           <>
 
-                    {/* <h1>{userData.user.nombre} Cliente</h1> */}
+            {/* <h1>{userData.user.nombre} Cliente</h1> */}
 
-                    <Container maxWidth="lg">
+            <Container maxWidth="lg">
 
-                    <Grid container spacing={1}>
-                      <Grid item xs={12}>
-                        <Typography variant="h4">Mi Perfil</Typography>
-                      </Grid>
-      
-                      <Grid item xs={6} md={3}>
-                        <SubNav />
-                      </Grid>
-      
-                      {/*                 <Grid item xs={6} md={3}>
-                        <Paper className={classes.root}>
-                          <MenuList>
-                            <MenuItem>
-                              <ListItemIcon>
-                                <PersonIcon fontSize="small" />
-                              </ListItemIcon>
-                              <Typography variant="inherit">Mis Datos</Typography>
-                            </MenuItem>
-                            <MenuItem>
-                              <ListItemIcon>
-                                <ScheduleIcon fontSize="small" />
-                              </ListItemIcon>
-                              <Typography variant="inherit">Trabajos Pendientes</Typography>
-                            </MenuItem>
-                            <MenuItem>
-                              <ListItemIcon>
-                                <AssignmentTurnedInIcon fontSize="small" />
-                              </ListItemIcon>
-                              <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
-                            </MenuItem>
-                          </MenuList>
-                        </Paper>
-                      </Grid> */}
-      
-      
-                      <Grid item xs={6} md={9}>
-                        <Paper >
-                          <Grid container >
-                            <Grid item>
-                              <ButtonBase className={classes.image}>
-                                <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
-                              </ButtonBase>
-                            </Grid>
-                            <Grid item xs={12} container>
-                              <Grid item xs container direction="column" spacing={1}>
-                                <Grid item xs>
-                                  <Typography gutterBottom variant="subtitle1">
-                                    Nombre: {userData.user.nombre}
-                                </Typography>
-                                <Typography gutterBottom variant="subtitle1">
-                                    Apellido: {userData.user.apellido}
-                                </Typography>
-                                <Typography gutterBottom variant="subtitle1">
-                                    Correo Electronico: {userData.user.email}
-                                </Typography>
-                                <Typography gutterBottom variant="subtitle1">
-                                    Correo Electronico:
-                                </Typography>
-                                  <Typography gutterBottom variant="subtitle1">
-                                    Correo Electronico:
-                          </Typography>
-                                  <Typography gutterBottom variant="subtitle1">
-                                    Correo Electronico:
-                          </Typography>
-                                  <Typography gutterBottom variant="subtitle1">
-                                    Correo Electronico:
-                          </Typography>
-      
-                                </Grid>
-                              </Grid>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <Typography variant="h4">Mi Perfil</Typography>
+                </Grid>
+
+                <Grid item xs={6} md={3}>
+                  <SubNav />
+                </Grid>
+
+
+                <Grid item xs={6} md={9}>
+                  <Paper >
+                    <Container component="main" maxWidth="md">
+                      <Grid container >
+                        <Grid item>
+                          <ButtonBase className={classes.image}>
+                            <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
+                          </ButtonBase>
+                        </Grid>
+                        <Grid item xs={12} container>
+                          <Grid item xs container direction="column" spacing={1}>
+                            <Grid item xs>
+                              <Typography gutterBottom variant="subtitle1">
+                                Nombre:  {userData.user.nombre}
+                              </Typography>
+                              <Typography gutterBottom variant="subtitle1">
+                                Apellido: {userData.user.apellido}
+                              </Typography>
+                              <Typography gutterBottom variant="subtitle1">
+                                Correo Electronico: {userData.user.email}
+                              </Typography>
+
+
                             </Grid>
                           </Grid>
-                        </Paper>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </Container>
+                    </Container>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Container>
           </>
 
         ) : userData.user && userData.user.userType === 2 ? (
@@ -255,53 +252,92 @@ export default function UserProfile() {
 
                   <Paper >
                     <Grid container >
-                      <Grid item>
-                        <ButtonBase className={classes.image}>
-                          <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
-                        </ButtonBase>
-                      </Grid>
-                      <Grid item xs={12} container>
-                        <Grid item xs container direction="column" spacing={1}>
-                          <Grid item xs>
-                            <Typography gutterBottom variant="subtitle1">
-                              Nombre: {userData.user.nombre}
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Apellido: {userData.user.apellido}
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico: {userData.user.email}
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico:
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico:
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico:
-                    </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico:
-                    </Typography>
+                     
+                      <Box 
+                        display="flex"
+                        margin="auto"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Grid item  >
+                          <ButtonBase className={classes.image}  >
+                            <img className={classes.img}  alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />                          </ButtonBase>
+                        </Grid>
+                      </Box>
+                      
 
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                        <Grid container style={{backgroundColor: '#283593', color: 'white'}}>
+                         
+                            <Typography variant="h5" color="initial" fontWeight="fontWeightBold">
+                              Informacion Basica
+                          </Typography>
+                        
                           </Grid>
+
+                          <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
+                            <hr />
+                          </Box>
+                            <Typography gutterBottom variant="subtitle1" className={classes.diseño}>
+                              Nombre<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.nombre}</Box> 
+                            </Typography>
+                          
+                          <hr/>
+
+
+                          
+                          
+                            <Typography gutterBottom variant="subtitle1">
+                              Apellido<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.apellido}</Box>
+                            </Typography>
+               
+                          <hr/>
+                          
+                            <Typography gutterBottom variant="subtitle1">
+                              Correo Electronico<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.email}</Box>
+                            </Typography>
+                         
+                          {/*<Grid container style={{backgroundColor: '#EE6B00', color: 'white'}}>
+                         
+                            <Typography variant="h5" color="initial" fontWeight="fontWeightBold">
+                              Informacion Personal
+                          </Typography>
+                       
+                          </Grid>
+
+                          <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
+                            <hr />
+                          </Box>
+                         
+                            <Typography gutterBottom variant="subtitle1">
+                              Telefono predeterminado<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic"></Box>
+              </Typography>*/}
+                        
+                          <hr/>
+                          <Box display="flex" margin="auto" alignItems="center" justifyContent="center">
+                            <Button variant="contained" color="primary">
+                              Guardar
+                          </Button>
+                          </Box>
+                          <hr/>
+
+                        </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
                   </Paper>
 
                 </Grid>
-              </Grid>
+                </Grid>
             </Container>
           </>
 
         ) : (
-              <>
-                <h2>You are not logged in</h2>
-                <Link to="/login">Log in</Link>
-              </>
+            <>
+              <h2>You are not logged in</h2>
+              <Link to="/login">Log in</Link>
+            </>
             )}
-    </div>
-  )
+          </div>
+        )
 }
