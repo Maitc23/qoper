@@ -8,13 +8,15 @@ import Footer from './components/layout/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/pages/UserProfile'
-import TrabajosLista from './components/pages/TrabajosLista'
-import NewJob from './components/pages/NewJob'
-import JobList from './components/pages/JobList'
+import TrabajosLista from './components/pages/cliente/TrabajosLista'
+import NewJob from './components/pages/cliente/NewJob'
+import JobList from './components/pages/proveedor/JobList'
+import PausedJobs from './components/pages/cliente/PausedJobs'
+
 
 import UserContext from './context/UserContext'
-import nuevaSolicitud from './components/pages/nuevaSolicitud'
 import Factura from './components/pages/Factura'
+import checkout from './components/pages/Checkout'
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'; //En algún momento borraré esto, atte: Rafa
@@ -62,24 +64,24 @@ export default function App() {
     <>
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
-          <Navigation />
-          <div className={'root'}>
-              <Switch >
-                <Route path="/" exact component={LandingPage} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/nuevaSolicitud" component={nuevaSolicitud} />
-                <Route path="/newJob" component={NewJob} />
-                <Route path="/factura" component={Factura} />
-                <Route path="/trabajosLista" component={TrabajosLista} />
-                <Route path="/jobList" component={JobList} /> 
-
-              </ Switch>
-          </div>
-          <Footer />
+        <Navigation />
+        <div className={'root'}>
+          <Switch >
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/newJob" component={NewJob} />
+            <Route path="/factura" component={Factura} />
+            <Route path="/trabajosLista" component={TrabajosLista} />
+            <Route path="/jobList" component={JobList} />
+            <Route path="/checkout" component={checkout} />
+            <Route path="/pausedJobs" component={PausedJobs} />
+          </ Switch>
+        </div>
+        <Footer />
         </UserContext.Provider>
-      </Router >
+    </Router >
     </>
   );
 }

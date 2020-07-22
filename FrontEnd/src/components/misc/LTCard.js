@@ -14,7 +14,6 @@ import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import deepOrange from '@material-ui/core/colors/orange';
-import Modal from '@material-ui/core/Modal';
 import LTModal from '../misc/LTModal';
 
 
@@ -61,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LTCard = () => {
+const LTCard = (state) => {
 
   const classes = useStyles();
   const { userData } = useContext(UserContext);
@@ -84,9 +83,25 @@ const LTCard = () => {
     }
   }
 
-  useEffect(() => {
+  const getPausedJobs = async () => { 
+    try {
+      const works = await Axios.get('http://localhost:4000/api/pausedJob',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
 
-    getJob()
+  useEffect(() => {
+    if(state.state === 1){
+      getJob()
+    } else if(state.state === 4) { 
+      getPausedJobs()
+    } 
     // eslint-disable-next-line
   }, [])
 
