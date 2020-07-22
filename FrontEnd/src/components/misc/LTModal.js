@@ -229,10 +229,9 @@ export default function SimpleModal(work) {
       <Box textOverflow="clip" overflow="hidden">
         <h2 id="simple-modal-title">{job.titulo}</h2>
       </Box>
-      <p>
         fecha:
         {finalDate}
-      </p>
+        
       <p>
         {job.tipoMantenimiento}
       </p>

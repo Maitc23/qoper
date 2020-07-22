@@ -18,7 +18,7 @@ const product = {
     <React.Fragment>
       <Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">
       <Typography variant="subtitle1" gutterBottom>
-      Metodo de Pago
+        Metodo de Pago
       </Typography>
       </Box>
       <hr/>
