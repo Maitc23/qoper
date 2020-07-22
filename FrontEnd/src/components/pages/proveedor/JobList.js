@@ -49,21 +49,18 @@ export default function JobList() {
         const listingJobs = jobs.map(job => (
             <div key={job._id}>
                 <div>
+
                     <h6>Titulo: {job.titulo}</h6>
                     <h6>Detalles: {job.descripcion}</h6>
                     <h6>Tipo: {job.tipoMantenimiento}</h6>
                     <h6>Telefono: {job.telefono}</h6>
                     <h6>Fecha: {job.fecha}</h6>
                     <h6>Solicitante: {job.solicitante}</h6>
-                  
+
                 </div>
-                <button onClick={() => acceptJob(job._id)}>
-                    Aceptar
-                </button>
                 <CardActions>
                     <LTModal id={job._id} />
                 </CardActions>
-
             </div>
         ))
         return (
@@ -73,26 +70,6 @@ export default function JobList() {
         )
 
     }
-
-    const acceptJob = async (id) => {
-        try {
-            let token = localStorage.getItem('x-access-token');
-            const job = { 
-                id: id
-            }
-            await Axios.put('http://localhost:4000/api/acceptJob', 
-                job, 
-                { headers: { 'x-access-token': token }}
-            );
-            getJob()
-        } catch (err) {
-            err.response.data.message && setError(err.response.data.message);
-        }
-    }
-
-
-    
-  
 
 
     //Los trabajos siendo listados en pantalla
@@ -111,8 +88,6 @@ export default function JobList() {
                                 <>
                                 {
                                         jobListing()
-                          
-                                
                                 }
                                 </>
                                )

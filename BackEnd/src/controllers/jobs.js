@@ -77,7 +77,7 @@ controller.userJobs = async (req, res, next) => {
         const user = await User.findById(req.userId).populate(
             {
                 path: 'jobs',
-                match: { estado: { $lte: 3 } },
+                match: { estado: { $lte: 1 } },
             });
 
         if (user.jobs.length == 0) {
@@ -138,12 +138,14 @@ controller.deleteJob = async (req, res, next) => {
 
 controller.acceptJob = async (req, res, next) => {
     try {
-        const { id } = req.body
+        const { id, precio } = req.body
         const proveedor = await User.findById(req.userId)
 
-        const job = await Jobs.findOneAndUpdate(id, {
+  
+        const job = await Jobs.findByIdAndUpdate(id, {
             proveedor,
-            estado: 2
+            estado: 2,
+            precio
         });
 
         proveedor.jobs.push(job);
@@ -157,10 +159,82 @@ controller.acceptJob = async (req, res, next) => {
 }
 
 
+controller.getCotizationJobs = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.userId).populate(
+            {
+                path: 'jobs',
+                match: { estado: 2 },
+            });
+
+        if (user.jobs.length == 0) {
+            return res.status(400).json({ message: "No tiene trabajos registrados" })
+        }
+
+        res.json(user.jobs)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+controller.getAcceptedCotizationJobs = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.userId).populate(
+            {
+                path: 'jobs',
+                match: { estado: 3 },
+            });
+
+        if (user.jobs.length == 0) {
+            return res.status(400).json({ message: "No tiene trabajos registrados" })
+        }
+
+        res.json(user.jobs)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+controller.getCompletedJob = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.userId).populate(
+            {
+                path: 'jobs',
+                match: { estado: 6 },
+            });
+
+        if (user.jobs.length == 0) {
+            return res.status(400).json({ message: "No tiene trabajos registrados" })
+        }
+
+        res.json(user.jobs)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+controller.getCancelledJob = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.userId).populate(
+            {
+                path: 'jobs',
+                match: { estado: 5 },
+            });
+
+        if (user.jobs.length == 0) {
+            return res.status(400).json({ message: "No tiene trabajos registrados" })
+        }
+
+        res.json(user.jobs)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 controller.acceptCotization = async (req, res, next) => {
     try {
-
-        await Jobs.findOneAndUpdate(req.params, {
+        const {id} = req.body
+        await Jobs.findByIdAndUpdate(id, {
             estado: 3
         });
 

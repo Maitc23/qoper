@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import deepOrange from '@material-ui/core/colors/orange';
 import LTModal from '../misc/LTModal';
 
@@ -39,10 +40,11 @@ const useStyles = makeStyles((theme) => ({
     border: 0,
     borderRadius: 5,
     color: 'white',
-    paddingTop:'1.2%',
-    paddingLeft:'1.8%',
-    paddingBottom:'1.2%'
-    
+    paddingTop: '1.2%',
+    paddingLeft: '1.8%',
+    paddingBottom: '1.2%',
+    paddingRight: '1.8%'
+
   },
   content: {
     padding: '0 10px 0px 15px'
@@ -83,7 +85,7 @@ const LTCard = (state) => {
     }
   }
 
-  const getPausedJobs = async () => { 
+  const getPausedJobs = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/pausedJob',
         { headers: { 'x-access-token': token } }
@@ -96,12 +98,72 @@ const LTCard = (state) => {
     }
   }
 
+  const getCompletedJob = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/completedJob',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const getCancelledJob = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/cancelledJob',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const getCotizationJobs = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/cotizationJobs',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const acceptedCotizations = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/acceptedCotizations',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
   useEffect(() => {
-    if(state.state === 1){
+
+    if (state.state === 1) {
       getJob()
-    } else if(state.state === 4) { 
+    } else if (state.state === 2) {
+      getCotizationJobs()
+    } else if (state.state === 3) {
+      acceptedCotizations()
+    } else if (state.state === 4) {
       getPausedJobs()
-    } 
+    } else if (state.state === 5) {
+      getCancelledJob()
+    } else if (state.state === 6) {
+      getCompletedJob()
+    }
     // eslint-disable-next-line
   }, [])
 
@@ -119,17 +181,19 @@ const LTCard = (state) => {
               />
             </Grid>
 
-            <Grid item xs={10}>
+            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap'}}>
               <CardHeader
-               className={classes.content}
+                className={classes.content}
                 avatar={
                   <Avatar>
                     <BuildIcon />
                   </Avatar>
                 }
                 title={
-                  <Typography variant="h6" component="h5">
-                    {job.titulo}
+                  <Typography variant="h6" component="h5" style={{marginRight: 10}}>
+                    <Box textOverflow="clip" overflow="hidden">
+                      {job.titulo}
+                    </Box>
                   </Typography>
                 }
                 subheader={
@@ -139,17 +203,19 @@ const LTCard = (state) => {
                 }
 
               />
-                <CardContent className={classes.content}>
-                  <Typography variant="body2" component="p">
+              <CardContent className={classes.content}>
+                <Typography variant="body2" component="p">
+                  <Box textOverflow="clip" overflow="hidden">
                     {job.descripcion}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {job.estado}
-                  </Typography>
-                </CardContent>
+                  </Box>
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {job.estado}
+                </Typography>
+              </CardContent>
 
-              <CardActions  className={classes.content} style={{justifyContent: 'right'}} >
-                <LTModal id={job._id} />
+              <CardActions className={classes.content} style={{ justifyContent: 'right' }} >
+                <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
               </CardActions>
             </Grid>
           </Grid>
@@ -161,7 +227,6 @@ const LTCard = (state) => {
     return (
       <>
         {listJobs}
-        <hr />
       </>
     )
   }
@@ -187,7 +252,7 @@ const LTCard = (state) => {
   return (
     <div className="page">
       {
-        userData.user && userData.user.userType === 2 ? (
+        userData.user ? (
 
           <>
             {error ? (
