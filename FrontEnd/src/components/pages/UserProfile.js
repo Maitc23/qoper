@@ -101,14 +101,17 @@ export default function UserProfile() {
 
   const deleteJob = async (id) => {
     try {
-      await Axios.delete('http://localhost:4000/api/job/' + id,
+       await Axios.delete('http://localhost:4000/api/job/' + id,
         { headers: { 'x-access-token': token } }
-      )
+      ) 
+  
       getJob()
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
     }
   }
+
+  
 
   return (
 
@@ -116,7 +119,89 @@ export default function UserProfile() {
 
       {
         userData.user && userData.user.userType === 1 ? (
-          <h1>Welcome {userData.user.nombre} Proveedor</h1>
+          <>
+
+                    {/* <h1>{userData.user.nombre} Cliente</h1> */}
+
+                    <Container maxWidth="lg">
+
+                    <Grid container spacing={1}>
+                      <Grid item xs={12}>
+                        <Typography variant="h4">Mi Perfil</Typography>
+                      </Grid>
+      
+                      <Grid item xs={6} md={3}>
+                        <SubNav />
+                      </Grid>
+      
+                      {/*                 <Grid item xs={6} md={3}>
+                        <Paper className={classes.root}>
+                          <MenuList>
+                            <MenuItem>
+                              <ListItemIcon>
+                                <PersonIcon fontSize="small" />
+                              </ListItemIcon>
+                              <Typography variant="inherit">Mis Datos</Typography>
+                            </MenuItem>
+                            <MenuItem>
+                              <ListItemIcon>
+                                <ScheduleIcon fontSize="small" />
+                              </ListItemIcon>
+                              <Typography variant="inherit">Trabajos Pendientes</Typography>
+                            </MenuItem>
+                            <MenuItem>
+                              <ListItemIcon>
+                                <AssignmentTurnedInIcon fontSize="small" />
+                              </ListItemIcon>
+                              <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
+                            </MenuItem>
+                          </MenuList>
+                        </Paper>
+                      </Grid> */}
+      
+      
+                      <Grid item xs={6} md={9}>
+                        <Paper >
+                          <Grid container >
+                            <Grid item>
+                              <ButtonBase className={classes.image}>
+                                <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
+                              </ButtonBase>
+                            </Grid>
+                            <Grid item xs={12} container>
+                              <Grid item xs container direction="column" spacing={1}>
+                                <Grid item xs>
+                                  <Typography gutterBottom variant="subtitle1">
+                                    Nombre: {userData.user.nombre}
+                                </Typography>
+                                <Typography gutterBottom variant="subtitle1">
+                                    Apellido: {userData.user.apellido}
+                                </Typography>
+                                <Typography gutterBottom variant="subtitle1">
+                                    Correo Electronico: {userData.user.email}
+                                </Typography>
+                                <Typography gutterBottom variant="subtitle1">
+                                    Correo Electronico:
+                                </Typography>
+                                  <Typography gutterBottom variant="subtitle1">
+                                    Correo Electronico:
+                          </Typography>
+                                  <Typography gutterBottom variant="subtitle1">
+                                    Correo Electronico:
+                          </Typography>
+                                  <Typography gutterBottom variant="subtitle1">
+                                    Correo Electronico:
+                          </Typography>
+      
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Paper>
+                      </Grid>
+                    </Grid>
+                  </Container>
+          </>
 
         ) : userData.user && userData.user.userType === 2 ? (
           <>
@@ -179,13 +264,13 @@ export default function UserProfile() {
                         <Grid item xs container direction="column" spacing={1}>
                           <Grid item xs>
                             <Typography gutterBottom variant="subtitle1">
-                              Nombre:
+                              Nombre: {userData.user.nombre}
                     </Typography>
                             <Typography gutterBottom variant="subtitle1">
-                              Apellido:
+                              Apellido: {userData.user.apellido}
                     </Typography>
                             <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico:
+                              Correo Electronico: {userData.user.email}
                     </Typography>
                             <Typography gutterBottom variant="subtitle1">
                               Correo Electronico:
@@ -209,17 +294,6 @@ export default function UserProfile() {
                 </Grid>
               </Grid>
             </Container>
-
-
-            {error ? (
-              <ErrorMessage message={error} />
-            ) : (
-
-                <>
-                  {jobsList()}
-                </>
-              )}
-
           </>
 
         ) : (

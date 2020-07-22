@@ -84,13 +84,13 @@ export default function LandingPage() {
             <div className="intro-heading text-uppercase">Predecimos, Prevenimos y Corregimos</div>
             {
               userData.user && userData.user.userType === 1 ? (
-                <Link to="/profile" style={{ textDecoration: 'none' }}>
+                <Link to="/jobList" style={{ textDecoration: 'none' }}>
                   <Button variant="contained" color="primary" size="large" className={classes.actionButton} disableElevation>
                     <Box p={1} fontWeight="fontWeightBold">
                       <Typography component="div" variant="h6" color="initial">
                         <Box fontWeight={500}>
                           REALIZAR TRABAJOS
-                    </Box>
+                      </Box>
                       </Typography>
                     </Box>
                   </Button>
