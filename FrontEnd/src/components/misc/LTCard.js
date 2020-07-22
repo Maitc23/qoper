@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     paddingTop: '1.8%',
     paddingLeft: '1.8%',
+    paddingRight: '1.8%'
   },
   deepOrangeAvatar: {
     backgroundColor: deepOrange[700],
