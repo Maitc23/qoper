@@ -37,8 +37,10 @@ export default function SubNavigation() {
 
   const perfil = () => history.push('/profile');
   const TrabajosLista = () => history.push('/trabajosLista');
-  const PausedJobs = () => history.push('/pausedJobs')
-
+  const PausedJobs = () => history.push('/pausedJobs');
+  const CotizationJobs = () => history.push('/cotizationJobs');
+  const CompletedJob = () => history.push('/completedJob');
+  const CancelledJob = () => history.push('/cancelledJob');
   const classes = useStyles();
 
   return (
@@ -87,11 +89,23 @@ export default function SubNavigation() {
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos pausados</Typography>
                 </MenuItem>
-                <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
+                <MenuItem className={classes.iconHover} onClick={CotizationJobs}>
                   <ListItemIcon className={classes.iconClass}>
                     <ScheduleIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos con cotizacion</Typography>
+                </MenuItem>
+                <MenuItem className={classes.iconHover} onClick={CompletedJob}>
+                  <ListItemIcon className={classes.iconClass}>
+                    <ScheduleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Typography variant="inherit">Trabajos finalizados</Typography>
+                </MenuItem>
+                <MenuItem className={classes.iconHover} onClick={CancelledJob}>
+                  <ListItemIcon className={classes.iconClass}>
+                    <ScheduleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Typography variant="inherit">Trabajos cancelados</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
                   <ListItemIcon className={classes.iconClass}>

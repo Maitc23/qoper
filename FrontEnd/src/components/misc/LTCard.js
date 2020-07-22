@@ -90,12 +90,57 @@ const LTCard = (state) => {
     }
   }
 
+  const getCompletedJob = async () => { 
+    try {
+      const works = await Axios.get('http://localhost:4000/api/completedJob',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const getCancelledJob = async () => { 
+    try {
+      const works = await Axios.get('http://localhost:4000/api/cancelledJob',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const getCotizationJobs = async () => { 
+    try {
+      const works = await Axios.get('http://localhost:4000/api/cotizationJobs',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
   useEffect(() => {
     if(state.state === 1){
       getJob()
+    } else if(state.state === 3) {
+      getCotizationJobs()
     } else if(state.state === 4) { 
       getPausedJobs()
-    } 
+    } else if (state.state === 6) {
+      getCompletedJob()
+    } else if (state.state === 5) {
+      getCancelledJob()
+    }
     // eslint-disable-next-line
   }, [])
 

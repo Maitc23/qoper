@@ -4,7 +4,10 @@ const {newJob,
     jobs, 
     deleteJob, 
     updateJob, 
-    acceptJob, 
+    acceptJob,
+    getCotizationJobs,
+    getCompletedJob,
+    getCancelledJob,
     acceptCotization, 
     completedJob, 
     pauseJob,
@@ -29,13 +32,16 @@ router.route('/job/:_id')
 router.route('/acceptJob')
     .put(verifyToken, acceptJob);
 
-router.route('/cancelledJob/:_id')
+router.route('/cancelledJob')
+    .get(verifyToken, getCancelledJob)
     .put(verifyToken, cancelledJob)
 
-router.route('/acceptCotization/:_id')
+router.route('/cotizationJobs')
+    .get(verifyToken, getCotizationJobs)
     .put(verifyToken, acceptCotization)
 
-router.route('/completedJob/:_id')
+router.route('/completedJob')
+    .get(verifyToken, getCompletedJob)
     .put(verifyToken, completedJob)
     
 router.route('/pausedJob')
