@@ -202,7 +202,6 @@ const LTCard = (state) => {
     return (
       <>
         {listJobs}
-        <hr />
       </>
     )
   }

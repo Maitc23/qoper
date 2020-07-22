@@ -78,22 +78,22 @@ export default function SimpleModal(workId) {
 
   const acceptJob = async (id) => {
     try {
-        let token = localStorage.getItem('x-access-token');
-        const job = { 
-            id: id
-        }
-        const res = await Axios.put('http://localhost:4000/api/acceptJob', 
-            job, 
-            { headers: { 'x-access-token': token }}
-            
-        );
-        setSuccessful(res.data.message);
-        window.location.replace('/jobList');
-        
+      let token = localStorage.getItem('x-access-token');
+      const job = {
+        id: id
+      }
+      const res = await Axios.put('http://localhost:4000/api/acceptJob',
+        job,
+        { headers: { 'x-access-token': token } }
+
+      );
+      setSuccessful(res.data.message);
+      window.location.replace('/jobList');
+
     } catch (err) {
-        err.response.data.message && setError(err.response.data.message);
+      err.response.data.message && setError(err.response.data.message);
     }
-}
+  }
 
 
   useEffect(() => {
@@ -102,9 +102,7 @@ export default function SimpleModal(workId) {
     // eslint-disable-next-line
   }, [])
 
-
   const body = (
-    
     <div style={modalStyle} className={classes.paper}>
       {successful && (
         <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
@@ -132,20 +130,19 @@ export default function SimpleModal(workId) {
       {job.descripcion}
       </p>
       {
-        userData.user && userData.user.userType === 1 ? ( 
+        userData.user && userData.user.userType === 1 ? (
           <button onClick={() => acceptJob(job._id)}>
             Aceptar
           </button>
-
-        ) : ( 
+        ) : (
             <>
             </>
-        )
+          )
       }
     </div>
   )
 
-  
+
   return (
     <div>
       {error ? (

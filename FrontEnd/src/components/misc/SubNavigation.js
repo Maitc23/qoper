@@ -51,7 +51,7 @@ export default function SubNavigation() {
           <ListItemIcon className={classes.iconClass}>
             <PersonIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit" >Mis Datos</Typography>
+          <Typography variant="inherit">Mis Datos</Typography>
         </MenuItem>
         {
           userData.user && userData.user.userType === 1 ? (
