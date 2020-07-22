@@ -15,6 +15,7 @@ import PausedJobs from './components/pages/cliente/PausedJobs'
 import CotizationJobs from './components/pages/cliente/CotizationJobs'
 import CompletedJobs from './components/pages/cliente/CompletedJobs'
 import CancelledJobs from './components/pages/cliente/CancelledJobs' 
+import AcceptedCotizations from './components/pages/proveedor/AcceptedCotizations'
 
 import UserContext from './context/UserContext'
 import Factura from './components/pages/Factura'
@@ -82,6 +83,8 @@ export default function App() {
             <Route path="/cotizationJobs" component={CotizationJobs}/>
             <Route path="/completedJobs" component={CompletedJobs}/>
             <Route path="/cancelledJob" component={CancelledJobs}/>
+            <Route path="/acceptedCotizations" component={AcceptedCotizations}/>
+            
           </Switch>
         </div>
         <Footer />

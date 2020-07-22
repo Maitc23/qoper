@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal(workId) {
+export default function SimpleModal(work) {
 
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -42,8 +42,11 @@ export default function SimpleModal(workId) {
   const { userData } = useContext(UserContext)
   let token = localStorage.getItem('x-access-token');
   const [successful, setSuccessful] = useState();
-
+  const [provData, setProveedor] = useState({
+    prov: []
+  })
   const [error, setError] = useState();
+  const [precio, setPrecio] = useState();
   const [jobData, setJobData] = useState({
     job: [],
     ubicacion: []
@@ -62,7 +65,7 @@ export default function SimpleModal(workId) {
 
   const getJob = async () => {
     try {
-      const job = await Axios.get('http://localhost:4000/api/job/' + workId.id,
+      const job = await Axios.get('http://localhost:4000/api/job/' + work.id,
         { headers: { 'x-access-token': token } }
       );
 
@@ -76,11 +79,29 @@ export default function SimpleModal(workId) {
     }
   }
 
-  const acceptJob = async (id) => {
+  const getProveedor = async () => {
     try {
-      let token = localStorage.getItem('x-access-token');
+
+      const prov = await Axios.get('http://localhost:4000/api/userProveedor/' + work.proveedor,
+        { headers: { 'x-access-token': token } }
+      );
+
+      setProveedor({
+        prov: prov.data
+      });
+
+      console.log(prov.data);
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+
+    }
+  }
+
+  const acceptJob = async (id, precio) => {
+    try {
       const job = {
-        id: id
+        id: id,
+        precio
       }
       const res = await Axios.put('http://localhost:4000/api/acceptJob',
         job,
@@ -88,16 +109,37 @@ export default function SimpleModal(workId) {
 
       );
       setSuccessful(res.data.message);
-      window.location.replace('/jobList');
+      window.location.render('/factura');
 
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
     }
   }
 
+  const acceptCotization = async (id, precio) => {
+    try {
+      const job = {
+        id: id,
+        precio
+      }
+      const res = await Axios.put('http://localhost:4000/api/cotizationJobs',
+        job,
+        { headers: { 'x-access-token': token } }
+
+      );
+      setSuccessful(res.data.message);
+      
+
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
 
   useEffect(() => {
 
+    if (work.state === 2) {
+      getProveedor()
+    }
     getJob()
     // eslint-disable-next-line
   }, [])
@@ -110,7 +152,7 @@ export default function SimpleModal(workId) {
       <h2 id="simple-modal-title">{job.titulo}</h2>
       <p>
         fecha:
-    {job.fecha}
+      {job.fecha}
       </p>
       <p>
         {job.tipoMantenimiento}
@@ -131,13 +173,55 @@ export default function SimpleModal(workId) {
       </p>
       {
         userData.user && userData.user.userType === 1 ? (
-          <button onClick={() => acceptJob(job._id)}>
-            Aceptar
-          </button>
+          <>
+          {
+            work.state === 1 ? ( 
+            <>
+              <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
+              <button onClick={() => acceptJob(job._id, precio)}>
+                Aceptar
+              </button>
+             </>
+             ) :
+           
+              work.state === 3 ? (
+              <>
+              Precio del sugerido: {job.precio}
+              </>
+             ) : (
+               <>
+               Precio del sugerido: {job.precio}
+              </>
+            )
+          }
+
+          </>
+        ) : userData.user && userData.user.userType === 2  ? (
+
+          <>
+          {
+            work.state !==2 ? ( 
+              <>
+
+              </>
+            ) : (
+              <>
+                            
+              Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
+              Precio sugerido: {job.precio}
+              <br/>
+              <button onClick={() => acceptCotization(job._id, precio)}>
+                Aceptar cotizacion
+              </button>
+              </>
+            )
+          }
+          </>
         ) : (
             <>
+            
             </>
-          )
+            )
       }
     </div>
   )

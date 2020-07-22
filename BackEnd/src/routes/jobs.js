@@ -6,6 +6,7 @@ const {newJob,
     updateJob, 
     acceptJob,
     getCotizationJobs,
+    getAcceptedCotizationJobs,
     getCompletedJob,
     getCancelledJob,
     acceptCotization, 
@@ -37,8 +38,13 @@ router.route('/cancelledJob')
     .put(verifyToken, cancelledJob)
 
 router.route('/cotizationJobs')
+    
     .get(verifyToken, getCotizationJobs)
     .put(verifyToken, acceptCotization)
+
+router.route('/acceptedCotizations')
+    .get(verifyToken, getAcceptedCotizationJobs)
+
 
 router.route('/completedJob')
     .get(verifyToken, getCompletedJob)

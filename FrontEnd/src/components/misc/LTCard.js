@@ -129,18 +129,32 @@ const LTCard = (state) => {
     }
   }
 
+  const acceptedCotizations = async () => { 
+    try {
+      const works = await Axios.get('http://localhost:4000/api/acceptedCotizations',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
   useEffect(() => {
       
     if(state.state === 1){
       getJob()
-    } else if(state.state === 3) {
+    } else if(state.state === 2) {
       getCotizationJobs()
-    } else if(state.state === 4) { 
+    }else if(state.state === 3) { 
+      acceptedCotizations()
+    }else if(state.state === 4) { 
       getPausedJobs()
-    } else if (state.state === 6) {
-      getCompletedJob()
     } else if (state.state === 5) {
       getCancelledJob()
+    } else if (state.state === 6) {
+      getCompletedJob()
     }
     // eslint-disable-next-line
   }, [])
@@ -190,7 +204,7 @@ const LTCard = (state) => {
               </Grid>
 
               <CardActions>
-                <LTModal id={job._id} />
+                <LTModal id={job._id} proveedor= {job.proveedor} state= {state.state}/>
               </CardActions>
             </Grid>
           </Grid>
