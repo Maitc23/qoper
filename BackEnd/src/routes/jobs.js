@@ -1,11 +1,26 @@
 const router = require('express').Router();
-const {newJob, userJobs, jobs, deleteJob, updateJob} = require('../controllers/jobs')
+const {newJob, 
+    userJobs, 
+    jobs, 
+    deleteJob, 
+    updateJob, 
+    acceptJob,
+    getCotizationJobs,
+    getAcceptedCotizationJobs,
+    getCompletedJob,
+    getCancelledJob,
+    acceptCotization, 
+    completedJob, 
+    pauseJob,
+    pausedJobs,
+    cancelledJob, 
+    getJob} = require('../controllers/jobs')
 const verifyToken = require('../middlewares/verifyToken');
 
 
 router.route('/job')
     .post(verifyToken, newJob)
-    .get(verifyToken,userJobs)
+    .get(verifyToken, userJobs)
 
 router.route('/jobs')
     .get(verifyToken,jobs)
@@ -13,8 +28,31 @@ router.route('/jobs')
 router.route('/job/:_id')
     .put(verifyToken, updateJob)
     .delete(verifyToken, deleteJob)
+    .get(verifyToken, getJob);
    
+router.route('/acceptJob')
+    .put(verifyToken, acceptJob);
 
+router.route('/cancelledJob')
+    .get(verifyToken, getCancelledJob)
+    .put(verifyToken, cancelledJob)
+
+router.route('/cotizationJobs')
+    
+    .get(verifyToken, getCotizationJobs)
+    .put(verifyToken, acceptCotization)
+
+router.route('/acceptedCotizations')
+    .get(verifyToken, getAcceptedCotizationJobs)
+
+
+router.route('/completedJob')
+    .get(verifyToken, getCompletedJob)
+    .put(verifyToken, completedJob)
+    
+router.route('/pausedJob')
+    .get(verifyToken, pausedJobs)
+    .put(verifyToken, pauseJob)
 
 
 module.exports = router

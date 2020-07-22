@@ -3,6 +3,8 @@ const controller = {};
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/config');
+const Cliente = require('../models/cliente');
+const Proveedor = require('../models/proveedor');
 
 controller.signup = async (req, res, next) =>{ 
     try { 
@@ -44,8 +46,22 @@ controller.signup = async (req, res, next) =>{
         await user.save();
         const token = jwt.sign({id: user._id}, config.secret, {
             expiresIn: 60 * 60 * 24
-        }) 
-    
+        });
+
+        const userCreated = await User.findById(user._id);
+        
+        if(userType === 1) {
+            const proveedor = new Proveedor({
+                user: userCreated
+            });
+            await proveedor.save()
+        } else {
+           const client = new Cliente({
+                user: userCreated
+            }); 
+            await client.save()
+        }
+
         res.json({
             auth: true,
             token: token,
@@ -62,7 +78,6 @@ controller.signin = async (req,res, next)=> {
     try {
         const {email, password} = req.body;
         const correo = email.toLowerCase()
- 
 
         if(!correo || !password) {
             return res.status(400).json({message: "Campos vacios."})
@@ -146,5 +161,6 @@ controller.tokenIsValid = async (req, res, next) => {
         res.status(500).json({error: err.message});
     }
 }
+
 
 module.exports = controller;

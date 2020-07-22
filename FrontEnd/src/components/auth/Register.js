@@ -174,10 +174,6 @@ export default function Register() {
 
   return (
     <div>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <div className={classes.paper}>

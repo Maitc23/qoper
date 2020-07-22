@@ -1,0 +1,36 @@
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import PaypalCheckOutButton from '../misc/PaypalCheckOutButton';
+import Box from '@material-ui/core/Box'
+
+const product = {
+  price: 777.77,
+  name: 'Trabajo del baño',
+  description: 'Trabajo realizado',
+
+}
+
+export default function PaymentForm() {
+  return (
+    <React.Fragment>
+      <Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">
+      <Typography variant="subtitle1" gutterBottom>
+      Metodo de Pago
+      </Typography>
+      </Box>
+      <hr/>
+      <Grid container spacing={3}>
+      <PaypalCheckOutButton product= {product} />
+        </Grid>
+       
+        <Grid item xs={12}>
+         
+        </Grid>
+      
+    </React.Fragment>
+  );
+}
