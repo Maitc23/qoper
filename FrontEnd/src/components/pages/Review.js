@@ -4,14 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
 
 const products = [
   { name: 'Product 1', desc: 'BruhhhhBruhhhh', price: '$9.99' },
   { name: 'Product 2', desc: 'Bruhhhh Bruhhhh', price: '$3.45' },
   { name: 'Product 3', desc: 'Bruhhhh Bruhhhh', price: '$6.51' },
   { name: 'Product 4', desc: 'BruhhhhBruhhhh', price: '$14.11' },
-  
 ];
 
 
