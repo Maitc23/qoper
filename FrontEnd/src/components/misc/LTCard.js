@@ -237,7 +237,7 @@ const LTCard = (state) => {
                 title={
                   <Typography variant="h6" component="h5" style={{ marginRight: 10 }}>
                     <Box textOverflow="clip" overflow="hidden">
-                      {job.titulo}
+                      <strong>{job.titulo}</strong>
                     </Box>
                   </Typography>
                 }
@@ -249,17 +249,22 @@ const LTCard = (state) => {
               />
               <CardContent className={classes.content}>
                 <Typography variant="body2" component="p">
-                  <Box textOverflow="clip" overflow="hidden">
-                    {job.descripcion}
+                  <Box textOverflow="clip" overflow="hidden" pt={2}>
+                    <strong> Descripción: </strong> {job.descripcion}
                   </Box>
                 </Typography>
                 {/* <Typography variant="body2" component="p">
                   {job.estado}
                 </Typography> */}
               </CardContent>
-              <br></br><br></br>
+              <br></br>
               <CardActions >
-                <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
+                <Grid container direction="row" justify="flex-end" alignItems="center" xs={12}>
+                  <Grid item xs={10}></Grid> 
+                  <Grid item xs={2}>
+                    <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
+                  </Grid>
+                </Grid>
               </CardActions>
 
 
