@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-const products = [
-  { name: 'Product 1', desc: 'BruhhhhBruhhhh', price: '$9.99' },
-  { name: 'Product 2', desc: 'Bruhhhh Bruhhhh', price: '$3.45' },
-  { name: 'Product 3', desc: 'Bruhhhh Bruhhhh', price: '$6.51' },
-  { name: 'Product 4', desc: 'BruhhhhBruhhhh', price: '$14.11' },
-];
+import ErrorNotice from '../misc/ErrorNotice';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +21,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Review() {
+  
+  const [error, setError] = useState();
+  let token = localStorage.getItem('x-access-token');
+  let cotization = localStorage.getItem('cotData');
+  const jobData = localStorage.getItem('jobData')
+
+  const [cotData, setCotData] = useState({ 
+    cot: JSON.parse(jobData)
+  })
+
+const getCot = async () => {
+  try {
+      const job = await Axios.get('http://localhost:4000/api/job/' + cotization,
+        { headers: { 'x-access-token': token } }
+      );
+      localStorage.setItem('jobData', JSON.stringify(job.data))
+      setCotData({ 
+        cot: job.data 
+      })
+      
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+}
+
+useEffect(() => {
+
+    getCot()
+    
+    // eslint-disable-next-line
+  }, [])
   const classes = useStyles();
 
   return (
@@ -34,16 +60,11 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
-        <ListItem className={classes.listItem}>
-          <ListItemText primary="Total" />
+   
+        <ListItem className={classes.listItem} >
+          <ListItemText primary={cotData.cot.titulo} />
           <Typography variant="subtitle1" className={classes.total}>
-            $66.60
+            ${cotData.cot.precio}
           </Typography>
         </ListItem>
       </List>
