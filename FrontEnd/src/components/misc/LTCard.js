@@ -35,13 +35,19 @@ function WaterIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#2c387e',
+    background: '#7584D9',
     border: 0,
-    borderRadius: 10,
+    borderRadius: 5,
     color: 'white',
-    paddingTop: '1.8%',
-    paddingLeft: '1.8%',
+    paddingTop:'1.2%',
+    paddingLeft:'1.8%',
+    paddingBottom:'1.2%'
+    
   },
+  content: {
+    padding: '0 10px 0px 15px'
+  },
+
   deepOrangeAvatar: {
     backgroundColor: deepOrange[700],
     width: theme.spacing(18),
@@ -163,10 +169,10 @@ const LTCard = (state) => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-      <Grid container direction="column" key={job._id} item zeroMinWidth>
-        <Card className={classes.root} variant="elevation" elevation={5}>
+      <Grid container direction="column" key={job._id} item>
+        <Card variant="elevation" elevation={5} className={classes.root}>
           <Grid container direction="row" >
-            <Grid item xs={2}>
+            <Grid item xs={2} >
               <CardMedia
                 style={{ 'width': 'auto', height: '155px' }}
                 image={"https://www.redeszone.net/app/uploads-redeszone.net/2019/10/cambios-navegar-internet.jpg"}
@@ -175,24 +181,24 @@ const LTCard = (state) => {
 
             <Grid item xs={10}>
               <CardHeader
+               className={classes.content}
                 avatar={
                   <Avatar>
                     <BuildIcon />
                   </Avatar>
                 }
                 title={
-                  <Typography variant="h5" component="h2">
+                  <Typography variant="h6" component="h5">
                     {job.titulo}
                   </Typography>
                 }
                 subheader={
-                  <Typography variant="body2" component="h4">
+                  <Typography variant="subtitle2" component="subtitle2" color="textSecondary">
                     {job.tipoMantenimiento}
                   </Typography>
                 }
-              />
 
-              <Grid>
+              />
                 <CardContent className={classes.content}>
                   <Typography variant="body2" component="p">
                     {job.descripcion}
@@ -201,9 +207,8 @@ const LTCard = (state) => {
                     {job.estado}
                   </Typography>
                 </CardContent>
-              </Grid>
 
-              <CardActions>
+              <CardActions  className={classes.content} style={{justifyContent: 'right'}} >
                 <LTModal id={job._id} proveedor= {job.proveedor} state= {state.state}/>
               </CardActions>
             </Grid>
