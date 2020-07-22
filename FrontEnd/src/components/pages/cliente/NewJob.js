@@ -10,8 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useContext } from 'react'
-import ErrorNotice from '../misc/ErrorNotice';
-import SuccessfulNotice from '../misc/SuccessfulNotice';
+import ErrorNotice from '../../misc/ErrorNotice';
+import SuccessfulNotice from '../../misc/SuccessfulNotice';
 import DateFnsUtils from '@date-io/date-fns';
 import DatePicker from 'react-datepicker';
 import {
@@ -22,7 +22,7 @@ import {
 import 'react-datepicker/dist/react-datepicker.css';
 
 import Axios from 'axios';
-import UserContext from '../../context/UserContext'
+import UserContext from '../../../context/UserContext'
 
 
 
@@ -124,7 +124,7 @@ export default function NewJob() {
 
 
       history.push('/newJob');
-
+      window.location.replace('/newJob');
       setSuccessful(res.data.message);
 
     } catch (err) {

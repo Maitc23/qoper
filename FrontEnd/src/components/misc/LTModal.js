@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
+import SuccessfulNotice from '../misc/SuccessfulNotice';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -40,6 +41,8 @@ export default function SimpleModal(workId) {
 
   const { userData } = useContext(UserContext)
   let token = localStorage.getItem('x-access-token');
+  const [successful, setSuccessful] = useState();
+
   const [error, setError] = useState();
   const [jobData, setJobData] = useState({
     job: [],
@@ -73,6 +76,25 @@ export default function SimpleModal(workId) {
     }
   }
 
+  const acceptJob = async (id) => {
+    try {
+        let token = localStorage.getItem('x-access-token');
+        const job = { 
+            id: id
+        }
+        const res = await Axios.put('http://localhost:4000/api/acceptJob', 
+            job, 
+            { headers: { 'x-access-token': token }}
+            
+        );
+        setSuccessful(res.data.message);
+        window.location.replace('/jobList');
+        
+    } catch (err) {
+        err.response.data.message && setError(err.response.data.message);
+    }
+}
+
 
   useEffect(() => {
 
@@ -82,7 +104,11 @@ export default function SimpleModal(workId) {
 
 
   const body = (
+    
     <div style={modalStyle} className={classes.paper}>
+      {successful && (
+        <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
+      )}
       <h2 id="simple-modal-title">{job.titulo}</h2>
       <p>
         fecha:
@@ -105,8 +131,21 @@ export default function SimpleModal(workId) {
         descripcion:
       {job.descripcion}
       </p>
+      {
+        userData.user && userData.user.userType === 1 ? ( 
+          <button onClick={() => acceptJob(job._id)}>
+            Aceptar
+          </button>
+
+        ) : ( 
+            <>
+            </>
+        )
+      }
     </div>
   )
+
+  
   return (
     <div>
       {error ? (
