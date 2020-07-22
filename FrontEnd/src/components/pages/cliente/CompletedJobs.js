@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CompletedJobs = () => {
   const classes = useStyles();
-  const state = 3;
+  const state = 4;
 
   return (
 

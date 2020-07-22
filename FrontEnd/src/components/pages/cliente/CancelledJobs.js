@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CancelledJobs = () => {
   const classes = useStyles();
-  const state = 3;
+  const state = 5;
 
   return (
 
