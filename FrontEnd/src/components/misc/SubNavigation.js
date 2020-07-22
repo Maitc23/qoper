@@ -53,20 +53,6 @@ export default function SubNavigation() {
           </ListItemIcon>
           <Typography variant="inherit">Mis Datos</Typography>
         </MenuItem>
-<<<<<<< HEAD
-        <MenuItem className={classes.iconHover}>
-          <ListItemIcon className={classes.iconClass}>
-            <ScheduleIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>Trabajos Pendientes</Typography>
-        </MenuItem>
-        <MenuItem className={classes.iconHover}>
-          <ListItemIcon className={classes.iconClass}>
-            <AssignmentTurnedInIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
-        </MenuItem>
-=======
         {
           userData.user && userData.user.userType === 1 ? (
             <>
@@ -124,7 +110,6 @@ export default function SubNavigation() {
               </>
             )
         }
->>>>>>> 189e03918a78b43d1f73cc5946d703593a47d216
       </MenuList>
     </Paper>
   );

@@ -138,13 +138,13 @@ export default function UserProfile() {
     }
   }
 
- 
 
- 
+
+
 
 
   return (
-    
+
 
     <div className="page" style={{ 'marginTop': '40px' }}>
 
@@ -224,8 +224,8 @@ export default function UserProfile() {
                 <Grid item xs={6} md={9}>
                   <Paper >
                     <Grid container >
-                     
-                      <Box 
+
+                      <Box
                         display="flex"
                         margin="auto"
                         alignItems="center"
@@ -233,43 +233,43 @@ export default function UserProfile() {
                       >
                         <Grid item  >
                           <ButtonBase className={classes.image}  >
-                            <img className={classes.img}  alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />                          </ButtonBase>
+                            <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />                          </ButtonBase>
                         </Grid>
                       </Box>
-                      
+
 
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
-                        <Grid container style={{backgroundColor: '#283593', color: 'white'}}>
-                         
+                          <Grid container style={{ backgroundColor: '#283593', color: 'white' }}>
+
                             <Typography variant="h5" color="initial" fontWeight="fontWeightBold">
                               Informacion Basica
                           </Typography>
-                        
+
                           </Grid>
 
                           <Box mt={-2} mb={-1} style={{ 'backgroundColor': '#000' }}>
                             <hr />
                           </Box>
-                            <Typography gutterBottom variant="subtitle1" className={classes.diseño}>
-                              Nombre<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.nombre}</Box> 
-                            </Typography>
-                          
-                          <hr/>
+                          <Typography gutterBottom variant="subtitle1" className={classes.diseño}>
+                            Nombre<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.nombre}</Box>
+                          </Typography>
+
+                          <hr />
 
 
-                          
-                          
-                            <Typography gutterBottom variant="subtitle1">
-                              Apellido<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.apellido}</Box>
-                            </Typography>
-               
-                          <hr/>
-                          
-                            <Typography gutterBottom variant="subtitle1">
-                              Correo Electronico<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.email}</Box>
-                            </Typography>
-                         
+
+
+                          <Typography gutterBottom variant="subtitle1">
+                            Apellido<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.apellido}</Box>
+                          </Typography>
+
+                          <hr />
+
+                          <Typography gutterBottom variant="subtitle1">
+                            Correo Electronico<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">{userData.user.email}</Box>
+                          </Typography>
+
                           {/*<Grid container style={{backgroundColor: '#EE6B00', color: 'white'}}>
                          
                             <Typography variant="h5" color="initial" fontWeight="fontWeightBold">
@@ -285,31 +285,31 @@ export default function UserProfile() {
                             <Typography gutterBottom variant="subtitle1">
                               Telefono predeterminado<Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic"></Box>
               </Typography>*/}
-                        
-                          <hr/>
+
+                          <hr />
                           <Box display="flex" margin="auto" alignItems="center" justifyContent="center">
                             <Button variant="contained" color="primary">
                               Guardar
                           </Button>
                           </Box>
-                          <hr/>
+                          <hr />
 
                         </Grid>
-                        </Grid>
                       </Grid>
+                    </Grid>
                   </Paper>
 
                 </Grid>
-                </Grid>
+              </Grid>
             </Container>
           </>
 
         ) : (
-            <>
-              <h2>You are not logged in</h2>
-              <Link to="/login">Log in</Link>
-            </>
+              <>
+                <h2>You are not logged in</h2>
+                <Link to="/login">Log in</Link>
+              </>
             )}
-          </div>
-        )
+    </div>
+  )
 }

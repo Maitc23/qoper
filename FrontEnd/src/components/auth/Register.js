@@ -182,9 +182,6 @@ export default function Register() {
             Registro
             </Typography>
           <form className={classes.form} onSubmit={submit} noValidate>
-          {error && (
-            <ErrorNotice message={error} clearError={() => setError(undefined)} />
-          )}    
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
