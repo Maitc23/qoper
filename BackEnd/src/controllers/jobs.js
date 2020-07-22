@@ -248,8 +248,9 @@ controller.acceptCotization = async (req, res, next) => {
 
 controller.completedJob = async (req, res, next) => {
     try {
+        const {id} = req.body
 
-        await Jobs.findOneAndUpdate(req.params, {
+        await Jobs.findByIdAndUpdate(id, {
             estado: 6
         });
 
@@ -280,8 +281,9 @@ controller.pausedJobs = async (req, res, next) => {
 }
 controller.pauseJob = async (req, res, next) => {
     try {
+        const {id} = req.body
 
-        await Jobs.findOneAndUpdate(req.params, {
+        await Jobs.findByIdAndUpdate(id, {
             estado: 4
         });
 
@@ -294,11 +296,12 @@ controller.pauseJob = async (req, res, next) => {
 
 controller.cancelledJob = async (req, res, next) => {
     try {
+        const {id} = req.body
 
-        const job = await Jobs.findById(req.params);
+        const job = await Jobs.findById(id);
         const user = await User.findById(job.proveedor)
 
-        var index = user.jobs.indexOf(req.params._id)
+        var index = user.jobs.indexOf(id)
 
         user.jobs.splice(index, 1)
 
@@ -306,7 +309,7 @@ controller.cancelledJob = async (req, res, next) => {
             jobs: user.jobs
         })
 
-        await Jobs.findByIdAndUpdate(req.params, {
+        await Jobs.findByIdAndUpdate(id, {
             $unset: { proveedor: "" },
             estado: 5
         });

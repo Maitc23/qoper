@@ -266,8 +266,6 @@ const LTCard = (state) => {
                   </Grid>
                 </Grid>
               </CardActions>
-
-
             </Grid>
           </Grid>
         </Card>

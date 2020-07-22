@@ -51,7 +51,6 @@ export default function SimpleModal(work) {
     prov: []
   })
 
-
   const [error, setError] = useState();
   const [precio, setPrecio] = useState();
   const [jobData, setJobData] = useState({
@@ -60,6 +59,9 @@ export default function SimpleModal(work) {
   });
 
   const job = jobData.job
+  const fechita = new Date(job.fecha)
+
+  const finalDate = fechita.getDate() + '-' + fechita.getMonth() + '-' + fechita.getFullYear() + ' A las: ' + fechita.getHours() + ':' + fechita.getMinutes()
   const ubicacion = jobData.ubicacion
   const handleOpen = () => {
     setOpen(true);
@@ -123,6 +125,21 @@ export default function SimpleModal(work) {
     }
   }
 
+  const endJob = async (id) => {
+    try {
+      const job = {
+        id: id
+      }
+      const res = await Axios.put('http://localhost:4000/api/completedJob',
+        job,
+        { headers: { 'x-access-token': token } }
+      );
+      setSuccessful(res.data.message);
+      window.location.replace('/completedJobs');
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
   const acceptCotization = async (id, precio) => {
     try {
       const job = {
@@ -137,9 +154,9 @@ export default function SimpleModal(work) {
       setSuccessful(res.data.message);
       const cotizationData = localStorage.getItem('cotData');
 
-      if(cotizationData === null) { 
+      if (cotizationData === null) {
         localStorage.setItem("cotData", job.id);
-      }else { 
+      } else {
         localStorage.removeItem("cotData")
         localStorage.setItem("cotData", job.id)
       }
@@ -170,7 +187,7 @@ export default function SimpleModal(work) {
       </Box>
       <p>
         fecha:
-        {job.fecha}
+        {finalDate}
       </p>
       <p>
         {job.tipoMantenimiento}
@@ -204,11 +221,19 @@ export default function SimpleModal(work) {
                     Aceptar
                   </button>
                 </>
+              ) : job.estado === 3 ? (
+                <>
+                  Precio sugerido: {job.precio}
+                  <br />
+                  <button onClick={() => endJob(job._id)}>
+                    Trabajo finalizado
+                    </button>
+                </>
               ) : (
-                  <>
-                    Precio sugerido: {job.precio}
-                  </>
-                )
+                    <>
+                      Precio sugerido: {job.precio}
+                    </>
+                  )
             }
 
           </>
@@ -225,7 +250,7 @@ export default function SimpleModal(work) {
                   <br />
                   <button onClick={() => acceptCotization(job._id, precio)}>
                     Aceptar cotizacion
-          </button>
+                  </button>
                 </>
 
               ) : (
@@ -251,8 +276,8 @@ export default function SimpleModal(work) {
         <ErrorMessage message={error} />
       ) : (
           <>
-              <Button  color="primary"  size="small" onClick={handleOpen}>
-                Ver info
+            <Button color="primary" size="small" onClick={handleOpen}>
+              Ver info
                 </Button>
             <Modal
               open={open}

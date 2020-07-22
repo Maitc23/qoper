@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import SubNav from '../../misc/SubNavigation';
 
 const CompletedJobs = () => {
-  const state = 4;
+  const state = 6;
 
   return (
 
