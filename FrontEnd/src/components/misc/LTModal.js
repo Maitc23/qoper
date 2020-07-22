@@ -7,6 +7,9 @@ import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
 import Button from '@material-ui/core/Button';
+import { Grid, Typography, Input } from '@material-ui/core';
+import { green, red} from '@material-ui/core/colors';
+
 
 
 function rand() {
@@ -26,13 +29,29 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    background: '#E9EAEC',
+    border: 0,
+    borderRadius: 5,
     position: 'absolute',
     width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  btnRed: { 
+    background: red[700],
+   color : "#FFFFFF",
+    '&:hover': {
+      backgroundColor: red[600],
+      color: '#FFF'
+    },
+  },
+  btnGreen: { 
+    background: green[500], 
+    color : "#FFFFFF",
+    '&:hover': {
+      backgroundColor: green[800],
+      color: '#FFF'
+    },
+  }
 }));
 
 export default function SimpleModal(work) {
@@ -226,55 +245,74 @@ export default function SimpleModal(work) {
       {successful && (
         <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
       )}
-      <Box textOverflow="clip" overflow="hidden">
-        <h2 id="simple-modal-title">{job.titulo}</h2>
-      </Box>
-        fecha:
-        {finalDate}
-        
-      <p>
-        {job.tipoMantenimiento}
-      </p>
-      <p>
-        {job.telefono}
-      </p>
-      <p>
-        {job.nombreSupervisor}
-      </p>
-      <p>
-        ubicacion:
-        {ubicacion.ciudad}
-      </p>
-      <p id="simple-modal-description">
-        descripcion:
-          <Box component="div" whiteSpace="normal">
-          {job.descripcion}
+      <Grid>
+        <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+          <Typography variant="h4" component="h2" >
+            {job.titulo}
+          </Typography>
         </Box>
-      </p>
+        <Typography variant="subtitle2" component="subtitle2" color="textSecondary">
+
+          <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+            <strong>Fecha:</strong> {finalDate}
+          </Box>
+
+          <br></br>
+            <strong> Tipo: </strong> {job.tipoMantenimiento}
+          <br></br>
+          <strong>Telefono:</strong> {job.telefono}
+        </Typography>
+
+        <p>
+          <strong> Supervisor: </strong>
+          <Box component="div" whiteSpace="normal">
+            {job.nombreSupervisor}
+          </Box>
+        </p>
+
+        <p>
+         <strong> Ubicacion: </strong> 
+          <Box component="div" whiteSpace="normal">
+            {ubicacion.ciudad}
+          </Box>
+        </p>
+
+        <p id="simple-modal-description">
+         <strong> Descripción: </strong> 
+          <Box  textOverflow="clip"  overflow="hidden" component="div" whiteSpace="normal">
+            {job.descripcion}
+          </Box>
+        </p>
+      </Grid>
 
       {
         userData.user && userData.user.userType === 1 ? (
           <>
             {
-              job.estado === 1 ? (
+              job.estado === 1 || job.estado === 5 ? (
 
                 <>
-                  <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
-                  <button onClick={() => acceptJob(job._id, precio)}>
+                <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                <Input type="number" placeholder="Precio a colocar $0.00" inputProps={{ 'aria-label': 'description' }} onChange={(e) => setPrecio(e.target.value)} />
+                  <Button className={classes.btnGreen} onClick={() => acceptJob(job._id, precio)}>
                     Aceptar
-                  </button>
+                  </Button>
+                </Box>
+
                 </>
               ) : job.estado === 3 ? (
                 <>
-                  Precio sugerido: {job.precio}
+                  <strong> Precio sugerido: </strong> ${job.precio}
                   <br />
-                  <button onClick={() => endJob(job._id)}>
+                 <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                  <Button className= {classes.btnGreen} onClick={() => endJob(job._id)}>
                     Trabajo finalizado
-                    </button>
+                  </Button>
+                  </Box>
                 </>
               ) : (
                     <>
-                      Precio sugerido: {job.precio}
+                    <strong> Precio sugerido: </strong> ${job.precio}
                     </>
                   )
             }
@@ -286,17 +324,21 @@ export default function SimpleModal(work) {
             {
               job.estado === 1 ?(
                 <>
-
-              <button onClick={() => pauseJob(job._id)}>
+              <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+              <Button className= {classes.btnRed} onClick={() => pauseJob(job._id)}>
                 Pausar trabajo
-                </button>
+              </Button>
+              </Box>
               </>
 
               ): job.estado === 4 ? (
                 <>
-                <button onClick={() => retomeJob(job._id)}>
-                  Pausar trabajo
-                </button>
+                <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                <Button  className= {classes.btnGreen} onClick={() => retomeJob(job._id)}>
+                  Retomar trabajo
+                </Button>
+                </Box>
+
                 </>
               ) : job.estado === 2 ? (
 
@@ -305,13 +347,18 @@ export default function SimpleModal(work) {
                 Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
                 Precio sugerido: {job.precio}
                   <br />
-                  <button onClick={() => acceptCotization(job._id, precio)}>
+                  <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                  <Button className= {classes.btnGreen} onClick={() => acceptCotization(job._id, precio)}>
                     Aceptar cotizacion
-                  </button>
+                  </Button>
+                  </Box>
+
                   <br/>
-                  <button onClick={() => cancelJob(job._id)}>
-                  Rechazar cotizacion
-                  </button>
+                  <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                    <Button className= {classes.btnRed} onClick={() => cancelJob(job._id)}>
+                      Rechazar cotizacion
+                    </Button>
+                  </Box>
                   
                 </>
 

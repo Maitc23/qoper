@@ -36,10 +36,9 @@ function WaterIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#E9EAEC',
+    background:'#E9EAEC',
     border: 0,
     borderRadius: 5,
-    color: 'black',
     paddingTop: '1.2%',
     paddingLeft: '1.8%',
     paddingBottom: '1.2%',
@@ -47,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
 
   },
   content: {
-    padding: '0 50px 0px 15px'
+    padding: '0 10px 0px 15px'
+  },
+  titulo:{
+    color:'primary'
   },
 
 
@@ -232,7 +234,7 @@ const LTCard = (state) => {
                   )
                 }
                 title={
-                  <Typography variant="h6" component="h5" style={{ marginRight: 10 }}>
+                  <Typography variant="h6" component="h5" style={{marginRight: 10}} className={classes.titulo}>
                     <Box textOverflow="clip" overflow="hidden">
                       <strong>{job.titulo}</strong>
                     </Box>
