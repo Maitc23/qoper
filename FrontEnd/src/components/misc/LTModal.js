@@ -168,6 +168,53 @@ export default function SimpleModal(work) {
     }
   }
 
+  const cancelJob = async (id) => {
+    try {
+      const job = {
+        id: id
+      }
+      const res = await Axios.put('http://localhost:4000/api/cancelledJob',
+        job,
+        { headers: { 'x-access-token': token } }
+      );
+      setSuccessful(res.data.message);
+      window.location.replace('/cancelledJob');
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
+
+  const pauseJob = async (id) => {
+    try {
+      const job = {
+        id: id
+      }
+      const res = await Axios.put('http://localhost:4000/api/pausedJob',
+        job,
+        { headers: { 'x-access-token': token } }
+      );
+      setSuccessful(res.data.message);
+      window.location.replace('/pausedJobs');
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  } 
+
+  const retomeJob = async (id) => {
+    try {
+      const job = {
+        id: id
+      }
+      const res = await Axios.put('http://localhost:4000/api/retomeJobs',
+        job,
+        { headers: { 'x-access-token': token } }
+      );
+      setSuccessful(res.data.message);
+      window.location.replace('/trabajosLista');
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  } 
   useEffect(() => {
 
     if (work.state === 2) {
@@ -241,16 +288,35 @@ export default function SimpleModal(work) {
 
           <>
             {
-              job.estado === 2 ? (
+              job.estado === 1 ?(
+                <>
+
+              <button onClick={() => pauseJob(job._id)}>
+                Pausar trabajo
+                </button>
+              </>
+
+              ): job.estado === 4 ? (
+                <>
+                <button onClick={() => retomeJob(job._id)}>
+                  Pausar trabajo
+                </button>
+                </>
+              ) : job.estado === 2 ? (
 
                 <>
 
-                  Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
+                Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
                 Precio sugerido: {job.precio}
                   <br />
                   <button onClick={() => acceptCotization(job._id, precio)}>
                     Aceptar cotizacion
                   </button>
+                  <br/>
+                  <button onClick={() => cancelJob(job._id)}>
+                  Rechazar cotizacion
+                  </button>
+                  
                 </>
 
               ) : (

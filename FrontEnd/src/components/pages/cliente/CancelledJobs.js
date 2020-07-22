@@ -15,7 +15,7 @@ const CancelledJobs = () => {
       <Container maxWidth="lg">
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h4">Trabajos cancelados</Typography>
+            <Typography variant="h4">Cotizaciones rechazadas</Typography>
           </Grid>
           <Grid item xs={6} md={3}>
             <SubNav />

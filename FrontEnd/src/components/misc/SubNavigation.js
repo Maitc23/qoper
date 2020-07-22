@@ -113,7 +113,7 @@ export default function SubNavigation() {
                   <ListItemIcon className={classes.iconClass}>
                     <CancelIcon fontSize="small" />
                   </ListItemIcon>
-                  <Typography variant="inherit">Trabajos cancelados</Typography>
+                  <Typography variant="inherit">Cotizaciones rechazadas</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                   <ListItemIcon className={classes.iconClass}>

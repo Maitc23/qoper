@@ -14,7 +14,8 @@ const {newJob,
     pauseJob,
     pausedJobs,
     cancelledJob, 
-    getJob} = require('../controllers/jobs')
+    getJob,
+    retomeJob} = require('../controllers/jobs')
 const verifyToken = require('../middlewares/verifyToken');
 
 
@@ -45,6 +46,8 @@ router.route('/cotizationJobs')
 router.route('/acceptedCotizations')
     .get(verifyToken, getAcceptedCotizationJobs)
 
+router.route('/retomeJobs')
+    .put(verifyToken, retomeJob)
 
 router.route('/completedJob')
     .get(verifyToken, getCompletedJob)

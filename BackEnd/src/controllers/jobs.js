@@ -93,7 +93,7 @@ controller.userJobs = async (req, res, next) => {
 
 controller.jobs = async (req, res, next) => {
     try {
-        const jobs = await Jobs.find({ estado: 1 });
+        const jobs = await Jobs.find({ $or: [{estado: 1} , {estado: 5}] });
 
         if (jobs.length === 0) {
             return res.status(400).json({ message: "No hay trabajos disponibles" })
@@ -288,6 +288,21 @@ controller.pauseJob = async (req, res, next) => {
         });
 
         return res.status(200).json({ message: 'Trabajo en pausa' });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+controller.retomeJob = async (req, res, next) => {
+    try {
+        const {id} = req.body
+
+        await Jobs.findByIdAndUpdate(id, {
+            estado: 1
+        });
+
+        return res.status(200).json({ message: 'Trabajo retomado' });
 
     } catch (err) {
         res.status(500).json({ error: err.message });
