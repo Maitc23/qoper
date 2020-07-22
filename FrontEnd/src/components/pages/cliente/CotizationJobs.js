@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CotizationJobs = () => {
   const classes = useStyles();
-  const state = 3;
+  const state = 2;
 
   return (
 

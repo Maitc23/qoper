@@ -39,6 +39,7 @@ export default function SubNavigation() {
   const TrabajosLista = () => history.push('/trabajosLista');
   const PausedJobs = () => history.push('/pausedJobs');
   const CotizationJobs = () => history.push('/cotizationJobs');
+  const AceptedCotizations = () => history.push('/acceptedCotizations');
   const CompletedJob = () => history.push('/completedJobs');
   const CancelledJob = () => history.push('/cancelledJob');
   const classes = useStyles();
@@ -68,6 +69,12 @@ export default function SubNavigation() {
                 </ListItemIcon>
                 <Typography variant="inherit">Trabajos en cotizacion</Typography>
               </MenuItem>
+              <MenuItem className={classes.iconHover} onClick={AceptedCotizations}>
+              <ListItemIcon className={classes.iconClass}>
+                <ScheduleIcon fontSize="small" />
+              </ListItemIcon>
+              <Typography variant="inherit">Cotizaciones aceptadas</Typography>
+              </MenuItem>
               <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                 <ListItemIcon className={classes.iconClass}>
                   <ScheduleIcon fontSize="small" />
@@ -93,7 +100,7 @@ export default function SubNavigation() {
                   <ListItemIcon className={classes.iconClass}>
                     <ScheduleIcon fontSize="small" />
                   </ListItemIcon>
-                  <Typography variant="inherit">Trabajos con cotizacion</Typography>
+                  <Typography variant="inherit">Trabajos en cotizacion</Typography>
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CancelledJob}>
                   <ListItemIcon className={classes.iconClass}>
@@ -104,8 +111,8 @@ export default function SubNavigation() {
                 <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                   <ListItemIcon className={classes.iconClass}>
                     <ScheduleIcon fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit">Trabajos creados finalizados</Typography>
+                  </ListItemIcon> 
+                  <Typography variant="inherit">Trabajos finalizados</Typography>
                 </MenuItem>
               </>
             )

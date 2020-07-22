@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import deepOrange from '@material-ui/core/colors/orange';
 import LTModal from '../misc/LTModal';
 
@@ -35,14 +36,20 @@ function WaterIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#2c387e',
+    background: '#7584D9',
     border: 0,
-    borderRadius: 10,
+    borderRadius: 5,
     color: 'white',
-    paddingTop: '1.8%',
+    paddingTop: '1.2%',
     paddingLeft: '1.8%',
+    paddingBottom: '1.2%',
     paddingRight: '1.8%'
+
   },
+  content: {
+    padding: '0 10px 0px 15px'
+  },
+
   deepOrangeAvatar: {
     backgroundColor: deepOrange[700],
     width: theme.spacing(18),
@@ -78,7 +85,7 @@ const LTCard = (state) => {
     }
   }
 
-  const getPausedJobs = async () => { 
+  const getPausedJobs = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/pausedJob',
         { headers: { 'x-access-token': token } }
@@ -91,7 +98,7 @@ const LTCard = (state) => {
     }
   }
 
-  const getCompletedJob = async () => { 
+  const getCompletedJob = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/completedJob',
         { headers: { 'x-access-token': token } }
@@ -104,7 +111,7 @@ const LTCard = (state) => {
     }
   }
 
-  const getCancelledJob = async () => { 
+  const getCancelledJob = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/cancelledJob',
         { headers: { 'x-access-token': token } }
@@ -117,7 +124,7 @@ const LTCard = (state) => {
     }
   }
 
-  const getCotizationJobs = async () => { 
+  const getCotizationJobs = async () => {
     try {
       const works = await Axios.get('http://localhost:4000/api/cotizationJobs',
         { headers: { 'x-access-token': token } }
@@ -130,18 +137,32 @@ const LTCard = (state) => {
     }
   }
 
+  const acceptedCotizations = async () => {
+    try {
+      const works = await Axios.get('http://localhost:4000/api/acceptedCotizations',
+        { headers: { 'x-access-token': token } }
+      );
+      setJobData({
+        jobs: works.data
+      })
+    } catch (err) {
+      err.response.data.message && setError(err.response.data.message);
+    }
+  }
   useEffect(() => {
-      
-    if(state.state === 1){
+
+    if (state.state === 1) {
       getJob()
-    } else if(state.state === 3) {
+    } else if (state.state === 2) {
       getCotizationJobs()
-    } else if(state.state === 4) { 
+    } else if (state.state === 3) {
+      acceptedCotizations()
+    } else if (state.state === 4) {
       getPausedJobs()
-    } else if (state.state === 6) {
-      getCompletedJob()
     } else if (state.state === 5) {
       getCancelledJob()
+    } else if (state.state === 6) {
+      getCompletedJob()
     }
     // eslint-disable-next-line
   }, [])
@@ -150,48 +171,51 @@ const LTCard = (state) => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-      <Grid container direction="column" key={job._id} item zeroMinWidth>
-        <Card className={classes.root} variant="elevation" elevation={5}>
+      <Grid container direction="column" key={job._id} item>
+        <Card variant="elevation" elevation={5} className={classes.root}>
           <Grid container direction="row" >
-            <Grid item xs={2}>
+            <Grid item xs={2} >
               <CardMedia
                 style={{ 'width': 'auto', height: '155px' }}
                 image={"https://www.redeszone.net/app/uploads-redeszone.net/2019/10/cambios-navegar-internet.jpg"}
               />
             </Grid>
 
-            <Grid item xs={10}>
+            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap'}}>
               <CardHeader
+                className={classes.content}
                 avatar={
                   <Avatar>
                     <BuildIcon />
                   </Avatar>
                 }
                 title={
-                  <Typography variant="h5" component="h2">
-                    {job.titulo}
+                  <Typography variant="h6" component="h5" style={{marginRight: 10}}>
+                    <Box textOverflow="clip" overflow="hidden">
+                      {job.titulo}
+                    </Box>
                   </Typography>
                 }
                 subheader={
-                  <Typography variant="body2" component="h4">
+                  <Typography variant="subtitle2" component="subtitle2" color="textSecondary">
                     {job.tipoMantenimiento}
                   </Typography>
                 }
+
               />
-
-              <Grid>
-                <CardContent className={classes.content}>
-                  <Typography variant="body2" component="p">
+              <CardContent className={classes.content}>
+                <Typography variant="body2" component="p">
+                  <Box textOverflow="clip" overflow="hidden">
                     {job.descripcion}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {job.estado}
-                  </Typography>
-                </CardContent>
-              </Grid>
+                  </Box>
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {job.estado}
+                </Typography>
+              </CardContent>
 
-              <CardActions>
-                <LTModal id={job._id} />
+              <CardActions className={classes.content} style={{ justifyContent: 'right' }} >
+                <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
               </CardActions>
             </Grid>
           </Grid>
