@@ -5,18 +5,17 @@ import Typography from '@material-ui/core/Typography';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import ScheduleIcon from '@material-ui/icons/Schedule'; import Paper from '@material-ui/core/Paper';
+import ScheduleIcon from '@material-ui/icons/Schedule'; 
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
-<<<<<<< HEAD
-=======
 import Grid from '@material-ui/core/Grid';
 import PauseIcon from '@material-ui/icons/Pause';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import CancelIcon from '@material-ui/icons/Cancel';
 import BuildIcon from '@material-ui/icons/Build';
 
->>>>>>> b55d452f4317ab16a7899943f9570f2e37c1c593
 import deepOrange from '@material-ui/core/colors/orange';
 import { ListItem } from '@material-ui/core';
 
@@ -118,15 +117,9 @@ export default function SubNavigation() {
                 </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                   <ListItemIcon className={classes.iconClass}>
-<<<<<<< HEAD
-                    <ScheduleIcon fontSize="small" />
-                  </ListItemIcon> 
-                  <Typography variant="inherit">Trabajos finalizados</Typography>
-=======
                     <AssignmentTurnedInIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos creados finalizados</Typography>
->>>>>>> b55d452f4317ab16a7899943f9570f2e37c1c593
                 </MenuItem>
               </>
             )

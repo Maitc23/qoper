@@ -155,7 +155,7 @@ export default function SimpleModal(work) {
       </Box>
       <p>
         fecha:
-      {job.fecha}
+        {job.fecha}
       </p>
       <p>
         {job.tipoMantenimiento}
@@ -173,8 +173,8 @@ export default function SimpleModal(work) {
       <p id="simple-modal-description">
         descripcion:
           <Box component="div" whiteSpace="normal">
-            {job.descripcion}
-          </Box>
+          {job.descripcion}
+        </Box>
       </p>
       {
         userData.user && userData.user.userType === 1 ? (
@@ -185,7 +185,7 @@ export default function SimpleModal(work) {
                   <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
                   <button onClick={() => acceptJob(job._id, precio)}>
                     Aceptar
-              </button>
+                  </button>
                 </>
               ) :
 

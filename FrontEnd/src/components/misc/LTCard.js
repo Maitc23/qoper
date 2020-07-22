@@ -34,6 +34,7 @@ function WaterIcon(props) {
 }
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     background: '#7584D9',
@@ -51,9 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   deepOrangeAvatar: {
-    backgroundColor: deepOrange[700],
-    width: theme.spacing(18),
-    height: theme.spacing(18),
+    backgroundColor: deepOrange[700]
   },
   avatarIcon: {
     width: theme.spacing(12),
@@ -149,7 +148,7 @@ const LTCard = (state) => {
       err.response.data.message && setError(err.response.data.message);
     }
   }
-  
+
   useEffect(() => {
 
     if (state.state === 1) {
@@ -168,11 +167,15 @@ const LTCard = (state) => {
     // eslint-disable-next-line
   }, [])
 
+
   const jobsList = () => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-      <Grid container direction="column" key={job._id} item>
+
+
+
+      <Grid container direction="column" key={job._id} item >
         <Card variant="elevation" elevation={5} className={classes.root}>
           <Grid container direction="row" >
             <Grid item xs={2} >
@@ -182,16 +185,56 @@ const LTCard = (state) => {
               />
             </Grid>
 
-            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap'}}>
+            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap' }}>
               <CardHeader
                 className={classes.content}
                 avatar={
-                  <Avatar>
-                    <BuildIcon />
-                  </Avatar>
+                  job.tipoMantenimiento === 'Electricidad' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <EmojiObjectsIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Refrigeracion' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <AcUnitIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Plomeria' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <WaterIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Linea Blanca' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <KitchenIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Industrial' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <BuildIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Otro' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <PersonIcon />
+                      </Avatar>
+                    </>
+                  ) : (
+                                <>
+                                  <Avatar className={classes.deepOrangeAvatar}>
+                                    <PersonIcon />
+                                  </Avatar>
+                                </>
+                              )
                 }
                 title={
-                  <Typography variant="h6" component="h5" style={{marginRight: 10}}>
+                  <Typography variant="h6" component="h5" style={{ marginRight: 10 }}>
                     <Box textOverflow="clip" overflow="hidden">
                       {job.titulo}
                     </Box>
@@ -222,7 +265,7 @@ const LTCard = (state) => {
           </Grid>
         </Card>
         <br></br>
-      </Grid>
+      </Grid >
     ))
 
     return (
@@ -240,7 +283,7 @@ const LTCard = (state) => {
                   { headers: { 'x-access-token': token } }
               )
               getJob()
-  
+   
           } catch (err) {
               err.response.data.message && setError(err.response.data.message);
           }
