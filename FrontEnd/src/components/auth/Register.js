@@ -180,7 +180,10 @@ export default function Register() {
           <img className={classes.avatar} src={logoImg} alt="Logo Qoper" />
           <Typography component="h1" variant="h5">
             Registro
-            </Typography>
+          </Typography>
+          {error && (
+            <ErrorNotice message={error} clearError={() => setError(undefined)}/>
+          )}
           <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

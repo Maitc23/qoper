@@ -34,12 +34,13 @@ function WaterIcon(props) {
 }
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#7584D9',
+    background: '#E9EAEC',
     border: 0,
     borderRadius: 5,
-    color: 'white',
+    color: 'black',
     paddingTop: '1.2%',
     paddingLeft: '1.8%',
     paddingBottom: '1.2%',
@@ -47,13 +48,12 @@ const useStyles = makeStyles((theme) => ({
 
   },
   content: {
-    padding: '0 10px 0px 15px'
+    padding: '0 50px 0px 15px'
   },
 
+
   deepOrangeAvatar: {
-    backgroundColor: deepOrange[700],
-    width: theme.spacing(18),
-    height: theme.spacing(18),
+    backgroundColor: deepOrange[700]
   },
   avatarIcon: {
     width: theme.spacing(12),
@@ -149,6 +149,7 @@ const LTCard = (state) => {
       err.response.data.message && setError(err.response.data.message);
     }
   }
+
   useEffect(() => {
 
     if (state.state === 1) {
@@ -167,11 +168,15 @@ const LTCard = (state) => {
     // eslint-disable-next-line
   }, [])
 
+
   const jobsList = () => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-      <Grid container direction="column" key={job._id} item>
+
+
+
+      <Grid container direction="column" key={job._id} item >
         <Card variant="elevation" elevation={5} className={classes.root}>
           <Grid container direction="row" >
             <Grid item xs={2} >
@@ -181,18 +186,58 @@ const LTCard = (state) => {
               />
             </Grid>
 
-            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap'}}>
+            <Grid item xs={10} style={{ width: 150, whiteSpace: 'nowrap' }}>
               <CardHeader
                 className={classes.content}
                 avatar={
-                  <Avatar>
-                    <BuildIcon />
-                  </Avatar>
+                  job.tipoMantenimiento === 'Electricidad' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <EmojiObjectsIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Refrigeracion' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <AcUnitIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Plomeria' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <WaterIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Linea Blanca' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <KitchenIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Industrial' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <BuildIcon />
+                      </Avatar>
+                    </>
+                  ) : job.tipoMantenimiento === 'Otro' ? (
+                    <>
+                      <Avatar className={classes.deepOrangeAvatar}>
+                        <PersonIcon />
+                      </Avatar>
+                    </>
+                  ) : (
+                                <>
+                                  <Avatar className={classes.deepOrangeAvatar}>
+                                    <PersonIcon />
+                                  </Avatar>
+                                </>
+                              )
                 }
                 title={
-                  <Typography variant="h6" component="h5" style={{marginRight: 10}}>
+                  <Typography variant="h6" component="h5" style={{ marginRight: 10 }}>
                     <Box textOverflow="clip" overflow="hidden">
-                      {job.titulo}
+                      <strong>{job.titulo}</strong>
                     </Box>
                   </Typography>
                 }
@@ -201,27 +246,33 @@ const LTCard = (state) => {
                     {job.tipoMantenimiento}
                   </Typography>
                 }
-
               />
               <CardContent className={classes.content}>
                 <Typography variant="body2" component="p">
-                  <Box textOverflow="clip" overflow="hidden">
-                    {job.descripcion}
+                  <Box textOverflow="clip" overflow="hidden" pt={2}>
+                    <strong> Descripción: </strong> {job.descripcion}
                   </Box>
                 </Typography>
-                <Typography variant="body2" component="p">
+                {/* <Typography variant="body2" component="p">
                   {job.estado}
-                </Typography>
+                </Typography> */}
               </CardContent>
-
-              <CardActions className={classes.content} style={{ justifyContent: 'right' }} >
-                <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
+              <br></br>
+              <CardActions >
+                <Grid container direction="row" justify="flex-end" alignItems="center" xs={12}>
+                  <Grid item xs={10}></Grid> 
+                  <Grid item xs={2}>
+                    <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
+                  </Grid>
+                </Grid>
               </CardActions>
+
+
             </Grid>
           </Grid>
         </Card>
         <br></br>
-      </Grid>
+      </Grid >
     ))
 
     return (
@@ -230,24 +281,6 @@ const LTCard = (state) => {
       </>
     )
   }
-
-
-  /*     
-      const deleteJob = async (id) => {
-          try {
-              await Axios.delete('http://localhost:4000/api/job/' + id,
-                  { headers: { 'x-access-token': token } }
-              )
-              getJob()
-  
-          } catch (err) {
-              err.response.data.message && setError(err.response.data.message);
-          }
-      }
-   */
-
-
-
 
   return (
     <div className="page">

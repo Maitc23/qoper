@@ -1,23 +1,18 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+import React from 'react';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
 
 export default function ErrorNotice(props) {
-  const classes = useStyles();
+
   return (
     <div className="error-notice">
       <Alert variant="filled" severity="error">
-        <span>{props.message}</span>
-        <button onClick={props.clearError}>X</button>
+        <strong> {props.message} </strong>
+        <IconButton aria-label="delete">
+          <CloseIcon onClick={props.clearError} style={{ margin: '-12px', color: '#FFFFFF' }} />
+        </IconButton>
       </Alert>
     </div>
   )

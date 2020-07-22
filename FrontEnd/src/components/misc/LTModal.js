@@ -8,6 +8,8 @@ import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
 import CheckOut from '../pages/Checkout';
 import JobContext from '../../context/JobContext';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 function rand() {
@@ -168,7 +170,7 @@ export default function SimpleModal(work) {
       </Box>
       <p>
         fecha:
-      {job.fecha}
+        {job.fecha}
       </p>
       <p>
         {job.tipoMantenimiento}
@@ -186,8 +188,8 @@ export default function SimpleModal(work) {
       <p id="simple-modal-description">
         descripcion:
           <Box component="div" whiteSpace="normal">
-            {job.descripcion}
-          </Box>
+          {job.descripcion}
+        </Box>
       </p>
 
       {
@@ -249,9 +251,9 @@ export default function SimpleModal(work) {
         <ErrorMessage message={error} />
       ) : (
           <>
-            <button type="button" onClick={handleOpen}>
-              Open Modal
-            </button>
+              <Button  color="primary"  size="small" onClick={handleOpen}>
+                Ver info
+                </Button>
             <Modal
               open={open}
               onClose={handleClose}
