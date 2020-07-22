@@ -39,7 +39,7 @@ export default function SubNavigation() {
   const TrabajosLista = () => history.push('/trabajosLista');
   const PausedJobs = () => history.push('/pausedJobs');
   const CotizationJobs = () => history.push('/cotizationJobs');
-  const CompletedJob = () => history.push('/completedJob');
+  const CompletedJob = () => history.push('/completedJobs');
   const CancelledJob = () => history.push('/cancelledJob');
   const classes = useStyles();
 
@@ -62,13 +62,13 @@ export default function SubNavigation() {
                 </ListItemIcon>
                 <Typography variant="inherit">Trabajos Pendientes</Typography>
               </MenuItem>
-              <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
+              <MenuItem className={classes.iconHover} onClick={CotizationJobs}>
                 <ListItemIcon className={classes.iconClass}>
                   <ScheduleIcon fontSize="small" />
                 </ListItemIcon>
                 <Typography variant="inherit">Trabajos en cotizacion</Typography>
               </MenuItem>
-              <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
+              <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                 <ListItemIcon className={classes.iconClass}>
                   <ScheduleIcon fontSize="small" />
                 </ListItemIcon>
@@ -95,19 +95,13 @@ export default function SubNavigation() {
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos con cotizacion</Typography>
                 </MenuItem>
-                <MenuItem className={classes.iconHover} onClick={CompletedJob}>
-                  <ListItemIcon className={classes.iconClass}>
-                    <ScheduleIcon fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit">Trabajos finalizados</Typography>
-                </MenuItem>
                 <MenuItem className={classes.iconHover} onClick={CancelledJob}>
                   <ListItemIcon className={classes.iconClass}>
                     <ScheduleIcon fontSize="small" />
                   </ListItemIcon>
                   <Typography variant="inherit">Trabajos cancelados</Typography>
                 </MenuItem>
-                <MenuItem className={classes.iconHover} onClick={TrabajosLista}>
+                <MenuItem className={classes.iconHover} onClick={CompletedJob}>
                   <ListItemIcon className={classes.iconClass}>
                     <ScheduleIcon fontSize="small" />
                   </ListItemIcon>

@@ -227,7 +227,7 @@ const LTCard = (state) => {
   return (
     <div className="page">
       {
-        userData.user && userData.user.userType === 2 ? (
+        userData.user ? (
 
           <>
             {error ? (

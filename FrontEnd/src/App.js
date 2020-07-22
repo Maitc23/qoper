@@ -81,7 +81,7 @@ export default function App() {
             <Route path="/pausedJobs" component={PausedJobs}/>
             <Route path="/cotizationJobs" component={CotizationJobs}/>
             <Route path="/completedJobs" component={CompletedJobs}/>
-            <Route path="cancelledJob" component={CancelledJobs}/>
+            <Route path="/cancelledJob" component={CancelledJobs}/>
           </Switch>
         </div>
         <Footer />

@@ -157,7 +157,7 @@ controller.acceptJob = async (req, res, next) => {
 }
 
 
-controller.cotizationJobs = async (req, res, next) => {
+controller.getCotizationJobs = async (req, res, next) => {
     try {
         const user = await User.findById(req.userId).populate(
             {
@@ -175,7 +175,7 @@ controller.cotizationJobs = async (req, res, next) => {
     }
 }
 
-controller.completedJob = async (req, res, next) => {
+controller.getCompletedJob = async (req, res, next) => {
     try {
         const user = await User.findById(req.userId).populate(
             {
@@ -193,7 +193,7 @@ controller.completedJob = async (req, res, next) => {
     }
 }
 
-controller.cancelledJob = async (req, res, next) => {
+controller.getCancelledJob = async (req, res, next) => {
     try {
         const user = await User.findById(req.userId).populate(
             {
