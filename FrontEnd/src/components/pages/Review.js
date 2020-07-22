@@ -27,6 +27,9 @@ export default function Review() {
   let cotization = localStorage.getItem('cotData');
   const jobData = localStorage.getItem('jobData')
 
+  if(jobData=== null){ 
+    localStorage.setItem("jobData", "");
+  }
   const [cotData, setCotData] = useState({ 
     cot: JSON.parse(jobData)
   })
@@ -36,6 +39,7 @@ const getCot = async () => {
       const job = await Axios.get('http://localhost:4000/api/job/' + cotization,
         { headers: { 'x-access-token': token } }
       );
+      localStorage.removeItem('jobData');
       localStorage.setItem('jobData', JSON.stringify(job.data))
       setCotData({ 
         cot: job.data 

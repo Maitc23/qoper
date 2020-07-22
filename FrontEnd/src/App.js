@@ -18,7 +18,6 @@ import CancelledJobs from './components/pages/cliente/CancelledJobs'
 import AcceptedCotizations from './components/pages/proveedor/AcceptedCotizations'
 
 import UserContext from './context/UserContext'
-import Factura from './components/pages/Factura'
 import checkout from './components/pages/Checkout'
 
 import './App.css'
@@ -75,7 +74,6 @@ export default function App() {
             <Route path="/register" component={Register}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/newJob" component={NewJob}/>
-            <Route path="/factura" component={Factura}/>
             <Route path="/trabajosLista" component={TrabajosLista}/>
             <Route path="/jobList" component={JobList}/>
             <Route path="/checkout" component={checkout}/>
