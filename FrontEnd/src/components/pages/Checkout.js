@@ -53,22 +53,24 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Revisar tu pedido', 'Detalles de Pago', 'Pedido Finalizado'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <Review/>;
-    case 1:
-      return <PaymentForm/>;
 
-    case 2:  
-      return 
-
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 export default function Checkout() {
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <Review />;
+      case 1:
+        return <PaymentForm/>;
+  
+      case 2:  
+        return 
+  
+      default:
+        throw new Error('Unknown step');
+    }
+  }
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -80,13 +82,15 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
+  const jobData = JSON.parse(localStorage.getItem('jobData'))
+
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Facturacion del Pedido: Casa para Bruh
+            Facturacion del Pedido: {jobData.titulo}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -109,7 +113,7 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
+                  Your order id is #{jobData._id}. We have emailed your order confirmation, and will
                   send you an update when your order has shipped.
                 </Typography>
               </React.Fragment>

@@ -4,13 +4,15 @@ import Grid from '@material-ui/core/Grid';
 import PaypalCheckOutButton from '../misc/PaypalCheckOutButton';
 import Box from '@material-ui/core/Box'
 
+
+const jobData = JSON.parse(localStorage.getItem('jobData'))
+
+
 const product = {
-  price: 777.77,
-  name: 'Trabajo del baño',
+  price:  jobData.precio,
+  name: jobData.titulo,
   description: 'Trabajo realizado',
-
 }
-
 export default function PaymentForm() {
   return (
     <React.Fragment>

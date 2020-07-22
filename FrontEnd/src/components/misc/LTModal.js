@@ -6,6 +6,8 @@ import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
+import CheckOut from '../pages/Checkout';
+import JobContext from '../../context/JobContext';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -48,6 +50,8 @@ export default function SimpleModal(work) {
   const [provData, setProveedor] = useState({
     prov: []
   })
+
+
   const [error, setError] = useState();
   const [precio, setPrecio] = useState();
   const [jobData, setJobData] = useState({
@@ -131,6 +135,14 @@ export default function SimpleModal(work) {
 
       );
       setSuccessful(res.data.message);
+      const cotizationData = localStorage.getItem('cotData');
+
+      if(cotizationData === null) { 
+        localStorage.setItem("cotData", job.id);
+      }else { 
+        localStorage.removeItem("cotData")
+        localStorage.setItem("cotData", job.id)
+      }
       window.location.replace('/checkOut');
 
 
@@ -192,12 +204,9 @@ export default function SimpleModal(work) {
                     Aceptar
                   </button>
                 </>
-
               ) : (
                   <>
-                    Precio del sugerido: {job.precio}
-
-
+                    Precio sugerido: {job.precio}
                   </>
                 )
             }
