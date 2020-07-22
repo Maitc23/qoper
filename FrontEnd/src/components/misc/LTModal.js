@@ -39,7 +39,6 @@ export default function SimpleModal(work) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-
   const { userData } = useContext(UserContext)
   let token = localStorage.getItem('x-access-token');
   const [successful, setSuccessful] = useState();
@@ -110,7 +109,7 @@ export default function SimpleModal(work) {
 
       );
       setSuccessful(res.data.message);
-      window.location.render('/factura');
+      window.location.replace('/cotizationJobs');
 
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
@@ -129,6 +128,7 @@ export default function SimpleModal(work) {
 
       );
       setSuccessful(res.data.message);
+      window.location.replace('/checkOut');
 
 
     } catch (err) {
@@ -176,28 +176,27 @@ export default function SimpleModal(work) {
             {job.descripcion}
           </Box>
       </p>
+
       {
         userData.user && userData.user.userType === 1 ? (
           <>
             {
-              work.state === 1 ? (
+              job.estado === 1 ? (
+
                 <>
                   <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
                   <button onClick={() => acceptJob(job._id, precio)}>
                     Aceptar
-              </button>
+                </button>
                 </>
-              ) :
 
-                work.state === 3 ? (
+              ) : (
                   <>
                     Precio del sugerido: {job.precio}
+
+
                   </>
-                ) : (
-                    <>
-                      Precio del sugerido: {job.precio}
-                    </>
-                  )
+                )
             }
 
           </>
@@ -205,25 +204,27 @@ export default function SimpleModal(work) {
 
           <>
             {
-              work.state !== 2 ? (
+              job.estado === 2 ? (
+
                 <>
 
+                  Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
+                Precio sugerido: {job.precio}
+                  <br />
+                  <button onClick={() => acceptCotization(job._id, precio)}>
+                    Aceptar cotizacion
+          </button>
                 </>
+
               ) : (
                   <>
-
-                    Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
-              Precio sugerido: {job.precio}
-                    <br />
-                    <button onClick={() => acceptCotization(job._id, precio)}>
-                      Aceptar cotizacion
-              </button>
                   </>
                 )
             }
           </>
         ) : (
               <>
+                Precio sugerido: {job.precio}
 
               </>
             )

@@ -23,6 +23,16 @@ const useStyles = makeStyles((theme) => ({
     height: 250,
   },
 
+  paperr: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },},
+
   rot: {
     width: 'auto',
   },
@@ -222,7 +232,9 @@ export default function UserProfile() {
                 </Grid>
 
                 <Grid item xs={6} md={9}>
-                  <Paper >
+
+
+                  <Paper className={classes.paperr} >
                     <Grid container >
 
                       <Box
@@ -233,7 +245,8 @@ export default function UserProfile() {
                       >
                         <Grid item  >
                           <ButtonBase className={classes.image}  >
-                            <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />                          </ButtonBase>
+                            <img className={classes.img} alt="" src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />                          
+                          </ButtonBase>
                         </Grid>
                       </Box>
 
@@ -288,7 +301,7 @@ export default function UserProfile() {
 
                           <hr />
                           <Box display="flex" margin="auto" alignItems="center" justifyContent="center">
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary" href="/">
                               Guardar
                           </Button>
                           </Box>

@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import PaypalCheckOutButton from '../misc/PaypalCheckOutButton';
+import Box from '@material-ui/core/Box'
 
 const product = {
   price: 777.77,
@@ -16,9 +17,12 @@ const product = {
 export default function PaymentForm() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">
+      <Typography variant="subtitle1" gutterBottom>
       Metodo de Pago
       </Typography>
+      </Box>
+      <hr/>
       <Grid container spacing={3}>
       <PaypalCheckOutButton product= {product} />
         </Grid>
