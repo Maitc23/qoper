@@ -7,7 +7,8 @@ import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
+import { Grid, Typography, Input } from '@material-ui/core';
+
 
 
 function rand() {
@@ -27,11 +28,11 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    background: '#E9EAEC',
+    border: 0,
+    borderRadius: 5,
     position: 'absolute',
     width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
@@ -153,32 +154,48 @@ export default function SimpleModal(work) {
       {successful && (
         <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
       )}
-      <Box textOverflow="clip" overflow="hidden">
-        <h2 id="simple-modal-title">{job.titulo}</h2>
-      </Box>
-      <p>
-        fecha:
-      {job.fecha}
-      </p>
-      <p>
-        {job.tipoMantenimiento}
-      </p>
-      <p>
-        {job.telefono}
-      </p>
-      <p>
-        {job.nombreSupervisor}
-      </p>
-      <p>
-        ubicacion:
-        {ubicacion.ciudad}
-      </p>
-      <p id="simple-modal-description">
-        descripcion:
+      <Grid>
+        <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+          <Typography variant="h4" component="h2" >
+            {job.titulo}
+          </Typography>
+        </Box>
+        <Typography variant="subtitle2" component="subtitle2" color="textSecondary">
+
+          <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+            Fecha:
+          {job.fecha}
+          </Box>
+
+          <br></br>
+          Tipo:
+          {job.tipoMantenimiento}
+          <br></br>
+          Telefono:
+          {job.telefono}
+        </Typography>
+
+        <p>
+          Supervisor:
+          <Box component="div" whiteSpace="normal">
+            {job.nombreSupervisor}
+          </Box>
+        </p>
+
+        <p>
+          Ubicacion:
+          <Box component="div" whiteSpace="normal">
+            {ubicacion.ciudad}
+          </Box>
+        </p>
+
+        <p id="simple-modal-description">
+          Descripción:
           <Box component="div" whiteSpace="normal">
             {job.descripcion}
           </Box>
-      </p>
+        </p>
+      </Grid>
 
       {
         userData.user && userData.user.userType === 1 ? (
@@ -187,10 +204,13 @@ export default function SimpleModal(work) {
               job.estado === 1 ? (
 
                 <>
-                  <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
-                  <button onClick={() => acceptJob(job._id, precio)}>
-                    Aceptar
-                </button>
+                  <Box textOverflow="clip" overflow="hidden" display='flex' margin='auto' alignItems='center' justifyContent='center'>
+                    <Input type="number" placeholder="Placeholder" inputProps={{ 'aria-label': 'description' }} onChange={(e) => setPrecio(e.target.value)} />
+                    <Button onClick={() => acceptJob(job._id, precio)}>
+                      Aceptar
+                    </Button>
+                  </Box>
+
                 </>
 
               ) : (
@@ -216,7 +236,10 @@ export default function SimpleModal(work) {
                   <br />
                   <button onClick={() => acceptCotization(job._id, precio)}>
                     Aceptar cotizacion
-          </button>
+                  </button>
+                  <button onClick={() => acceptCotization(job._id, precio)}>
+                    Rechazar
+                  </button>
                 </>
 
               ) : (
@@ -242,8 +265,8 @@ export default function SimpleModal(work) {
         <ErrorMessage message={error} />
       ) : (
           <>
-              <Button  color="primary"  size="small" onClick={handleOpen}>
-                Ver info
+            <Button color="primary" size="small" onClick={handleOpen}>
+              Ver info
                 </Button>
             <Modal
               open={open}
