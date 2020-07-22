@@ -141,7 +141,8 @@ controller.acceptJob = async (req, res, next) => {
         const { id } = req.body
         const proveedor = await User.findById(req.userId)
 
-        const job = await Jobs.findOneAndUpdate(id, {
+  
+        const job = await Jobs.findByIdAndUpdate(id, {
             proveedor,
             estado: 2
         });

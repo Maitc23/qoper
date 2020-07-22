@@ -130,6 +130,7 @@ const LTCard = (state) => {
   }
 
   useEffect(() => {
+      
     if(state.state === 1){
       getJob()
     } else if(state.state === 3) {
