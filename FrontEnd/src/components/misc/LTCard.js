@@ -37,10 +37,10 @@ function WaterIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#7584D9',
+    background: '#E9EAEC',
     border: 0,
     borderRadius: 5,
-    color: 'white',
+    color: 'black',
     paddingTop: '1.2%',
     paddingLeft: '1.8%',
     paddingBottom: '1.2%',
@@ -48,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
 
   },
   content: {
-    padding: '0 10px 0px 15px'
+    padding: '0 50px 0px 15px'
   },
+
 
   deepOrangeAvatar: {
     backgroundColor: deepOrange[700]
@@ -245,7 +246,6 @@ const LTCard = (state) => {
                     {job.tipoMantenimiento}
                   </Typography>
                 }
-
               />
               <CardContent className={classes.content}>
                 <Typography variant="body2" component="p">
@@ -253,14 +253,16 @@ const LTCard = (state) => {
                     {job.descripcion}
                   </Box>
                 </Typography>
-                <Typography variant="body2" component="p">
+                {/* <Typography variant="body2" component="p">
                   {job.estado}
-                </Typography>
+                </Typography> */}
               </CardContent>
-
-              <CardActions className={classes.content} style={{ justifyContent: 'right' }} >
+              <br></br><br></br>
+              <CardActions >
                 <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
               </CardActions>
+
+
             </Grid>
           </Grid>
         </Card>
@@ -274,24 +276,6 @@ const LTCard = (state) => {
       </>
     )
   }
-
-
-  /*     
-      const deleteJob = async (id) => {
-          try {
-              await Axios.delete('http://localhost:4000/api/job/' + id,
-                  { headers: { 'x-access-token': token } }
-              )
-              getJob()
-   
-          } catch (err) {
-              err.response.data.message && setError(err.response.data.message);
-          }
-      }
-   */
-
-
-
 
   return (
     <div className="page">

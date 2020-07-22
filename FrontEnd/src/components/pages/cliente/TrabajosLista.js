@@ -17,12 +17,12 @@ const TrabajosLista = () => {
       <Container maxWidth="lg">
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h4">Mis trabajos pendientes</Typography>
+            <Typography variant="h5">Mis trabajos pendientes</Typography>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={4} md={3}>
             <SubNav />
           </Grid>
-          <Grid item xs={6} md={9}>
+          <Grid item xs={8} md={9}>
             <Paper >
               <Grid container>
                 <Grid item xs={12}>

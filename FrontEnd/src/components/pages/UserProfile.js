@@ -207,7 +207,7 @@ export default function UserProfile() {
 
                           <br></br>
                           <Box display="flex" margin="auto" alignItems="center" justifyContent="center">
-                            <Button variant="contained" color="primary" href="/"  style={{ margin: 10 }}>
+                            <Button variant="contained" color="primary" href="/" style={{ margin: 10 }}>
                               Guardar
                             </Button>
                           </Box>
