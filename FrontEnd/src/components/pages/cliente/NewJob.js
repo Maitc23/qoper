@@ -124,7 +124,7 @@ export default function NewJob() {
 
 
       history.push('/newJob');
-      window.location.replace('/newJob');
+      window.location.replace('/trabajosLista');
       setSuccessful(res.data.message);
 
     } catch (err) {

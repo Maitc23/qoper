@@ -5,15 +5,15 @@ import PaypalCheckOutButton from '../misc/PaypalCheckOutButton';
 import Box from '@material-ui/core/Box'
 
 
-const jobData = JSON.parse(localStorage.getItem('jobData'))
 
+export default function PaymentForm() {
+const jobData = JSON.parse(localStorage.getItem('jobData'))
 
 const product = {
   price:  jobData.precio,
   name: jobData.titulo,
   description: 'Trabajo realizado',
 }
-export default function PaymentForm() {
   return (
     <React.Fragment>
       <Box display="flex" margin="auto" alignItems="center" justifyContent="center" fontStyle="italic">
