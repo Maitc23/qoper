@@ -158,10 +158,10 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Iniciar sesión
             </Typography>
-            <form className={classes.form} onSubmit={submit} noValidate>
             {error && (
-              <ErrorNotice message={error} clearError={() => setError(undefined)} />
+              <ErrorNotice message={error} clearError={() => setError(undefined)}/>
             )}
+            <form className={classes.form} onSubmit={submit} noValidate>
               <TextField
                 className={classes.inputDesign}
                 variant="outlined"

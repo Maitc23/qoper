@@ -1,17 +1,13 @@
 import React, { useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext'
-
 import Typography from '@material-ui/core/Typography';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ScheduleIcon from '@material-ui/icons/Schedule'; import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import PersonIcon from '@material-ui/icons/Person';
-import Grid from '@material-ui/core/Grid'
-
 import deepOrange from '@material-ui/core/colors/orange';
 
 const useStyles = makeStyles((theme) => ({
