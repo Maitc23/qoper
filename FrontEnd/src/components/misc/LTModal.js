@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
 import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
@@ -128,7 +129,7 @@ export default function SimpleModal(work) {
 
       );
       setSuccessful(res.data.message);
-      
+
 
     } catch (err) {
       err.response.data.message && setError(err.response.data.message);
@@ -149,7 +150,9 @@ export default function SimpleModal(work) {
       {successful && (
         <SuccessfulNotice message={successful} clearSuccessfulNotice={() => setSuccessful(undefined)} />
       )}
-      <h2 id="simple-modal-title">{job.titulo}</h2>
+      <Box textOverflow="clip" overflow="hidden">
+        <h2 id="simple-modal-title">{job.titulo}</h2>
+      </Box>
       <p>
         fecha:
       {job.fecha}
@@ -169,58 +172,60 @@ export default function SimpleModal(work) {
       </p>
       <p id="simple-modal-description">
         descripcion:
-      {job.descripcion}
+          <Box component="div" whiteSpace="normal">
+            {job.descripcion}
+          </Box>
       </p>
       {
         userData.user && userData.user.userType === 1 ? (
           <>
-          {
-            work.state === 1 ? ( 
-            <>
-              <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
-              <button onClick={() => acceptJob(job._id, precio)}>
-                Aceptar
+            {
+              work.state === 1 ? (
+                <>
+                  <input type="number" placeholder="$ 0.00" onChange={(e) => setPrecio(e.target.value)} />
+                  <button onClick={() => acceptJob(job._id, precio)}>
+                    Aceptar
               </button>
-             </>
-             ) :
-           
-              work.state === 3 ? (
-              <>
-              Precio del sugerido: {job.precio}
-              </>
-             ) : (
-               <>
-               Precio del sugerido: {job.precio}
-              </>
-            )
-          }
+                </>
+              ) :
+
+                work.state === 3 ? (
+                  <>
+                    Precio del sugerido: {job.precio}
+                  </>
+                ) : (
+                    <>
+                      Precio del sugerido: {job.precio}
+                    </>
+                  )
+            }
 
           </>
-        ) : userData.user && userData.user.userType === 2  ? (
+        ) : userData.user && userData.user.userType === 2 ? (
 
           <>
-          {
-            work.state !==2 ? ( 
+            {
+              work.state !== 2 ? (
+                <>
+
+                </>
+              ) : (
+                  <>
+
+                    Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
+              Precio sugerido: {job.precio}
+                    <br />
+                    <button onClick={() => acceptCotization(job._id, precio)}>
+                      Aceptar cotizacion
+              </button>
+                  </>
+                )
+            }
+          </>
+        ) : (
               <>
 
               </>
-            ) : (
-              <>
-                            
-              Nombre del  tecnico:  {provData.prov.nombre + ' ' + provData.prov.apellido}
-              Precio sugerido: {job.precio}
-              <br/>
-              <button onClick={() => acceptCotization(job._id, precio)}>
-                Aceptar cotizacion
-              </button>
-              </>
-            )
-          }
-          </>
-        ) : (
-            <>
-            
-            </>
             )
       }
     </div>
