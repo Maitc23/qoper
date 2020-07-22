@@ -6,6 +6,9 @@ import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -239,9 +242,9 @@ export default function SimpleModal(work) {
         <ErrorMessage message={error} />
       ) : (
           <>
-            <button type="button" onClick={handleOpen}>
-              Open Modal
-            </button>
+              <Button  color="primary"  size="small" onClick={handleOpen}>
+                Ver info
+                </Button>
             <Modal
               open={open}
               onClose={handleClose}

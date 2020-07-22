@@ -36,10 +36,10 @@ function WaterIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#7584D9',
+    background: '#E9EAEC',
     border: 0,
     borderRadius: 5,
-    color: 'white',
+    color: 'black',
     paddingTop: '1.2%',
     paddingLeft: '1.8%',
     paddingBottom: '1.2%',
@@ -47,8 +47,9 @@ const useStyles = makeStyles((theme) => ({
 
   },
   content: {
-    padding: '0 10px 0px 15px'
+    padding: '0 50px 0px 15px'
   },
+ 
 
   deepOrangeAvatar: {
     backgroundColor: deepOrange[700],
@@ -190,7 +191,7 @@ const LTCard = (state) => {
                   </Avatar>
                 }
                 title={
-                  <Typography variant="h6" component="h5" style={{marginRight: 10}}>
+                  <Typography variant="h6" component="h5" style={{marginRight: 10, Color:'blue'}}>
                     <Box textOverflow="clip" overflow="hidden">
                       {job.titulo}
                     </Box>
@@ -201,7 +202,6 @@ const LTCard = (state) => {
                     {job.tipoMantenimiento}
                   </Typography>
                 }
-
               />
               <CardContent className={classes.content}>
                 <Typography variant="body2" component="p">
@@ -209,18 +209,20 @@ const LTCard = (state) => {
                     {job.descripcion}
                   </Box>
                 </Typography>
-                <Typography variant="body2" component="p">
+                {/* <Typography variant="body2" component="p">
                   {job.estado}
-                </Typography>
+                </Typography> */}
               </CardContent>
-
-              <CardActions className={classes.content} style={{ justifyContent: 'right' }} >
+              <br></br><br></br>
+              <CardActions >
                 <LTModal id={job._id} proveedor={job.proveedor} state={state.state} />
               </CardActions>
+              
+
             </Grid>
           </Grid>
         </Card>
-        <br></br>
+        
       </Grid>
     ))
 
