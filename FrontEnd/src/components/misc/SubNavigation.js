@@ -10,14 +10,12 @@ import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
-import Grid from '@material-ui/core/Grid';
 import PauseIcon from '@material-ui/icons/Pause';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import CancelIcon from '@material-ui/icons/Cancel';
 import BuildIcon from '@material-ui/icons/Build';
 
 import deepOrange from '@material-ui/core/colors/orange';
-import { ListItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {

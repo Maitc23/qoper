@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ErrorNotice from '../misc/ErrorNotice';
+import ErrorMessage from '../misc/ErrorMessage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,11 +60,16 @@ useEffect(() => {
 
   return (
     <React.Fragment>
+
+    {error ? (
+      <ErrorMessage message={error} />
+    ): (
+      <>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-   
+
         <ListItem className={classes.listItem} >
           <ListItemText primary={cotData.cot.titulo} />
           <Typography variant="subtitle1" className={classes.total}>
@@ -72,6 +77,10 @@ useEffect(() => {
           </Typography>
         </ListItem>
       </List>
+    </>
+    )}
+  
+      
  
     </React.Fragment>
   );

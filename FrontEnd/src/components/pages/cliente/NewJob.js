@@ -13,7 +13,6 @@ import React, { useState, useContext } from 'react'
 import ErrorNotice from '../../misc/ErrorNotice';
 import SuccessfulNotice from '../../misc/SuccessfulNotice';
 import DateFnsUtils from '@date-io/date-fns';
-import DatePicker from 'react-datepicker';
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
@@ -133,7 +132,7 @@ export default function NewJob() {
   }
 
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate] = useState(new Date());
 
   return (
     <Container component="main" maxWidth="md">

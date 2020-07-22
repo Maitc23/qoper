@@ -6,10 +6,7 @@ import ErrorMessage from '../misc/ErrorMessage';
 import Axios from 'axios';
 import UserContext from '../../context/UserContext'
 import SuccessfulNotice from '../misc/SuccessfulNotice';
-import CheckOut from '../pages/Checkout';
-import JobContext from '../../context/JobContext';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
 
 
 function rand() {

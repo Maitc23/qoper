@@ -8,7 +8,6 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar, CardMedia, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -173,9 +172,7 @@ const LTCard = (state) => {
     const jobs = jobsData.jobs;
 
     const listJobs = jobs.map(job => (
-
-
-
+      
       <Grid container direction="column" key={job._id} item >
         <Card variant="elevation" elevation={5} className={classes.root}>
           <Grid container direction="row" >
@@ -227,12 +224,12 @@ const LTCard = (state) => {
                       </Avatar>
                     </>
                   ) : (
-                                <>
-                                  <Avatar className={classes.deepOrangeAvatar}>
-                                    <PersonIcon />
-                                  </Avatar>
-                                </>
-                              )
+                      <>
+                          <Avatar className={classes.deepOrangeAvatar}>
+                            <PersonIcon />
+                          </Avatar>
+                      </>
+                  )
                 }
                 title={
                   <Typography variant="h6" component="h5" style={{ marginRight: 10 }}>
@@ -253,9 +250,6 @@ const LTCard = (state) => {
                     <strong> Descripción: </strong> {job.descripcion}
                   </Box>
                 </Typography>
-                {/* <Typography variant="body2" component="p">
-                  {job.estado}
-                </Typography> */}
               </CardContent>
               <br></br>
               <CardActions >

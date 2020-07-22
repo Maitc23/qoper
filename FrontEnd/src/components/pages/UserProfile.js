@@ -1,14 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext} from 'react'
 import UserContext from '../../context/UserContext';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
 import SubNav from '../misc/SubNavigation';
 
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
-import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import { ButtonBase } from '@material-ui/core';
 import { Box } from '@material-ui/core';
@@ -72,68 +70,6 @@ export default function UserProfile() {
   const classes = useStyles();
 
   const { userData } = useContext(UserContext);
-  let token = localStorage.getItem('x-access-token');
-  const [error, setError] = useState();
-  const [jobsData, setJobData] = useState({
-    jobs: []
-  })
-
-  const getJob = async () => {
-    try {
-      const works = await Axios.get('http://localhost:4000/api/job',
-        { headers: { 'x-access-token': token } }
-      );
-      setJobData({
-        jobs: works.data
-      })
-    } catch (err) {
-      err.response.data.message && setError(err.response.data.message);
-    }
-
-  }
-
-  useEffect(() => {
-
-    getJob()
-    // eslint-disable-next-line
-  }, [])
-
-  const jobsList = () => {
-    const jobs = jobsData.jobs
-    const listJobs = jobs.map(job => (
-      <div key={job._id}>
-        <p > {job.titulo} {job.ubicacion.ciudad} {job.ubicacion.corregimiento} {job.tipoMantenimiento} {job.telefono}</p>
-
-        <button className="btn btn-danger" onClick={() => deleteJob(job._id)}>
-          Delete
-          </button>
-      </div>
-    ))
-    return (
-      <>
-        {listJobs}
-      </>
-    )
-  }
-
-
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  const deleteJob = async (id) => {
-    try {
-      await Axios.delete('http://localhost:4000/api/job/' + id,
-        { headers: { 'x-access-token': token } }
-      )
-
-      getJob()
-    } catch (err) {
-      err.response.data.message && setError(err.response.data.message);
-    }
-  }
-
-
-
-
 
 
   return (
