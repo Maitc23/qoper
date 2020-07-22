@@ -39,13 +39,13 @@ export default function SubNavigation() {
           <ListItemIcon className={classes.iconClass}>
             <PersonIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit" >Mis Datos</Typography>
+          <Typography variant="inherit">Mis Datos</Typography>
         </MenuItem>
         <MenuItem className={classes.iconHover}>
           <ListItemIcon className={classes.iconClass}>
             <ScheduleIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit">Trabajos Pendientes</Typography>
+          <Typography variant="inherit" noWrap>Trabajos Pendientes</Typography>
         </MenuItem>
         <MenuItem className={classes.iconHover}>
           <ListItemIcon className={classes.iconClass}>

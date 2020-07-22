@@ -140,7 +140,6 @@ const LTCard = () => {
     return (
       <>
         {listJobs}
-        <hr />
       </>
     )
   }

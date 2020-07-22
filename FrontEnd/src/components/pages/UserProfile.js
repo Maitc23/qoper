@@ -139,35 +139,7 @@ export default function UserProfile() {
                   <SubNav />
                 </Grid>
 
-                {/*                 <Grid item xs={6} md={3}>
-                  <Paper className={classes.root}>
-                    <MenuList>
-                      <MenuItem>
-                        <ListItemIcon>
-                          <PersonIcon fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit">Mis Datos</Typography>
-                      </MenuItem>
-                      <MenuItem>
-                        <ListItemIcon>
-                          <ScheduleIcon fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit">Trabajos Pendientes</Typography>
-                      </MenuItem>
-                      <MenuItem>
-                        <ListItemIcon>
-                          <AssignmentTurnedInIcon fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit" noWrap>Trabajos Realizados </Typography>
-                      </MenuItem>
-                    </MenuList>
-                  </Paper>
-                </Grid> */}
-
-
                 <Grid item xs={6} md={9}>
-
-
                   <Paper >
                     <Grid container >
                       <Grid item>
